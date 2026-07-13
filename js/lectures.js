@@ -13,7 +13,7 @@ const LECTURES = [
         category: "Self-development",
         duration: "20:00",
         video: "lectures/videos/Negativ_bilimlar.mp4",
-        thumb: "", // ixtiyoriy: rasm manzili, bo'sh qoldirsa video kadridan foydalanadi
+        // thumb: "", // ixtiyoriy: rasm manzili, bo'sh qoldirsa video kadridan foydalanadi
     },
 
 ];

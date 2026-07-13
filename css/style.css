@@ -748,47 +748,7 @@ a {
   line-height: 1.4;
 }
 
-.video-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.92);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  padding: 24px;
-}
 
-.video-modal.open {
-  display: flex;
-}
-
-#video-modal-player {
-  max-width: 90vw;
-  max-height: 85vh;
-  border-radius: 10px;
-  background: #000;
-}
-
-.video-modal-close {
-  position: absolute;
-  top: 24px;
-  right: 32px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 24px;
-  line-height: 1;
-  border: none;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.video-modal-close:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
 
 @media (max-width: 980px) {
   .lecture-grid {

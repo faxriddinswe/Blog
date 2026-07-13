@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lectures — Faxriddin </title>
+  <title>Lectures — Faxriddin</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,24 +30,15 @@
     <div class="lecture-grid" id="lecture-grid"></div>
   </main>
 
-  <!-- Video ochilganda shu oyna to'liq ekranga chiqadi -->
-  <div class="video-modal" id="video-modal">
-    <button class="video-modal-close" id="video-modal-close">&times;</button>
-    <video id="video-modal-player" controls playsinline></video>
-  </div>
-
   <script src="js/lectures.js"></script>
   <script>
     const grid = document.getElementById("lecture-grid");
     const statsEl = document.getElementById("lectures-stats");
     const pillsEl = document.getElementById("filter-pills");
-    const modal = document.getElementById("video-modal");
-    const modalPlayer = document.getElementById("video-modal-player");
-    const modalClose = document.getElementById("video-modal-close");
 
-    // Har categoriya avtomatik rang oladi (ketma-ket: yashil, ko'k, binafsha...)
     const TAG_COLORS = ["green", "blue", "purple", "orange", "pink"];
     const categoryColorMap = {};
+
     function colorFor(category) {
       if (!categoryColorMap[category]) {
         const idx = Object.keys(categoryColorMap).length % TAG_COLORS.length;
@@ -58,7 +49,6 @@
 
     let activeCategory = "All";
 
-    // "25 lectures • 23 database • 2 networking" qatorini yasaydi
     function renderStats(list) {
       const counts = {};
       list.forEach((l) => (counts[l.category] = (counts[l.category] || 0) + 1));
@@ -66,7 +56,6 @@
       statsEl.textContent = `${list.length} lectures${parts.length ? " • " + parts.join(" • ") : ""}`;
     }
 
-    // Filter tugmalarini (All + har categoriya) chizadi
     function renderPills() {
       const counts = {};
       LECTURES.forEach((l) => (counts[l.category] = (counts[l.category] || 0) + 1));
@@ -90,7 +79,6 @@
       });
     }
 
-    // Video kartalarni chizadi (filtr + qidiruvga mos)
     function renderGrid() {
       const filtered = LECTURES.filter((l) => {
         return activeCategory === "All" || l.category === activeCategory;
@@ -99,45 +87,34 @@
       renderStats(filtered);
 
       grid.innerHTML = filtered
-        .map(
-          (l) => `
-          <div class="lecture-card" data-video="${l.video}">
-            <div class="lecture-thumb">
-              ${l.thumb
-              ? `<img src="${l.thumb}" alt="${l.title}" loading="lazy" />`
-              : `<video src="${l.video}#t=0.5" preload="metadata" muted playsinline></video>`
-            }
-              <span class="play-btn">
-                <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
-              </span>
-              <span class="duration-badge">${l.duration}</span>
-            </div>
-            <span class="lecture-tag tag-${colorFor(l.category)}">${l.category}</span>
-            <h3 class="lecture-title">${l.title}</h3>
-          </div>`
-        )
+        .map((l) => {
+          const ytId = l.youtube ? new URL(l.youtube).searchParams.get("v") : null;
+          const thumb = l.thumb
+            ? l.thumb
+            : ytId
+              ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+              : "";
+          return `
+            <div class="lecture-card" data-href="${l.youtube || l.video || ""}">
+              <div class="lecture-thumb">
+                ${thumb ? `<img src="${thumb}" alt="${l.title}" loading="lazy" />` : ""}
+                <span class="play-btn">
+                  <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                </span>
+                <span class="duration-badge">${l.duration}</span>
+              </div>
+              <span class="lecture-tag tag-${colorFor(l.category)}">${l.category}</span>
+              <h3 class="lecture-title">${l.title}</h3>
+            </div>`;
+        })
         .join("");
 
       grid.querySelectorAll(".lecture-card").forEach((card) => {
-        card.addEventListener("click", () => openVideo(card.dataset.video));
+        card.addEventListener("click", () => {
+          window.open(card.dataset.href, "_blank");
+        });
       });
     }
-
-    // Video pleer oynasini ochish / yopish
-    function openVideo(src) {
-      modalPlayer.src = src;
-      modal.classList.add("open");
-      modalPlayer.play();
-    }
-    function closeVideo() {
-      modal.classList.remove("open");
-      modalPlayer.pause();
-      modalPlayer.src = "";
-    }
-    modalClose.addEventListener("click", closeVideo);
-    modal.addEventListener("click", (e) => { if (e.target === modal) closeVideo(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeVideo(); });
-
 
     renderPills();
     renderGrid();

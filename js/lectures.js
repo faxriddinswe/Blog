@@ -9,11 +9,17 @@
 
 const LECTURES = [
     {
-        title: "1. Mindset blocks",
+        title: "1. Negative mindset",
         category: "Self-development",
         duration: "20:00",
-        video: "lectures/videos/Negativ_bilimlar.mp4",
+        youtube: "https://youtube.com/watch?v=AUWfSrafHiY&t=0",
         // thumb: "", // ixtiyoriy: rasm manzili, bo'sh qoldirsa video kadridan foydalanadi
     },
-
+    {
+        title: "2. Mindset blocks",
+        category: "Self-development",
+        duration: "25:00",
+        youtube: "https://www.youtube.com/watch?v=FBuJ0mJIgeg&t=0",
+        // thumb: "", // ixtiyoriy: rasm manzili, bo'sh qoldirsa video kadridan foydalanadi
+    },
 ];

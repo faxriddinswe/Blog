@@ -1,4 +1,4 @@
-Ko'p odam so'raydi: "Nega vaqtingni sarflab, buni yozib o'tirasan? Kodni yozsang bo'lmaydimi?"
+Ko'p odam so'raydi: "Nega vaqtingni sarflab, post yozib o'tirasan? Uni o'rniga bo'ladigan ishni qilsang bo'lmaydimi?"
 
 Bugun shu savolga to'liq javob berishga harakat qilaman.
 

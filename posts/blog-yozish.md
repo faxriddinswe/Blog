@@ -1,6 +1,10 @@
+
 Ko'p odam so'raydi: "Nega vaqtingni sarflab, post yozib o'tirasan? Uni o'rniga bo'ladigan ishni qilsang bo'lmaydimi?"
 
+![Blog rasm](posts/images/blog.webp)
+
 Bugun shu savolga to'liq javob berishga harakat qilaman.
+
 
 ## Boshlanishi
 

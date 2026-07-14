@@ -16,6 +16,14 @@
 
 const PROJECTS = [
   {
+    name: "Postflow",
+    url: "https://github.com/faxriddinswe/PostFlow",
+    desc: "A platform where share your posts to your telegram channel .",
+    lang: "Python, FastAPI",
+    date: "2025-11-14",
+    stars: 1,
+  },
+  {
     name: "DaysLeft",
     url: "https://github.com/faxriddinswe/left-year-time",
     desc: "A clean, minimal web application that calculates and displays the exact time and percentage remaining in the current year.",

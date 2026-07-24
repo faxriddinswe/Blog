@@ -20,7 +20,15 @@ const PROJECTS = [
     url: "https://github.com/faxriddinswe/PostFlow",
     desc: "A platform where share your posts to your telegram channel .",
     lang: "Python, FastAPI",
-    date: "2025-11-14",
+    date: "2026-07-14",
+    stars: 1,
+  },
+  {
+    name: "Namoz bot",
+    url: "https://github.com/faxriddinswe/namoz_bot",
+    desc: "A bot for share namoz times to your telegram account .",
+    lang: "Python",
+    date: "2026-07-24",
     stars: 1,
   },
   {
@@ -36,7 +44,7 @@ const PROJECTS = [
     url: "https://github.com/faxriddinswe/Tech-house-website",
     desc: "Tech House offers a wide range of premium household appliances including kitchen equipment, cleaning devices, heating and cooling products, personal care electronics, and smart home solutions. ",
     lang: "JavaScript",
-    date: "2025-11-04",
+    date: "2025-1-04",
     stars: 1,
   },
   {
@@ -44,7 +52,7 @@ const PROJECTS = [
     url: "https://github.com/faxriddinswe/art_gallery",
     desc: "A clean, minimal web application that shows art gallery images and their details. It allows users to explore and appreciate various artworks in a visually appealing manner.",
     lang: "HTML, CSS",
-    date: "2025-11-04",
+    date: "2025-1-24",
     stars: 1,
   },
 ];

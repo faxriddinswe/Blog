@@ -32,6 +32,14 @@ const PROJECTS = [
     stars: 1,
   },
   {
+    name: "CareTrack platform",
+    url: "https://github.com/faxriddinswe/CareTrack-platform",
+    desc: "A platform where you can track your care needs .",
+    lang: "JavaScript, React",
+    date: "2026-05-9",
+    stars: 1,
+  },
+  {
     name: "DaysLeft",
     url: "https://github.com/faxriddinswe/left-year-time",
     desc: "A clean, minimal web application that calculates and displays the exact time and percentage remaining in the current year.",

@@ -20,6 +20,12 @@ const POSTS = [
     date: "2026-07-13",
     readTime: "2 min read",
   },
+  {
+    slug: "consume-less-create-more",
+    title: "Kamroq iste'mol qiling. Ko'proq yarating.",
+    date: "2026-08-28",
+    readTime: "2 min read",
+  },
 
 
 ];

@@ -15,17 +15,18 @@
 
 const POSTS = [
   {
-    slug: "blog-yozish",
-    title: "Blog yozish niyyati qayerdan kelib chiqdi ?",
-    date: "2026-07-13",
-    readTime: "2 min read",
-  },
-  {
     slug: "consume-less-create-more",
     title: "Kamroq iste'mol qiling. Ko'proq yarating.",
     date: "2026-08-28",
     readTime: "2 min read",
   },
+  {
+    slug: "blog-yozish",
+    title: "Blog yozish niyyati qayerdan kelib chiqdi ?",
+    date: "2026-07-13",
+    readTime: "2 min read",
+  },
+
 
 
 ];

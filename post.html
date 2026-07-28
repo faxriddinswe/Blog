@@ -33,6 +33,24 @@
 
     <!-- Markdown shu yerga HTML bo'lib chiziladi -->
     <article class="post-content" id="post-content"></article>
+
+    <div class="post-footer">
+      <a href="blog.html" class="post-footer-btn back-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 12H5M5 12l7-7M5 12l7 7" />
+        </svg>
+        Back to blogs
+      </a>
+      <button class="post-footer-btn share-btn" id="share-btn">
+        <svg viewBox="0 0 24 24">
+          <circle cx="18" cy="5" r="3" />
+          <circle cx="6" cy="12" r="3" />
+          <circle cx="18" cy="19" r="3" />
+          <path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98" />
+        </svg>
+        <span id="share-label">Share</span>
+      </button>
+    </div>
   </main>
 
   <script src="js/marked.min.js"></script>
@@ -78,6 +96,15 @@
             "Eslatma: sayt lokal server orqali ochilishi kerak (README ga qarang).</p>";
         });
     }
+  </script>
+  <script>
+    document.getElementById("share-btn").addEventListener("click", () => {
+      const label = document.getElementById("share-label");
+      navigator.clipboard.writeText(location.href).then(() => {
+        label.textContent = "Link copied!";
+        setTimeout(() => (label.textContent = "Share"), 2000);
+      });
+    });
   </script>
   <script src="js/nav.js"></script>
 </body>

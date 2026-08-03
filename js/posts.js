@@ -15,6 +15,12 @@
 
 const POSTS = [
   {
+    slug: "linux-1",
+    title: "Linux olamiga sayohat 1 qism ?",
+    date: "2026-08-2",
+    readTime: "2 min read",
+  },
+  {
     slug: "consume-less-create-more",
     title: "Kamroq iste'mol qiling. Ko'proq yarating.",
     date: "2026-08-28",
@@ -26,6 +32,8 @@ const POSTS = [
     date: "2026-07-13",
     readTime: "2 min read",
   },
+
+
 
 
 

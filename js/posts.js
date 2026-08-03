@@ -15,6 +15,18 @@
 
 const POSTS = [
   {
+    slug: "python-interview-qs",
+    title: "Pythonda interview savollari",
+    date: "2026-08-3",
+    readTime: "2 min read",
+  },
+  {
+    slug: "python-memory-management",
+    title: "Pythonda xotira boshqaruvi",
+    date: "2026-08-3",
+    readTime: "2 min read",
+  },
+  {
     slug: "linux-2",
     title: "Linux olamiga sayohat (2 qism )",
     date: "2026-08-2",

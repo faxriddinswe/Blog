@@ -1,33 +1,21 @@
 /* ============================================================
-   abdukarim.uz uslubidagi shaxsiy sayt
-   Ranglar, shriftlar va umumiy qoidalar shu faylda
+   Shaxsiy sayt — QORA TEMA
    ============================================================ */
 
-/* ---------- 1. O'zgaruvchilar (ranglarni shu yerdan o'zgartirasiz) ---------- */
 :root {
   --bg: #0a0a0a;
-  /* saytning asosiy qora foni */
   --bg-card: #141414;
-  /* kartalar foni (biroz ochroq qora) */
   --bg-nav: #161616;
-  /* navigatsiya pill foni */
   --border: #2a2a2a;
-  /* oddiy chegara rangi */
   --accent: #e5a54b;
-  /* SARIQ aksent — hover, linklar, faol tugma */
   --accent-dim: rgba(229, 165, 75, 0.12);
-  /* faol tugma orqa foni */
   --text: #e8e8e8;
-  /* asosiy matn */
   --text-muted: #9a9a9a;
-  /* xira matn (sanalar, izohlar) */
   --text-dim: #6b6b6b;
-  /* eng xira matn */
   --mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
   --sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-/* ---------- 2. Umumiy reset ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -62,7 +50,7 @@ a {
   flex: 1;
 }
 
-/* ---------- 3. Navigatsiya (markazdagi pill) ---------- */
+/* ---------- Navigatsiya ---------- */
 .nav-wrap {
   display: flex;
   justify-content: center;
@@ -104,22 +92,20 @@ a {
   color: var(--text);
 }
 
-/* Hozirgi ochiq sahifa — sariq rangda ajralib turadi */
 .nav a.active {
   background: var(--accent-dim);
   color: var(--accent);
 }
 
-/* ---------- 4. HOME sahifasi ---------- */
+/* ---------- HOME ---------- */
 .hero {
   padding: 96px 0 48px;
   font-family: var(--mono);
-  /* rasmdagidek monospace shrift */
 }
 
 .hero .avatar {
-  width: 140px;
-  height: 140px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 28px;
@@ -163,7 +149,6 @@ a {
   margin: 48px 0;
 }
 
-/* "Find me on" — ijtimoiy tarmoqlar */
 .socials-title {
   font-size: 15px;
   color: var(--text-muted);
@@ -195,7 +180,7 @@ a {
   fill: currentColor;
 }
 
-/* ---------- 5. BLOG ro'yxati ---------- */
+/* ---------- BLOG ro'yxati ---------- */
 .page-title {
   text-align: center;
   font-size: 30px;
@@ -224,7 +209,6 @@ a {
   list-style: none;
 }
 
-/* Har bir post alohida qator — pastida chiziq bilan ajralib turadi */
 .blog-item a {
   display: flex;
   align-items: baseline;
@@ -232,18 +216,15 @@ a {
   gap: 24px;
   padding: 26px 18px;
   margin: 0 -18px;
-  border-bottom: 1px solid var(--border);
   border-radius: 10px;
-  /* ko'rinmas chegara — hoverda sariq bo'ladi, joy "sakramasligi" uchun */
   border: 1px solid transparent;
   border-bottom-color: var(--border);
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
-/* SICHQONCHA OLIB BORILGANDA — chetlari sariq rangda yonadi */
 .blog-item a:hover {
   border-color: var(--accent);
-  background: rgba(229, 165, 75, 0.04);
+  background: var(--accent-dim);
 }
 
 .blog-item h2 {
@@ -259,7 +240,7 @@ a {
   flex-shrink: 0;
 }
 
-/* ---------- 6. POST (maqola) sahifasi ---------- */
+/* ---------- POST ---------- */
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -288,7 +269,6 @@ a {
   margin-bottom: 40px;
 }
 
-/* Markdown'dan chiqqan kontent uslublari */
 .post-content {
   padding-bottom: 80px;
 }
@@ -300,18 +280,21 @@ a {
   margin: 48px 0 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
 
 .post-content h3 {
   font-size: 19px;
   font-weight: 700;
   margin: 36px 0 14px;
+  color: var(--text);
 }
 
 .post-content p {
   margin-bottom: 18px;
   font-size: 16.5px;
   line-height: 1.8;
+  color: var(--text);
 }
 
 .post-content a {
@@ -333,9 +316,9 @@ a {
 
 .post-content li {
   margin-bottom: 8px;
+  color: var(--text);
 }
 
-/* Rasmlar */
 .post-content img {
   max-width: 100%;
   border-radius: 12px;
@@ -343,7 +326,6 @@ a {
   display: block;
 }
 
-/* Iqtibos (quote) — chap tomoni sariq chiziqli */
 .post-content blockquote {
   border-left: 3px solid var(--accent);
   padding: 12px 24px;
@@ -352,11 +334,11 @@ a {
   font-style: italic;
 }
 
-.post-content blockquote p:last-child {
+.post-content blockquote p {
+  color: var(--text-muted);
   margin-bottom: 0;
 }
 
-/* Bir qatorli kod: `shunday` */
 .post-content code {
   font-family: var(--mono);
   font-size: 14px;
@@ -367,7 +349,6 @@ a {
   border-radius: 6px;
 }
 
-/* Kod bloki: ```java ... ``` */
 .post-content pre {
   background: #131313;
   border: 1px solid var(--border);
@@ -386,7 +367,6 @@ a {
   font-size: 14px;
 }
 
-/* Jadval */
 .post-content table {
   width: 100%;
   border-collapse: collapse;
@@ -399,10 +379,12 @@ a {
   border: 1px solid var(--border);
   padding: 10px 14px;
   text-align: left;
+  color: var(--text);
 }
 
 .post-content th {
   background: var(--bg-card);
+  font-weight: 600;
 }
 
 .post-content hr {
@@ -411,7 +393,49 @@ a {
   margin: 40px 0;
 }
 
-/* ---------- 7. BUILDING (loyihalar) ---------- */
+/* ---------- POST FOOTER ---------- */
+.post-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 32px 0 72px;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+
+.post-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.post-footer-btn svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.post-footer-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ---------- BUILDING ---------- */
 .projects {
   display: flex;
   flex-direction: column;
@@ -428,7 +452,6 @@ a {
   transition: border-color 0.15s ease, transform 0.15s ease;
 }
 
-/* Loyiha ustiga borganda ham sariq chegara */
 .project-card:hover {
   border-color: var(--accent);
   transform: translateY(-1px);
@@ -470,73 +493,19 @@ a {
 }
 
 .project-card .lang {
-  background: #1e1e1e;
+  background: var(--bg);
   border: 1px solid var(--border);
   padding: 3px 12px;
   border-radius: 999px;
 }
 
-/* ---------- 8. LECTURES ---------- */
+/* ---------- LECTURES ---------- */
 .empty-state {
   text-align: center;
   color: var(--text-dim);
   padding: 120px 0;
   font-size: 17px;
 }
-
-/* ---------- 9. RESUME ---------- */
-.resume-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin: 56px 0 32px;
-}
-
-.resume-head h1 {
-  font-size: 32px;
-  font-weight: 800;
-}
-
-.btn-accent {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--accent);
-  color: #1a1200;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 13px 24px;
-  border-radius: 12px;
-  transition: opacity 0.15s;
-}
-
-.btn-accent:hover {
-  opacity: 0.88;
-}
-
-.btn-accent svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-}
-
-.resume-frame {
-  width: 100%;
-  height: 78vh;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 60px;
-  background: #333;
-}
-
-
-/* ============================================================
-   LECTURES SAHIFASI — video darslar
-   ============================================================ */
 
 .container-wide {
   max-width: 1180px;
@@ -603,40 +572,6 @@ a {
 .pill.active span {
   color: var(--bg);
   opacity: 0.6;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 9px 18px;
-  min-width: 220px;
-}
-
-.search-box svg {
-  width: 16px;
-  height: 16px;
-  stroke: var(--text-dim);
-  fill: none;
-  stroke-width: 2;
-  flex-shrink: 0;
-}
-
-.search-box input {
-  border: none;
-  outline: none;
-  background: none;
-  color: var(--text);
-  font-size: 14.5px;
-  font-family: var(--sans);
-  width: 100%;
-}
-
-.search-box input::placeholder {
-  color: var(--text-dim);
 }
 
 .lecture-grid {
@@ -748,34 +683,70 @@ a {
   line-height: 1.4;
 }
 
+/* ---------- RESUME ---------- */
+.resume-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 56px 0 32px;
+}
 
+.resume-head h1 {
+  font-size: 32px;
+  font-weight: 800;
+}
 
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #1a1200;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 13px 24px;
+  border-radius: 12px;
+  transition: opacity 0.15s;
+}
+
+.btn-accent:hover {
+  opacity: 0.88;
+}
+
+.btn-accent svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.resume-frame {
+  width: 100%;
+  height: 78vh;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 60px;
+  background: #333;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 14.5px;
+  padding: 40px 16px;
+}
+
+/* ---------- Mobil ---------- */
 @media (max-width: 980px) {
   .lecture-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 560px) {
-  .lecture-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .lectures-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-
-/* ---------- 10. Footer ---------- */
-footer {
-  text-align: center;
-  color: #fff;
-  font-size: 14.5px;
-  padding: 40px 16px;
-}
-
-/* ---------- 11. Mobil moslashuv ---------- */
 @media (max-width: 640px) {
   .nav a {
     padding: 9px 12px;
@@ -800,65 +771,11 @@ footer {
     gap: 6px;
     align-items: flex-start;
   }
-}
 
-/* Harakat kamaytirilgan rejimni hurmat qilamiz */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
+  .lecture-grid {
+    grid-template-columns: 1fr;
   }
-}
 
-
-/* ---------- POST FOOTER (Back to blogs + Share) ---------- */
-.post-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 32px 0 72px;
-  border-top: 1px solid var(--border);
-  margin-top: 16px;
-}
-
-.post-footer-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 12px 22px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-muted);
-  cursor: pointer;
-  font-family: var(--sans);
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
-}
-
-.post-footer-btn svg {
-  width: 17px;
-  height: 17px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-  flex-shrink: 0;
-}
-
-.post-footer-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-dim);
-}
-
-.share-btn[data-copied="true"] {
-  border-color: #4ec98a;
-  color: #4ec98a;
-  background: rgba(78, 201, 138, 0.1);
-}
-
-@media (max-width: 480px) {
   .post-footer {
     flex-direction: column;
     align-items: stretch;
@@ -866,5 +783,11 @@ footer {
 
   .post-footer-btn {
     justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }

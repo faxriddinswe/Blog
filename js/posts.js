@@ -15,8 +15,14 @@
 
 const POSTS = [
   {
+    slug: "linux-2",
+    title: "Linux olamiga sayohat (2 qism )",
+    date: "2026-08-2",
+    readTime: "2 min read",
+  },
+  {
     slug: "linux-1",
-    title: "Linux olamiga sayohat 1 qism ?",
+    title: "Linux olamiga sayohat (1 qism )",
     date: "2026-08-2",
     readTime: "2 min read",
   },

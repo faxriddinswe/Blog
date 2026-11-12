@@ -119,22 +119,7 @@
   }
 }
 
-/* WebGL upgrade: the canvas adds light on top (screen ≈ additive on dark). */
-.beam__canvas {
-  position: absolute !important;
-  inset: 0;
-  mix-blend-mode: screen;
-  animation: fade-in var(--dur-slow) var(--ease-out) both;
-}
-
-.beam :is(.beam__core, .beam__flow, .beam__splash) {
-  transition: opacity var(--dur-slow) var(--ease-out);
-}
-
-.beam[data-webgl="on"] :is(.beam__core, .beam__flow, .beam__splash) {
-  opacity: 0;
-}
-
+/* Shared by the mobile menu and other fade-ins. */
 @keyframes fade-in {
   from {
     opacity: 0;

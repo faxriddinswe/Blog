@@ -4,7 +4,6 @@ import { LightBeamFallback } from "@/components/motion/LightBeamFallback";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { RotatingText } from "@/components/motion/RotatingText";
 import { SplitRise } from "@/components/motion/SplitRise";
-import { HeroBeam } from "@/components/three/HeroBeam";
 import { GlowPillLink } from "@/components/ui/GlowPillLink";
 import { site, stats } from "@/content/site";
 import { HeroFragments } from "./HeroFragments";
@@ -18,9 +17,7 @@ export function Hero() {
 
   return (
     <section aria-labelledby="hero-title" className="hero">
-      <LightBeamFallback>
-        <HeroBeam />
-      </LightBeamFallback>
+      <LightBeamFallback />
       <HeroFragments />
 
       {/* Mobile: portrait on top, text centered below. ≥768px: text left, portrait right. */}

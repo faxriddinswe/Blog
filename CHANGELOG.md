@@ -4,6 +4,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Hero: rotating glow ring only (owner request, 2026-11-12)
+
+- Removed the waterfall entirely (CSS fall and the WebGL beam). The portrait now has only a glowing amber ↔ cyan ring that slowly turns around it, plus a soft aura.
+- The ring rotates with a compositor-only `rotate` transform (not an animated gradient angle): an earlier version repainted the blurred aura every frame and pushed mobile TBT to 1.8 s; now 240–470 ms.
+- Dropped `three`, `@react-three/fiber`, `@types/three` and `src/components/three/` — no WebGL left on the site.
+
 ### Simpler lead form & calmer hero (owner request, 2026-11-12)
 
 - Lead form is now a single step with three fields: full name, phone number, question / proposal (which business needs help) → **Send**. Shared Zod schema, API and Telegram message updated (name, phone, message, locale, Tashkent time). Replaces the brief's 4-step form at the owner's request; step/chip components removed.

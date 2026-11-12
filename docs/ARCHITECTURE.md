@@ -17,7 +17,7 @@
 | typescript                 | 5.9.3           | `strict: true`                                                                |
 | pnpm                       | 12.18.0         | pinned via `packageManager`                                                   |
 
-`@react-three/drei` is intentionally not installed: the beam is a single full-screen shader quad and needs none of its helpers. MDX, Shiki and react-hook-form arrive in their phases.
+MDX, Shiki and react-hook-form arrive in their phases.
 
 ## Performance architecture
 
@@ -39,7 +39,7 @@ Auditing `localhost` against a production build shows SEO 92 only because canoni
 3. **LCP-eligible headline.** The name is split by _words_ (per-char inline-blocks would each be a tiny LCP candidate). Words sit in their final place under the preloader (`animation-fill-mode: none`), so they are painted at FCP, then drop into their masks as the curtain lifts. On narrow screens the portrait (`fetchPriority="high"`) is the LCP instead, so it also must not start at `opacity: 0` — its intro is a transform-only rise.
 4. **Fonts.** Only Space Grotesk 600 (headline) is preloaded; Inter and JetBrains Mono 400 swap in. `latin` covers Uzbek ʻ ʼ, so no `latin-ext` (230 KB → 82 KB).
 5. **Desktop-only chunks.** `DesktopEnhancements` lazy-loads Lenis + GSAP (smooth scroll, cursor) only for fine pointers without reduced motion; touch devices never download them.
-6. **WebGL beam, lazily.** `HeroBeam` mounts the R3F canvas after `requestIdleCallback`, on capable desktops only (`isLowPowerDevice()`), pauses via `IntersectionObserver` (`frameloop="never"`), and reads hero scroll progress itself.
+6. **No WebGL.** The R3F waterfall was removed at the owner's request; the hero ring rotates via a compositor-only `rotate` transform.
 7. **Scroll-linked effects via CSS scroll-driven animations** — hero parallax, bio word reveal, timeline draw and the pinned Projects gallery. This replaces GSAP ScrollTrigger from the brief for these effects: same result, zero JS, compositor-friendly. Browsers without `animation-timeline` get static/fallback layouts (e.g. a swipe row for Projects). Parallax (`animation-timeline: view()`), progressive enhancement behind `@supports`.
 8. **Magnetic CTAs** use rAF + a CSS `translate` transition — no GSAP on the critical path.
 

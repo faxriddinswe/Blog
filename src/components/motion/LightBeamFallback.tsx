@@ -1,7 +1,7 @@
 /**
  * CSS-only Waterfall Light Beam (brief §8). Serves as the mobile / low-power /
- * reduced-motion version and as the first-paint layer under the future WebGL
- * shader. Layer order mirrors the brief: atmosphere → core → flow → splash → halftone.
+ * reduced-motion version and the first-paint layer. In the hero only the
+ * atmosphere is shown (see hero.css). Layer order mirrors the brief: atmosphere → core → flow → splash → halftone.
  * Styles live in src/styles/beam.css.
  */
 import type { ReactNode } from "react";

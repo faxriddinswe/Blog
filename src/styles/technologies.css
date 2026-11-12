@@ -1,5 +1,6 @@
 /* "Texnologiyalar": category label + logo tiles. */
 .tech-row {
+  --glow-fill: var(--bg-elevated);
   display: grid;
   gap: 1rem;
   align-items: center;
@@ -29,6 +30,13 @@
 }
 
 .tech-tile {
+  --glow-fill:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in srgb, var(--brand) 18%, transparent),
+      transparent 70%
+    ),
+    var(--bg-elevated);
   display: grid;
   width: clamp(4.25rem, 8vw, 5.25rem);
   aspect-ratio: 1;

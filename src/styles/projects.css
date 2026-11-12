@@ -43,7 +43,7 @@
 }
 
 /* Warm cards flip the heated border's phase so neighbours don't glow in sync. */
-.project-card[data-accent="warm"] .glow-frame {
+.project-card[data-accent="warm"] .glow-frame::before {
   animation-delay: -7s;
 }
 
@@ -111,4 +111,15 @@
   .project-card__shot {
     animation: none;
   }
+}
+
+/* ---------- /projects: all projects in a still grid ---------- */
+.projects-grid {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+}
+
+.projects-grid .project-card {
+  width: auto;
 }

@@ -91,6 +91,7 @@
 }
 
 .lead-btn--primary {
+  --glow-fill: var(--text);
   color: var(--bg);
   background: var(--text);
   box-shadow: 0 8px 36px -8px rgb(249 115 22 / 0.7);

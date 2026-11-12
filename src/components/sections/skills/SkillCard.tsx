@@ -32,6 +32,7 @@ export function SkillCard({ group, locale }: SkillCardProps) {
 
   return (
     <article data-spotlight className={cn("skill-card glow-edge", SIZE[group.size])}>
+      <span className="skill-card__spot" aria-hidden="true" />
       <div className="skill-card__stage">
         <Scene />
       </div>

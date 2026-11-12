@@ -33,7 +33,10 @@ export function MarqueeVelocity() {
       const target =
         1 + Math.min(Math.abs(velocity) * marquee.velocityGain, marquee.maxRate);
       rate += (target - rate) * marquee.decay;
-      animation.playbackRate = rate * direction;
+      // Writing playbackRate every frame forces animation updates on the
+      // main thread; only write when it actually changes.
+      const next = Math.round(rate * direction * 100) / 100;
+      if (next !== animation.playbackRate) animation.playbackRate = next;
       if (visible) frame = requestAnimationFrame(loop);
     };
 

@@ -27,7 +27,7 @@ export function SectionHeading({
           light ? "text-text-muted-on-light" : "text-text-muted",
         )}
       >
-        <span aria-hidden="true" className="h-px w-8 bg-accent-orange" />
+        <span aria-hidden="true" className="eyebrow-line h-px w-8 bg-accent-orange" />
         {eyebrow}
       </p>
       <h2

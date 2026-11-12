@@ -20,7 +20,7 @@ export function MobileMenu() {
         type="button"
         onClick={() => dialog.current?.showModal()}
         aria-haspopup="dialog"
-        className="rounded-full border border-border bg-bg-elevated/70 px-4 py-2 text-sm text-text backdrop-blur-md lg:hidden"
+        className="glow-hover rounded-full border border-border bg-bg-elevated/70 px-4 py-2 text-sm text-text backdrop-blur-md lg:hidden"
       >
         {t("menu")}
       </button>

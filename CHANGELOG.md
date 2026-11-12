@@ -4,6 +4,14 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Always-alive light, "Men haqimda", all-projects page (owner request, 2026-11-12)
+
+- **Living rings everywhere**: buttons, icons, navbar, cards, technology rows and frames carry an always-lit, always-turning warm↔cool border (hover brightens it and blooms the aura). Rebuilt for performance: a compositor-only `rotate` of a conic square clipped by the element + an opaque fill layer (`--glow-fill`), instead of animating an `@property` angle. Touch devices keep the rings lit but still; the hero portrait ring turns everywhere.
+- **Performance**: `content-visibility: auto` on sections (off-screen sections — and their animations — are not rendered); the code-typing scene now animates a transform instead of `width`; marquee only writes `playbackRate` when it changes. Throttled-phone main-thread work on the home page: ~43 s → ~6 s per load; mobile Perf 82–95, desktop 98.
+- **About**: title "Men haqimda" / "About me" (eyebrow "Tanishuv"); wide centred panel with a living border, bio left, numbers right.
+- **Section eyebrows**: the little light line breathes (compositor transform).
+- **All projects**: "Barcha loyihalarim →" button in the Projects section opens `/[locale]/projects` — every project in a still grid (metadata, hreflang, sitemap).
+
 ### Light mode, FB logo, single language button, looping projects (owner request, 2026-11-12)
 
 - **Light / night mode**: light token set (`html[data-theme="light"]`), pre-paint `ThemeScript` (saved choice, dark by default — no flash), sun/moon `ThemeToggle` with a short cross-fade; theme is re-applied after locale switches (the `[locale]` root layout re-renders `<html>`). Preloader stays a dark stage in both themes.

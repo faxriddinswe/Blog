@@ -52,8 +52,8 @@
     "label": "Ishlatadigan texnologiyalarim"
   },
   "About": {
-    "eyebrow": "Men haqimda",
-    "title": "Koʻrinmaydigan, lekin hamma tayanadigan qism.",
+    "eyebrow": "Tanishuv",
+    "title": "Men haqimda",
     "bio": "Men Faxriddin — Toshkentlik backend muhandisman. 2024-yildan beri 20 dan ortiq loyihani yakunladim: freelance, xorijiy kompaniyalar bilan remote va startaplarda backend muhandis sifatida. Bugun asosiy yoʻnalishim — AI agentlar: LLM, RAG va MCP vositalari yordamida biznes ichida oʻqiydigan, qaror qabul qiladigan va harakat qiladigan tizimlar. Ularni mustahkam Python, FastAPI va PostgreSQL poydevori ustiga quraman. Ish bilan bir qatorda PDP Universityda dasturiy injiniring yoʻnalishida tahsil olaman.",
     "statsLabel": "Raqamlarda"
   },
@@ -83,7 +83,12 @@
     "demoNote": "Namuna loyiha — haqiqiylari tez orada qoʻshiladi.",
     "linkSoon": "Havola tez orada",
     "stackLabel": "Texnologiyalar",
-    "screenshotAlt": "{name} interfeysi"
+    "screenshotAlt": "{name} interfeysi",
+    "allProjects": "Barcha loyihalarim",
+    "allTitle": "Barcha loyihalarim.",
+    "allLead": "Qilgan ishlarim — har biri aniq muammo va ishlaydigan yechim.",
+    "metaTitle": "Loyihalar",
+    "backHome": "Bosh sahifaga"
   },
   "Services": {
     "eyebrow": "AI yechimlar",

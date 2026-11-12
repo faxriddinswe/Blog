@@ -65,6 +65,15 @@ request ─▶ src/proxy.ts (next-intl middleware)
 - `pnpm check:i18n` — fails if `uz.json` / `en.json` keys diverge.
 - Unknown paths under a locale hit `app/[locale]/[...rest]` → localized `not-found.tsx`. That segment sets `instant = false` because it always 404s.
 
+## Always-on animation budget
+
+The owner wants many elements permanently animated. Rules that keep that affordable:
+
+- Only `transform`/`opacity` (incl. individual `rotate`/`translate`/`scale`) may animate indefinitely — never `@property` values, `background-position`, `width` or other paint/layout properties.
+- Every home section uses `content-visibility: auto`, so off-screen sections and their animations cost nothing.
+- Touch devices (`hover: none`) get still rings; the hero ring is the one exception.
+- Measure with the CDP snippet pattern used during development: 4× CPU throttle, `Performance.getMetrics` TaskDuration over 5 s.
+
 ## SEO
 
 - Per-page metadata with canonical + hreflang (`x-default` → `/uz`) in `[locale]/layout.tsx`, blog index and posts (posts only list locales that exist).

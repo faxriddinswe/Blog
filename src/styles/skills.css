@@ -43,13 +43,14 @@
   border-radius: var(--radius-lg);
   border: 1px solid rgb(11 12 16 / 0.08);
   background: #fff;
+  --glow-fill: #fff;
   box-shadow:
     0 1px 0 rgb(255 255 255 / 0.8) inset,
     0 20px 40px -24px rgb(11 12 16 / 0.18);
 }
 
 /* Spotlight: warm core, cool falloff, follows --mx/--my. */
-.skill-card::before {
+.skill-card__spot {
   content: "";
   position: absolute;
   inset: 0;
@@ -65,7 +66,7 @@
   pointer-events: none;
 }
 
-[data-spotlight-root][data-active] .skill-card::before {
+[data-spotlight-root][data-active] .skill-card__spot {
   opacity: 1;
 }
 
@@ -93,30 +94,35 @@
 }
 
 .scene-code__line {
-  width: 0;
+  position: relative;
+  width: calc(var(--chars) * 1ch);
   overflow: clip;
   white-space: pre;
-  border-right: 2px solid transparent;
+}
+
+/* Typing = a card-coloured cover sliding off the line in character steps.
+   Transform only, so it runs on the compositor (no per-frame layout). */
+.scene-code__line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-left: 2px solid var(--accent-orange);
+  transform-origin: right;
   animation: type-line 7s steps(var(--chars)) infinite;
   animation-delay: calc(var(--i) * 0.9s);
 }
 
 @keyframes type-line {
   0% {
-    width: 0;
-    border-color: var(--accent-orange);
+    transform: translateX(0);
   }
-  12% {
-    width: calc(var(--chars) * 1ch);
-    border-color: var(--accent-orange);
-  }
-  13%,
+  12%,
   85% {
-    width: calc(var(--chars) * 1ch);
-    border-color: transparent;
+    transform: translateX(100%);
   }
   100% {
-    width: 0;
+    transform: translateX(0);
   }
 }
 
@@ -376,9 +382,9 @@
 
 /* Reduced motion: every scene rests in its finished state. */
 @media (prefers-reduced-motion: reduce) {
-  .scene-code__line {
-    width: auto;
+  .scene-code__line::after {
     animation: none;
+    transform: translateX(100%);
   }
 
   .scene-ring__orbit,

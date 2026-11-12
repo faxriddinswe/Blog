@@ -24,7 +24,7 @@ export function Navbar() {
           {site.monogram}
           <span className="sr-only"> — {t("home")}</span>
         </Link>
-        <ul className="hidden items-center gap-1 rounded-full border border-border bg-bg-elevated/70 p-1 backdrop-blur-md lg:flex">
+        <ul className="glow-hover hidden items-center gap-1 rounded-full border border-border bg-bg-elevated/70 p-1 backdrop-blur-md lg:flex">
           {navItems.map((item) => (
             <li key={item.key}>
               <Link

@@ -1,5 +1,6 @@
 /* ---------- Service grid ---------- */
 .service-card {
+  --glow-fill: var(--bg);
   position: relative;
   padding: clamp(1.75rem, 3vw, 2.5rem);
   background: var(--bg);
@@ -7,6 +8,7 @@
 }
 
 .service-card:hover {
+  --glow-fill: var(--bg-elevated);
   background: var(--bg-elevated);
 }
 

@@ -26,7 +26,7 @@ export function Technologies() {
 
         <div className="mt-14 grid gap-4">
           {techCategories.map((category) => (
-            <div key={category.id} className="tech-row">
+            <div key={category.id} className="tech-row glow-edge">
               <h3 className="tech-row__label">{category.label[locale]}</h3>
               <ul className="flex flex-wrap gap-3">
                 {category.items.map((item) => {

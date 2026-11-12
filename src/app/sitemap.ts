@@ -22,6 +22,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: alternates((l) => `/${l}`),
     },
     {
+      url: url(`/${locale}/projects`),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: alternates((l) => `/${l}/projects`),
+    },
+    {
       url: url(`/${locale}/blog`),
       changeFrequency: "weekly",
       priority: 0.7,

@@ -2,6 +2,7 @@ import { useLocale, useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { projects } from "@/content/projects";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { ProjectCard } from "./ProjectCard";
 
@@ -42,9 +43,19 @@ export function Projects() {
           title={t("title")}
           lead={t("lead")}
         />
-        {hasDemo && (
-          <p className="max-w-xs font-mono text-xs text-text-muted">{t("demoNote")}</p>
-        )}
+        <div className="flex flex-col items-start gap-4 md:items-end">
+          {hasDemo && (
+            <p className="max-w-xs font-mono text-xs text-text-muted md:text-right">
+              {t("demoNote")}
+            </p>
+          )}
+          <Link
+            href="/projects"
+            className="glow-hover rounded-full border border-border-strong px-5 py-2.5 text-sm hover:border-text-muted"
+          >
+            {t("allProjects")} →
+          </Link>
+        </div>
       </div>
 
       {/* Focusable + labelled: with reduced motion this becomes a scrollable row (keyboard users can scroll it). */}

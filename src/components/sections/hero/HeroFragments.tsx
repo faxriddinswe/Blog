@@ -34,7 +34,7 @@ function FragmentBody({ fragment }: { fragment: HeroFragment }) {
 
   if (fragment.kind === "telegram") {
     return (
-      <div className="w-60 rounded-2xl border border-border bg-bg-elevated/70 p-3 backdrop-blur-sm">
+      <div className="glow-hover w-60 rounded-2xl border border-border bg-bg-elevated/70 p-3 backdrop-blur-sm">
         <div className="flex items-center gap-2 text-xs">
           <span className="grid size-6 place-items-center rounded-full bg-accent-blue/30 text-[10px]">
             ✈
@@ -50,7 +50,7 @@ function FragmentBody({ fragment }: { fragment: HeroFragment }) {
   }
 
   return (
-    <pre className="rounded-xl border border-border bg-bg-elevated/60 px-4 py-3 text-left font-mono text-[11px] leading-relaxed text-text-muted backdrop-blur-sm">
+    <pre className="glow-hover rounded-xl border border-border bg-bg-elevated/60 px-4 py-3 text-left font-mono text-[11px] leading-relaxed text-text-muted backdrop-blur-sm">
       {fragment.kind === "terminal" && (
         <span className="mb-2 flex gap-1.5">
           <i className="size-2 rounded-full bg-accent-orange/60" />

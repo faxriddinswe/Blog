@@ -1,151 +1,115 @@
-/* GlowFrame: rotating heated border. --gf-angle animates via @property. */
-@property --gf-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
+/*
+ * Living light (owner request): buttons, icons, cards and frames carry a
+ * warm↔cool border that is always lit and always turning.
+ *
+ * Performance: the turning is a compositor-only `rotate` on a large conic
+ * square behind the element, clipped by the element itself; an opaque fill
+ * layer covers all but a 1.5px edge. Nothing animates a custom property, so
+ * the main thread stays idle (an earlier @property-angle version cost tens of
+ * seconds of style recalc per minute on a throttled phone).
+ */
 
-.glow-frame {
-  --gf-radius: var(--radius-lg);
-  position: relative;
-  isolation: isolate;
-  padding: 1px;
-  border-radius: var(--gf-radius);
-  background: conic-gradient(
-    from var(--gf-angle) at 50% 50%,
+/* Shared light: warm and cool arcs chasing each other. */
+:root {
+  --ring-light: conic-gradient(
     var(--accent-orange),
-    var(--accent-peach) 15%,
-    rgb(255 255 255 / 0.08) 30%,
+    #fbbf24 10%,
+    transparent 27%,
     var(--accent-blue) 50%,
-    var(--accent-cyan) 62%,
-    rgb(255 255 255 / 0.08) 80%,
+    var(--accent-cyan) 61%,
+    transparent 78%,
     var(--accent-orange)
   );
-  animation: gf-spin 14s linear infinite;
+  --ring-aura: 0 0 18px -10px rgb(249 115 22 / 0.5), 0 0 26px -14px rgb(59 130 246 / 0.5);
+  --ring-aura-hot:
+    0 0 28px -6px rgb(249 115 22 / 0.6), 0 0 60px -14px rgb(59 130 246 / 0.65);
 }
 
-/* Outer glow: same gradient, blurred, behind the frame. */
-.glow-frame::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  border-radius: inherit;
-  background: inherit;
-  filter: blur(22px);
-  opacity: 0.35;
-}
-
-.glow-frame__inner {
-  position: relative;
-  height: 100%;
-  overflow: clip;
-  border-radius: calc(var(--gf-radius) - 1px);
-  background: var(--bg-elevated);
-}
-
-@keyframes gf-spin {
+@keyframes ring-spin {
   to {
-    --gf-angle: 360deg;
+    rotate: 360deg;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .glow-frame {
-    animation: none;
-    --gf-angle: 200deg;
-  }
-}
-
-/* =========================================================================
- * Interactive light (owner request): buttons and cards "ignite" on hover —
- * a rotating warm↔cool border plus an outer aura — and cards also rise and
- * light up their edges while they cross the viewport on scroll.
- * Borders are a masked conic gradient on ::after, so only opacity and the
- * @property angle animate.
- * ========================================================================= */
+/* ---------- Buttons, icons and cards (.glow-hover / .glow-edge) ---------- */
 .glow-hover,
 .glow-edge {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
+  box-shadow: var(--ring-aura);
   transition:
     box-shadow var(--dur-fast) var(--ease-out),
     translate var(--dur-fast) var(--ease-out);
 }
 
+/* The turning light: a square ≥ the element's diagonal, centred and rotated. */
+.glow-hover::before,
+.glow-edge::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -2;
+  width: 160%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: var(--ring-light);
+  opacity: 0.9;
+  animation: ring-spin 5s linear infinite;
+  will-change: rotate;
+  pointer-events: none;
+}
+
+/* Opaque fill over everything but a 1.5px edge. Elements with their own
+   solid background set --glow-fill so the fill matches it. */
 .glow-hover::after,
 .glow-edge::after {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: 3;
-  padding: 1.5px;
+  inset: 1.5px;
+  z-index: -1;
   border-radius: inherit;
-  background: conic-gradient(
-    from var(--gf-angle),
-    var(--accent-orange),
-    var(--accent-peach) 12%,
-    transparent 26%,
-    var(--accent-blue) 50%,
-    var(--accent-cyan) 62%,
-    transparent 76%,
-    var(--accent-orange)
-  );
-  /* Keep only the 1.5px ring: content box minus border box. */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
-  opacity: 0;
+  background: var(--glow-fill, var(--bg-elevated));
   pointer-events: none;
-  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+/* Neighbours start at different angles so the page doesn't pulse in sync. */
+.glow-hover:nth-child(3n + 1)::before,
+.glow-edge:nth-child(3n + 1)::before,
+:nth-child(3n + 1) > .glow-hover::before {
+  animation-delay: -1.7s;
+}
+
+.glow-hover:nth-child(3n + 2)::before,
+.glow-edge:nth-child(3n + 2)::before,
+:nth-child(3n + 2) > .glow-hover::before {
+  animation-delay: -3.3s;
 }
 
 .glow-hover:hover,
 .glow-hover:focus-visible,
 .glow-edge:hover,
 .glow-edge:focus-within {
-  box-shadow:
-    0 0 28px -6px rgb(249 115 22 / 0.55),
-    0 0 60px -14px rgb(59 130 246 / 0.6);
+  box-shadow: var(--ring-aura-hot);
 }
 
-.glow-hover:hover::after,
-.glow-hover:focus-visible::after,
-.glow-edge:hover::after,
-.glow-edge:focus-within::after {
+.glow-hover:hover::before,
+.glow-edge:hover::before {
   opacity: 1;
-  animation: gf-spin 3s linear infinite;
 }
 
 .glow-hover:hover {
   translate: 0 -2px;
 }
 
-/* Cards: rise into place and light their edges while crossing the viewport. */
+/* Cards rise into place while scrolling (scroll-driven transform). */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .glow-edge {
       animation: card-rise linear both;
       animation-timeline: view();
       animation-range: entry 0% cover 35%;
-    }
-
-    .glow-edge::after {
-      animation: edge-scroll linear both;
-      animation-timeline: view();
-      animation-range: cover 15% cover 85%;
-    }
-
-    /* Hover wins over the scroll-driven glow. */
-    .glow-edge:hover::after,
-    .glow-edge:focus-within::after {
-      opacity: 1;
-      animation: gf-spin 3s linear infinite;
-      animation-timeline: auto;
     }
   }
 }
@@ -156,33 +120,90 @@
   }
 }
 
-@keyframes edge-scroll {
-  0% {
-    opacity: 0;
-    --gf-angle: 0deg;
-  }
-  50% {
-    opacity: 0.85;
-    --gf-angle: 180deg;
-  }
-  100% {
-    opacity: 0;
-    --gf-angle: 360deg;
-  }
+/* ---------- GlowFrame (form card, project cards) ---------- */
+.glow-frame {
+  --gf-radius: var(--radius-lg);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 1px;
+  border-radius: var(--gf-radius);
+  box-shadow:
+    0 0 40px -14px rgb(249 115 22 / 0.55),
+    0 0 50px -16px rgb(59 130 246 / 0.55);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
 }
 
-/* GlowFrame cards burn brighter under the cursor. */
 .glow-frame::before {
-  transition: opacity var(--dur-fast) var(--ease-out);
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 160%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: var(--ring-light);
+  animation: ring-spin 9s linear infinite;
+  will-change: rotate;
+  pointer-events: none;
 }
 
-.glow-frame:hover::before {
-  opacity: 0.8;
+.glow-frame:hover {
+  box-shadow:
+    0 0 50px -10px rgb(249 115 22 / 0.7),
+    0 0 70px -14px rgb(59 130 246 / 0.7);
 }
 
+.glow-frame__inner {
+  position: relative;
+  height: 100%;
+  overflow: clip;
+  border-radius: calc(var(--gf-radius) - 1px);
+  background: var(--bg-elevated);
+}
+
+/* ---------- Section eyebrows: the little light line breathes ---------- */
+.eyebrow-line {
+  transform-origin: left;
+  animation: eyebrow-breathe 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes eyebrow-breathe {
+  from {
+    transform: scaleX(0.45);
+    opacity: 0.6;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Touch devices: rings stay lit but still. Phones have no hover to "wake"
+   them, and dozens of always-turning layers cost real battery and frame time
+   there. The hero portrait ring keeps turning everywhere. */
+@media (hover: none) {
+  .glow-hover::before,
+  .glow-edge::before,
+  .glow-frame::before,
+  .eyebrow-line {
+    animation: none;
+  }
+
+  .glow-hover::before,
+  .glow-edge::before,
+  .glow-frame::before {
+    rotate: 35deg;
+  }
+}
+
+/* Reduced motion: rings stay lit but still; no lift, no breathing. */
 @media (prefers-reduced-motion: reduce) {
-  .glow-hover:hover::after,
-  .glow-edge:hover::after {
+  .glow-hover::before,
+  .glow-edge::before,
+  .glow-frame::before,
+  .eyebrow-line {
     animation: none;
   }
 

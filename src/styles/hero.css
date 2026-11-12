@@ -1,75 +1,173 @@
 /* Hero composition. Scroll parallax lives at the bottom (scroll-driven animations). */
 .hero {
-  --ring: clamp(12.5rem, 24vw, 19rem);
+  --ring: clamp(12rem, 56vw, 14rem);
   position: relative;
   display: flex;
   min-height: 100svh;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   overflow: clip;
-  padding: 6.5rem var(--gutter) 9svh;
+  padding: 6rem var(--gutter) 8svh;
+}
+
+/* Mobile: portrait first, centered text below. */
+.hero__grid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  justify-items: center;
+  gap: clamp(2.5rem, 6svh, 3.5rem);
   text-align: center;
 }
 
 .hero__content {
-  position: relative;
-  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* The ring carries its own beam segment, so the full-height CSS beam core/flow are not needed. */
+.hero__title {
+  font-size: var(--text-display);
+}
+
+.hero__ctas {
+  justify-content: center;
+}
+
+/* Tablet + desktop: text left, portrait right. */
+@media (min-width: 768px) {
+  .hero {
+    --ring: clamp(15rem, 27vw, 22rem);
+    /* Floor glow sits under the portrait column. */
+    --beam-x: 71%;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .hero__visual {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .hero__content {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: flex-start;
+  }
+
+  .hero__title {
+    font-size: clamp(3.25rem, 7.4vw, 8rem);
+  }
+
+  .hero__ctas {
+    justify-content: flex-start;
+  }
+}
+
+/* The ring brings its own waterfall, so the centered full-height CSS beam is not needed. */
 .hero .beam__core,
 .hero .beam__flow {
   display: none;
 }
 
-/* ---------- Portrait in a round frame, the beam splits around it ---------- */
+/* ---------- Portrait ring under a two-tone waterfall ---------- */
 .portrait-ring {
   position: relative;
   width: var(--ring);
   aspect-ratio: 1;
-  margin-bottom: clamp(1.5rem, 4svh, 2.5rem);
+  /* Room below for the streams fanning out. */
+  margin-bottom: calc(var(--ring) * 0.55);
   animation: portrait-rise var(--dur-slow) var(--ease-out) calc(var(--intro-delay) + 0.1s)
     both;
 }
 
-/* Beam segment: from far above the hero's top edge down to the ring's top point. */
-.portrait-ring__beam {
+/*
+ * The waterfall: wide, warm on the left, white-hot in the middle, cool on the
+ * right. Three background layers animate: two vertical stripe layers falling
+ * at different speeds (the water) and a colour band sliding sideways so warm
+ * and cool keep trading places. Edges and top fade out through masks. It runs
+ * down behind the photo, so it reads as pouring onto the ring.
+ */
+.portrait-ring__fall {
   position: absolute;
-  bottom: calc(100% - 2px);
+  bottom: 50%;
   left: 50%;
-  width: 3px;
-  height: 100svh;
+  z-index: 0;
+  width: calc(var(--ring) * 0.62);
+  height: 120svh;
   translate: -50% 0;
+  /* Soft, overlapping falling sheets (no hard stripes) over a sliding warm↔cool band. */
   background:
     repeating-linear-gradient(
       to bottom,
-      transparent 0 18px,
-      rgb(255 255 255 / 0.55) 24px,
-      transparent 40px
+      rgb(255 255 255 / 0) 0,
+      rgb(255 255 255 / 0.32) 45px,
+      rgb(255 255 255 / 0) 110px
     ),
-    linear-gradient(to bottom, rgb(255 255 255 / 0) 30%, #fff 80%, var(--accent-cyan));
+    repeating-linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0) 0,
+      rgb(255 255 255 / 0.2) 90px,
+      rgb(255 255 255 / 0) 230px
+    ),
+    linear-gradient(
+      90deg,
+      rgb(249 115 22 / 0.85),
+      rgb(251 191 36 / 0.9) 12%,
+      rgb(255 247 237 / 0.95) 25%,
+      rgb(103 232 249 / 0.9) 38%,
+      rgb(59 130 246 / 0.85) 50%,
+      rgb(103 232 249 / 0.9) 62%,
+      rgb(255 247 237 / 0.95) 75%,
+      rgb(251 191 36 / 0.9) 88%,
+      rgb(249 115 22 / 0.85)
+    );
   background-size:
-    100% 120px,
-    100% 100%;
-  box-shadow:
-    0 0 14px 3px rgb(147 197 253 / 0.65),
-    0 0 50px 12px rgb(59 130 246 / 0.3);
-  animation: ring-beam-flow 1.4s linear infinite;
-  transition: opacity var(--dur-slow) var(--ease-out);
+    100% 110px,
+    100% 230px,
+    200% 100%;
+  -webkit-mask:
+    linear-gradient(to right, transparent, #000 30%, #000 70%, transparent),
+    linear-gradient(to bottom, transparent 15%, #000 70%);
+  -webkit-mask-composite: source-in;
+  mask:
+    linear-gradient(to right, transparent, #000 30%, #000 70%, transparent),
+    linear-gradient(to bottom, transparent 15%, #000 70%);
+  mask-composite: intersect;
+  mix-blend-mode: screen;
+  filter: blur(5px) saturate(1.3);
+  opacity: 0.95;
+  animation:
+    fall-water 1.1s linear infinite,
+    fall-in var(--dur-slow) var(--ease-out) var(--intro-delay) both;
 }
 
-/* WebGL draws the beam itself; keep only the ring's lit edge then. */
-.hero[data-webgl="on"] .portrait-ring__beam {
-  opacity: 0;
+/* White-hot core of the fall. */
+.portrait-ring__core {
+  position: absolute;
+  inset-block: 0;
+  left: 50%;
+  width: 5px;
+  translate: -50% 0;
+  background: linear-gradient(to bottom, transparent 20%, #fff 75%);
+  box-shadow:
+    0 0 16px 4px rgb(255 255 255 / 0.7),
+    0 0 50px 14px rgb(253 186 116 / 0.35);
 }
 
 .portrait-ring__frame {
   position: absolute;
   inset: 0;
+  z-index: 2;
   overflow: clip;
   border-radius: 50%;
   background:
@@ -78,7 +176,8 @@
     var(--bg-elevated);
   box-shadow:
     inset 0 0 40px rgb(8 9 12 / 0.8),
-    0 0 60px -10px rgb(59 130 246 / 0.6);
+    -18px -10px 60px -18px rgb(249 115 22 / 0.65),
+    18px -10px 60px -18px rgb(34 211 238 / 0.65);
 }
 
 .portrait-ring__img {
@@ -91,58 +190,74 @@
   translate: 0 7%;
 }
 
+/* Overlay sized so its circle (100,50 r48 in a 200×170 box) matches the frame. */
 .portrait-ring__svg {
   position: absolute;
-  inset: -3%;
+  top: calc(var(--ring) * -2 / 96);
+  left: 50%;
+  z-index: 3;
+  width: calc(var(--ring) * 200 / 96);
+  translate: -50% 0;
   overflow: visible;
-  filter: drop-shadow(0 0 4px rgb(147 197 253 / 0.95))
-    drop-shadow(0 0 18px rgb(59 130 246 / 0.6));
+  filter: drop-shadow(0 0 3px rgb(255 255 255 / 0.6))
+    drop-shadow(0 0 14px rgb(253 186 116 / 0.45));
 }
 
-.portrait-ring__arc {
+.portrait-ring__track {
   fill: none;
-  stroke: rgb(186 230 253 / 0.8);
-  stroke-width: 0.9;
+  stroke: rgb(255 255 255 / 0.35);
+  stroke-width: 0.8;
+}
+
+.portrait-ring__stream {
+  fill: none;
+  stroke-width: 1.6;
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 0;
-  animation: ring-arc 0.7s cubic-bezier(0.45, 0, 0.25, 1) calc(var(--intro-delay) + 0.25s)
-    both;
+  animation: stream-draw 0.9s cubic-bezier(0.45, 0, 0.25, 1)
+    calc(var(--intro-delay) + 0.3s) both;
 }
 
-/* Bright packets flowing top → bottom along each half (the split stream). */
-.portrait-ring__flow {
+.portrait-ring__packet {
   fill: none;
-  stroke: #fff;
-  stroke-width: 1.6;
+  stroke-width: 2.6;
   stroke-linecap: round;
-  stroke-dasharray: 0.14 0.86;
-  stroke-dashoffset: 0.14;
+  stroke-dasharray: 0.1 0.9;
+  stroke-dashoffset: 0.1;
   opacity: 0;
-  animation: ring-flow 2s cubic-bezier(0.4, 0, 0.6, 1) calc(var(--intro-delay) + 0.9s)
-    infinite;
+  animation: stream-packet 2.2s cubic-bezier(0.5, 0, 0.7, 1)
+    calc(var(--intro-delay) + 1.1s) infinite;
 }
 
-.portrait-ring__flow--late {
-  animation-delay: calc(var(--intro-delay) + 1.9s);
+.portrait-ring__packet--warm {
+  stroke: #fef3c7;
 }
 
-/* Where the two streams meet again. */
-.portrait-ring__join {
+.portrait-ring__packet--cool {
+  stroke: #e0f2fe;
+}
+
+.portrait-ring__packet--late {
+  animation-delay: calc(var(--intro-delay) + 2.2s);
+}
+
+/* Spray where the two fans land: amber left, cyan right, breathing. */
+.portrait-ring__splash {
   position: absolute;
-  bottom: -0.9rem;
+  top: calc(100% + var(--ring) * 0.32);
   left: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
+  z-index: 1;
+  width: calc(var(--ring) * 2.4);
+  height: calc(var(--ring) * 0.5);
   translate: -50% 0;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    #fff 0%,
-    rgb(253 186 116 / 0.85) 35%,
-    rgb(249 115 22 / 0) 70%
-  );
-  animation: ring-join 2s ease-in-out calc(var(--intro-delay) + 0.9s) infinite;
+  background:
+    radial-gradient(45% 60% at 22% 50%, rgb(251 146 60 / 0.55), transparent 70%),
+    radial-gradient(45% 60% at 78% 50%, rgb(56 189 248 / 0.55), transparent 70%),
+    radial-gradient(30% 50% at 50% 30%, rgb(255 255 255 / 0.25), transparent 70%);
+  filter: blur(14px);
+  animation: splash-breathe 3.2s ease-in-out calc(var(--intro-delay) + 1s) infinite
+    alternate;
 }
 
 @keyframes portrait-rise {
@@ -151,48 +266,54 @@
   }
 }
 
-@keyframes ring-beam-flow {
+@keyframes fall-water {
   to {
     background-position:
-      0 120px,
-      0 0;
+      0 110px,
+      0 230px,
+      -200% 0;
   }
 }
 
-@keyframes ring-arc {
+@keyframes fall-in {
+  from {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    transform-origin: top;
+  }
+}
+
+@keyframes stream-draw {
   from {
     stroke-dashoffset: 1;
   }
 }
 
-@keyframes ring-flow {
+@keyframes stream-packet {
   0% {
-    stroke-dashoffset: 0.14;
+    stroke-dashoffset: 0.1;
     opacity: 0;
   }
-  12%,
-  85% {
+  10%,
+  80% {
     opacity: 1;
   }
   100% {
-    stroke-dashoffset: -0.86;
+    stroke-dashoffset: -0.9;
     opacity: 0;
   }
 }
 
-@keyframes ring-join {
-  0%,
-  60% {
-    opacity: 0.5;
-    transform: scale(0.8);
+@keyframes splash-breathe {
+  from {
+    opacity: 0.6;
+    transform: scaleX(0.92);
   }
-  85% {
+  to {
     opacity: 1;
-    transform: scale(1.6);
-  }
-  100% {
-    opacity: 0.5;
-    transform: scale(0.8);
+    transform: scaleX(1.06);
   }
 }
 
@@ -276,18 +397,17 @@
   }
 
   .hero {
-    --ring: clamp(11rem, 58vw, 14rem);
     padding-top: 5.5rem;
-    padding-bottom: 8svh;
+    padding-bottom: 6svh;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-fragment > *,
   .hero__hint-line,
-  .portrait-ring__beam,
-  .portrait-ring__flow,
-  .portrait-ring__join {
+  .portrait-ring__fall,
+  .portrait-ring__packet,
+  .portrait-ring__splash {
     animation: none;
   }
 }

@@ -8,7 +8,7 @@ export type FragmentKind = "code" | "terminal" | "telegram";
 export interface HeroFragment {
   id: string;
   kind: FragmentKind;
-  /** Position in % of the hero box; only shown ≥ lg. */
+  /** Position in % of the hero box; only shown ≥ xl, placed clear of the text column. */
   top: string;
   side: "left" | "right";
   inset: string;
@@ -21,9 +21,9 @@ export const heroFragments: HeroFragment[] = [
   {
     id: "agent",
     kind: "code",
-    top: "18%",
+    top: "9%",
     side: "left",
-    inset: "6%",
+    inset: "30%",
     phase: 0,
     lines: [
       "async def run(task: Task) -> Result:",
@@ -36,18 +36,18 @@ export const heroFragments: HeroFragment[] = [
   {
     id: "terminal",
     kind: "terminal",
-    top: "38%",
+    top: "11%",
     side: "left",
-    inset: "9%",
+    inset: "3%",
     phase: 2.2,
     lines: ["$ uvicorn app.main:api --workers 4", "INFO  Application startup complete."],
   },
   {
     id: "telegram",
     kind: "telegram",
-    top: "26%",
-    side: "right",
-    inset: "6%",
+    top: "80%",
+    side: "left",
+    inset: "3%",
     phase: 1.1,
   },
 ];

@@ -4,6 +4,13 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Hero split layout & two-tone waterfall (owner request, 2026-11-12)
+
+- ≥768px (tablet + desktop): text left-aligned on the left, portrait ring on the right; mobile keeps the stacked, centered layout.
+- Wider waterfall attached to the ring: soft falling sheets over a sliding amber ↔ white ↔ cyan band with a white-hot core; it pours onto the ring, splits over both halves and fans out to both sides (warm stream left, cool stream right) with travelling light packets and a breathing two-tone spray.
+- WebGL beam follows the ring's x position and is tinted warm/cool to match; floor glow moved under the portrait column.
+- Hero fragments re-placed so they never overlap the text, fall or streams.
+
 ### Hero portrait ring & interactive light (owner request, 2026-11-12)
 
 - Corrected: the **portrait** (not the logo) now sits in a round frame on the beam; the beam pours onto the ring, splits and flows down both halves, rejoining at the bottom; the name sits below. Shader aims at the ring.

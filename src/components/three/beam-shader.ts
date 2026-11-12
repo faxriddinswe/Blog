@@ -21,6 +21,7 @@ uniform vec2 uMouse;     // -1..1, smoothed on the CPU
 uniform float uProgress; // hero scroll progress 0..1
 uniform float uHead;     // y where the beam meets the portrait
 uniform float uHorizon;  // y of the splash horizon
+uniform float uBeamX;    // x (0..1) of the beam — follows the portrait ring
 varying vec2 vUv;
 
 float hash(vec2 p) {
@@ -58,7 +59,7 @@ void main() {
 
   // Mouse sways the lower part of the beam more than the top, like a hanging stream.
   float sway = uMouse.x * 0.035 * (1.0 - uv.y);
-  float x = (uv.x - 0.5) * aspect - sway;
+  float x = (uv.x - uBeamX) * aspect - sway;
   float ax = abs(x);
 
   // Beam fades in from the top edge and thins out below the head.
@@ -68,17 +69,23 @@ void main() {
   float fall = topFade * max(body, tail);
 
   float core = exp(-ax * 160.0);
-  float glow = exp(-ax * 16.0) * 0.32;
+  float glow = exp(-ax * 9.0) * 0.38;
 
   // Waterfall: noise advected downward, stretched vertically.
   float n = fbm(vec2(x * 22.0, uv.y * 5.0 + uTime * 1.25));
   float n2 = fbm(vec2(x * 9.0 + 3.1, uv.y * 2.5 + uTime * 0.6));
-  float flow = exp(-ax * 24.0) * smoothstep(0.35, 0.95, n * 0.7 + n2 * 0.5);
+  float flow = exp(-ax * 12.0) * smoothstep(0.35, 0.95, n * 0.7 + n2 * 0.5);
+
+  // Two-tone water: amber on one side, cyan on the other, slowly trading places.
+  float side = smoothstep(-0.06, 0.06, x + 0.03 * sin(uTime * 0.7));
+  vec3 warm = vec3(0.98, 0.62, 0.20);
+  vec3 cool = vec3(0.20, 0.75, 0.98);
+  vec3 tint = mix(warm, cool, side);
 
   vec3 col = vec3(0.0);
-  col += vec3(0.82, 0.92, 1.0) * core * 1.4;
-  col += vec3(0.23, 0.51, 0.96) * glow;
-  col += vec3(0.30, 0.80, 0.95) * flow * 0.55;
+  col += vec3(1.0, 0.97, 0.92) * core * 0.9;
+  col += tint * glow * 1.1;
+  col += mix(tint, vec3(1.0), 0.35) * flow * 0.8;
   col *= fall;
 
   // Halo where the beam hits the head (rim light source).
@@ -89,7 +96,7 @@ void main() {
   float sd = length(vec2(x * 0.55, (uv.y - horizon) * 4.2));
   float breathe = 0.85 + 0.15 * sin(uTime * 1.1);
   float splash = exp(-sd * 3.2) * breathe * (1.0 + uProgress * 0.6);
-  vec3 splashCol = mix(vec3(0.98, 0.45, 0.09), vec3(0.38, 0.65, 0.98), exp(-sd * 2.0));
+  vec3 splashCol = mix(warm, cool, smoothstep(-0.25, 0.25, x)) * (0.8 + 0.4 * exp(-sd * 2.0));
   col += splashCol * splash * 0.55;
 
   // Atmosphere fog.

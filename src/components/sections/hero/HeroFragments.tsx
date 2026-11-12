@@ -7,7 +7,7 @@ export function HeroFragments() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 hidden lg:block"
+      className="pointer-events-none absolute inset-0 hidden xl:block"
     >
       {heroFragments.map((f) => (
         <div

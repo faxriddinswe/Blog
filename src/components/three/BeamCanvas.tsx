@@ -17,7 +17,7 @@ function BeamPlane() {
   const size = useThree((s) => s.size);
   const canvas = useThree((s) => s.gl.domElement);
   const target = useRef({ x: 0, y: 0 });
-  const layout = useRef({ head: HEAD_Y, horizon: HORIZON_Y });
+  const layout = useRef({ head: HEAD_Y, horizon: HORIZON_Y, x: 0.5 });
 
   const uniforms = useMemo(
     () => ({
@@ -27,6 +27,7 @@ function BeamPlane() {
       uProgress: { value: 0 },
       uHead: { value: HEAD_Y },
       uHorizon: { value: HORIZON_Y },
+      uBeamX: { value: 0.5 },
     }),
     [],
   );
@@ -43,6 +44,7 @@ function BeamPlane() {
       layout.current = {
         head: 1 - (r.top - h.top) / h.height,
         horizon: 1 - (r.bottom - h.top) / h.height,
+        x: (r.left + r.width / 2 - h.left) / h.width,
       };
     };
     measure();
@@ -76,6 +78,7 @@ function BeamPlane() {
     }
     u.uHead.value = layout.current.head;
     u.uHorizon.value = layout.current.horizon;
+    u.uBeamX.value = layout.current.x;
   });
 
   return (

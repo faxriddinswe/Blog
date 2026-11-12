@@ -21,7 +21,7 @@ export const site = {
 export const stats: Stat[] = [
   {
     id: "years",
-    value: 3,
+    value: 2,
     suffix: "+",
     label: { uz: "yillik tajriba", en: "years of experience" },
   },

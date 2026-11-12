@@ -68,10 +68,10 @@ Personal portfolio + blog for **Faxriddin Baxtiyorov** — Python / Backend / AI
 
 - Name: Faxriddin Baxtiyorov
 - Roles to show: Python Engineer · AI Agent Builder · Backend Architect
-- Experience headline: "3+ years of experience"
+- Experience headline: "2+ years of experience" (owner-corrected 2026-11-12: professional work since 2024)
 - Do NOT show employer/company names. Use neutral labels such as "Python Engineer — product company".
 - Education: PDP University, Software Engineering (Bachelor), 2025–2029
-- The experience timeline must clearly show what fills the 3+ years. Ask the owner for the exact timeline (start year, freelance work, personal projects). Never guess dates.
+- The experience timeline must clearly show what fills the 2+ years (since 2024). Ask the owner for the exact timeline (start year, freelance work, personal projects). Never guess dates.
 
 ## 5. Tech stack (verify latest stable versions before installing)
 
@@ -232,7 +232,7 @@ On scroll, the beam's glow travels downward and "opens" the next sections.
 1. **Preloader** (≤1.5s, skip on repeat visits via sessionStorage): name letters + 0→100 counter + curtain reveal
 2. **Hero** — waterfall beam, portrait with rim light, huge name (split-text rise), rotating role text, 2 glow CTAs ("Loyihalarni ko'rish", "Ariza qoldirish"), floating faded code/Telegram/terminal fragments in background, scroll hint
 3. **Tech marquee** — infinite, speed reacts to scroll velocity
-4. **About** — paragraph reveals word-by-word on scroll (scrubbed), second photo with parallax, real stat counters (3+ years, etc. — only owner-confirmed numbers)
+4. **About** — paragraph reveals word-by-word on scroll (scrubbed), second photo with parallax, real stat counters (2+ years, etc. — only owner-confirmed numbers)
 5. **Skills** — light section, bento grid of spotlight cards; each card has a tiny live scene (code typing, rotating light ring for AI agents, chat bubbles for Telegram bots, etc.). No percentage bars.
 6. **Experience & Education** — SVG line draws on scroll, nodes light up; no company names
 7. **Projects** — pinned horizontal scroll gallery; each project in a GlowFrame with screenshot slowly auto-scrolling (or muted video on hover), tech tags, buttons "Saytga o'tish ↗" (live URL, new tab, `rel="noopener noreferrer"`) and GitHub; optional case-study page
@@ -292,7 +292,7 @@ Keep `docs/OWNER-INPUTS.md` updated as a checklist. Needed items:
 - [ ] Portrait photo → `public/images/portrait/` (PNG with transparent background preferred, ≥1600px tall). If not transparent, ask whether to remove background.
 - [ ] Second photo for About (optional)
 - [ ] Short bio (UZ/EN) — or bullet facts so you can draft it for approval
-- [ ] Experience timeline that supports "3+ years" (years, type of work — no company names)
+- [ ] Experience timeline that supports "2+ years" (since 2024) (years, type of work — no company names)
 - [ ] Projects: name, 1-line description, problem/solution/result, tech stack, live URL, GitHub URL (if public), screenshots
 - [ ] Socials: GitHub, LinkedIn, Telegram, email (public ones only)
 - [ ] Services list confirmation (AI agents, Telegram bots, backend systems, automation...)

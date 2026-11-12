@@ -15,7 +15,15 @@ export interface TimelineEntry {
 }
 
 export const timeline: TimelineEntry[] = [
-  // TODO(owner): work / freelance / personal-project entries that make up "3+ years".
+  {
+    id: "engineering-2024",
+    kind: "work",
+    title: { uz: "Python va backend muhandislik", en: "Python & backend engineering" },
+    // TODO(owner): type of work (freelance / product company / personal projects); split into periods if needed.
+    context: { uz: "TODO(owner)", en: "TODO(owner)" },
+    start: 2024,
+    end: null,
+  },
   {
     id: "pdp-university",
     kind: "education",

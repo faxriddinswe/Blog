@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { DesktopEnhancements } from "@/components/layout/DesktopEnhancements";
 import { Grain } from "@/components/layout/Grain";
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/sections/footer/Footer";
 import { Preloader } from "@/components/layout/Preloader";
 import { PreloaderScript } from "@/components/layout/PreloaderScript";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -73,6 +74,7 @@ export default async function LocaleLayout({
           <SkipLink />
           <Navbar />
           {children}
+          <Footer />
           <Grain />
         </NextIntlClientProvider>
       </body>

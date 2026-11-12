@@ -12,6 +12,8 @@
 @import "./projects.css";
 @import "./services.css";
 @import "./contact.css";
+@import "./blog.css";
+@import "./footer.css";
 
 @theme inline {
   --color-bg: var(--bg);

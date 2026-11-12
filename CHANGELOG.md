@@ -4,6 +4,16 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Phase 6 — Blog, teaser & footer (2026-11-12)
+
+- MDX blog with `@next/mdx` (decision in ARCHITECTURE.md): Zod-validated post metadata, explicit post registry, `/[locale]/blog` + `/[locale]/blog/[slug]` fully prerendered, per-post metadata/OG/hreflang (only for existing translations), missing-translation notice.
+- `remark-gfm`, `rehype-slug`, `rehype-pretty-code` (Shiki) — build-time highlighting; `.prose-x` article typography.
+- Two bilingual **demo** posts: "What is an AI agent?" and "AI solutions for business" (marked Demo).
+- Home blog teaser (latest 3 per locale).
+- Footer: tagline, Tashkent time, section nav, socials, back-to-top (Lenis-aware), giant top-lit name fitted edge to edge.
+- Desktop navbar links (About, Experience, Projects, Services, Blog, Contact).
+- Lighthouse: home mobile 93 / desktop 99; post mobile 98 / desktop 100; A11y 100, BP 100.
+
 ### Phase 5 — Services & Contact / lead pipeline (2026-11-12)
 
 - Services ("Biznesingizni tizimlashtiramiz"): 6 services with custom SVG icons and hover halos; 4-step "how we work" lit in sequence by a CSS view timeline; CTA to the form.

@@ -52,4 +52,20 @@ Bio: `About.bio` in both message files (one paragraph — it is revealed word by
 
 ## Blog posts
 
-`src/content/blog/uz/<slug>.mdx` and `src/content/blog/en/<slug>.mdx` (same slug). Frontmatter format is defined in the Blog phase.
+1. Create `src/content/blog/uz/<slug>.mdx` and/or `src/content/blog/en/<slug>.mdx` (same slug = translations).
+2. Start the file with:
+   ```mdx
+   export const metadata = {
+     title: "…",
+     description: "…",
+     date: "2026-11-12",
+     readingMinutes: 5,
+     tags: ["AI agents"],
+   };
+   ```
+   Add `demo: true` only for placeholder posts.
+3. Register the slug in `src/content/blog/index.ts` for each locale that has it.
+4. Write Markdown/MDX below. Code fences with a language (` ```python `) are highlighted; tables work (GFM).
+5. `pnpm build` validates the metadata.
+
+The two current posts are **demo** articles (owner request) — remove `demo: true` or delete them when real posts exist.

@@ -83,9 +83,22 @@ Content is data. Components never hold copy:
 - **Owner facts & structured content** → `src/content/*.ts` using `Localized<T>` (`{ uz, en }`)
 - **Design values** → `src/styles/tokens.css` (CSS) and `src/lib/motion/tokens.ts` (JS)
 
-## Blog (decision pending — Blog phase)
+## Blog (MDX)
 
-Options are `@next/mdx` (files compiled at build, zero runtime, good with static export) vs `next-mdx-remote` (load MDX from `content/` at request/build time, frontmatter friendly). Decision and justification will be recorded here when the Blog phase starts, after checking both packages' current docs against Next 16.
+**Decision: `@next/mdx`** (over `next-mdx-remote`), checked against `node_modules/next/dist/docs/01-app/02-guides/mdx.md` for Next 16.4:
+
+- Official, compiled at **build time** — zero MDX runtime on the client, posts are fully static (○ in the build output).
+- Works with Turbopack as long as remark/rehype plugins are given **by name with serializable options** (done in `next.config.ts`).
+- Posts are local files we own; we don't need remote/CMS loading, which is `next-mdx-remote`'s main advantage.
+
+How it fits together:
+
+- Posts: `src/content/blog/{uz,en}/<slug>.mdx`. Each exports `metadata` (title, description, date, readingMinutes, tags, demo) — validated with Zod (`content/blog/types.ts`) when loaded, so a broken post fails the build.
+- Registry: `src/content/blog/index.ts` maps locale → slug → `import()` (explicit, one chunk per post).
+- Routes: `/[locale]/blog` (list) and `/[locale]/blog/[slug]`; `generateStaticParams` prerenders every slug for every locale. A locale missing a translation renders a notice linking to the other language (brief §11).
+- Unknown slugs call `notFound()`. Because `dynamicParams` is unavailable with Cache Components, an unknown slug is rendered on demand: Next streams the not-found UI with status 200 + `noindex` (documented in `not-found.md`). Harmless for SEO.
+- Plugins: `remark-gfm` (tables), `rehype-slug` (heading ids), `rehype-pretty-code` + Shiki `github-dark-dimmed` (code highlighting, build-time).
+- `src/mdx-components.tsx` (required by `@next/mdx`) makes external links open safely in a new tab; typography is `.prose-x` in `styles/blog.css`.
 
 ## Folder map
 

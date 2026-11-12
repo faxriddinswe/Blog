@@ -14,7 +14,8 @@
     "projects": "Projects",
     "services": "Services",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "experience": "Experience"
   },
   "LangSwitch": {
     "label": "Choose language",
@@ -155,5 +156,30 @@
     "successTitle": "Request sent!",
     "successBody": "Thanks, {name}. I’ll get back to you soon.",
     "again": "Send another request"
+  },
+  "Blog": {
+    "eyebrow": "Blog",
+    "title": "Articles and notes.",
+    "lead": "On AI agents, backend and automation — from hands-on work.",
+    "metaTitle": "Blog",
+    "readingTime": "{minutes} min read",
+    "readMore": "Read",
+    "allPosts": "All articles",
+    "back": "Back to blog",
+    "demoBadge": "Demo",
+    "demoNote": "This is a sample article — real ones are coming soon.",
+    "missingTitle": "This article isn’t available in English yet",
+    "missingBody": "You can read it in the other language.",
+    "readIn": "Read in Uzbek",
+    "empty": "No articles yet.",
+    "teaserTitle": "Latest from the blog"
+  },
+  "Footer": {
+    "tagline": "AI agents, backend systems and automation.",
+    "navLabel": "Site sections",
+    "socialsLabel": "Social profiles",
+    "localTime": "Tashkent time",
+    "backToTop": "Back to top",
+    "rights": "All rights reserved."
   }
 }

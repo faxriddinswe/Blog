@@ -14,7 +14,8 @@
     "projects": "Loyihalar",
     "services": "Xizmatlar",
     "blog": "Blog",
-    "contact": "Aloqa"
+    "contact": "Aloqa",
+    "experience": "Tajriba"
   },
   "LangSwitch": {
     "label": "Tilni tanlash",
@@ -155,5 +156,30 @@
     "successTitle": "Ariza yuborildi!",
     "successBody": "Rahmat, {name}. Tez orada siz bilan bogʻlanaman.",
     "again": "Yana ariza yuborish"
+  },
+  "Blog": {
+    "eyebrow": "Blog",
+    "title": "Maqolalar va fikrlar.",
+    "lead": "AI agentlar, backend va avtomatlashtirish haqida — amaliy tajribadan.",
+    "metaTitle": "Blog",
+    "readingTime": "{minutes} daqiqa oʻqish",
+    "readMore": "Oʻqish",
+    "allPosts": "Barcha maqolalar",
+    "back": "Blogga qaytish",
+    "demoBadge": "Demo",
+    "demoNote": "Bu namuna maqola — haqiqiy maqolalar tez orada.",
+    "missingTitle": "Bu maqola hali oʻzbek tilida yoʻq",
+    "missingBody": "Maqolani boshqa tilda oʻqishingiz mumkin.",
+    "readIn": "Inglizcha oʻqish",
+    "empty": "Hozircha maqolalar yoʻq.",
+    "teaserTitle": "Blogdan soʻnggi maqolalar"
+  },
+  "Footer": {
+    "tagline": "AI agentlar, backend tizimlar va avtomatlashtirish.",
+    "navLabel": "Sayt boʻlimlari",
+    "socialsLabel": "Ijtimoiy tarmoqlar",
+    "localTime": "Toshkent vaqti",
+    "backToTop": "Tepaga qaytish",
+    "rights": "Barcha huquqlar himoyalangan."
   }
 }

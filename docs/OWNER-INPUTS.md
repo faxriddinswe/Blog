@@ -25,3 +25,9 @@ Everything the site still needs from Faxriddin. Code marks each gap with `TODO(o
 - Education: PDP University, Software Engineering (Bachelor), 2025–2029
 - 20+ projects since 2024 — freelance, remote for international companies, backend engineer at startups
 - No employer/company names anywhere
+
+## Demo content to replace before launch
+
+- 4 demo projects (`src/content/projects.ts`, `demo: true`)
+- 2 demo blog posts (`src/content/blog/*/`, `demo: true`)
+- Bio draft (`About.bio`) — owner to review

@@ -1,5 +1,7 @@
 allowBuilds:
   sharp: false
+  "@parcel/watcher": false
+  "@swc/core": false
   unrs-resolver: false
 minimumReleaseAgeExclude:
   - icu-minify@4.15.0

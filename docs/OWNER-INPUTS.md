@@ -31,3 +31,13 @@ Everything the site still needs from Faxriddin. Code marks each gap with `TODO(o
 - 4 demo projects (`src/content/projects.ts`, `demo: true`)
 - 2 demo blog posts (`src/content/blog/*/`, `demo: true`)
 - Bio draft (`About.bio`) — owner to review
+
+## Migration (Phase 07–08) — see docs/MIGRATION.md
+
+- [ ] Permission to push tag `v1-legacy` and branch `redesign` to GitHub
+- [ ] Lectures: keep or drop
+- [ ] `markdown-qollanma` post: publish or skip
+- [ ] Real projects (6 from v1): live URLs, screenshots, better descriptions
+- [ ] Portrait: OK to use v1 `images/profile.jpg` (960×1280) as hero source?
+- [ ] LeetCode / t.me/faxriddinswe in socials?
+- [ ] Vercel settings + env vars (instructions will be in DEPLOYMENT.md before go-live)

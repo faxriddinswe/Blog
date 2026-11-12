@@ -16,7 +16,9 @@
     "services": "Services",
     "blog": "Blog",
     "contact": "Contact",
-    "experience": "Experience"
+    "experience": "Experience",
+    "menu": "Menu",
+    "closeMenu": "Close menu"
   },
   "LangSwitch": {
     "label": "Choose language",

@@ -3,6 +3,7 @@ import { navItems } from "@/content/navigation";
 import { site } from "@/content/site";
 import { Link } from "@/i18n/navigation";
 import { LangSwitch } from "./LangSwitch";
+import { MobileMenu } from "./MobileMenu";
 
 export function Navbar() {
   const t = useTranslations("Nav");
@@ -35,7 +36,10 @@ export function Navbar() {
             </li>
           ))}
         </ul>
-        <LangSwitch />
+        <div className="flex items-center gap-2">
+          <LangSwitch />
+          <MobileMenu />
+        </div>
       </nav>
     </header>
   );

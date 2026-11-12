@@ -64,3 +64,29 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
   display: inline-block;
   transition: translate var(--dur-fast) var(--ease-out);
 }
+
+/* ---------- Mobile menu (native <dialog>) ---------- */
+.mobile-menu {
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--text);
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgb(59 130 246 / 0.25), transparent 70%), var(--bg);
+}
+
+.mobile-menu::backdrop {
+  background: rgb(8 9 12 / 0.6);
+}
+
+.mobile-menu[open] {
+  animation: fade-in var(--dur-fast) var(--ease-out);
+}
+
+.mobile-menu[open] .mobile-menu__item {
+  animation: fade-rise var(--dur-fast) var(--ease-out) both;
+}

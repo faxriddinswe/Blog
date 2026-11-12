@@ -16,7 +16,9 @@
     "services": "Xizmatlar",
     "blog": "Blog",
     "contact": "Aloqa",
-    "experience": "Tajriba"
+    "experience": "Tajriba",
+    "menu": "Menyu",
+    "closeMenu": "Menyuni yopish"
   },
   "LangSwitch": {
     "label": "Tilni tanlash",

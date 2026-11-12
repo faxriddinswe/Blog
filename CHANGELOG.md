@@ -6,6 +6,8 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ### Phase 7 — SEO & polish (2026-11-12)
 
+- Mobile menu on a native `<dialog>` (browser-provided focus trap, Esc, inert background); closes on navigation.
+
 - `sitemap.xml` (all locales + posts, hreflang alternates), `robots.txt`.
 - Open Graph images via `next/og`: home (portrait + beam) and per blog post (title); Twitter `summary_large_image`.
 - JSON-LD `Person` (confirmed facts only).

@@ -4,6 +4,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Simpler lead form & calmer hero (owner request, 2026-11-12)
+
+- Lead form is now a single step with three fields: full name, phone number, question / proposal (which business needs help) → **Send**. Shared Zod schema, API and Telegram message updated (name, phone, message, locale, Tashkent time). Replaces the brief's 4-step form at the owner's request; step/chip components removed.
+- Leads are delivered to the owner's Telegram bot **@faxriddinswe_bot** — set that bot's token as `TELEGRAM_BOT_TOKEN` (see DEPLOYMENT.md).
+- Hero: removed the two streams fanning out under the portrait and the floor glow; the waterfall is a little narrower and ends on the ring (shader tail removed too).
+
 ### Hero split layout & two-tone waterfall (owner request, 2026-11-12)
 
 - ≥768px (tablet + desktop): text left-aligned on the left, portrait ring on the right; mobile keeps the stacked, centered layout.

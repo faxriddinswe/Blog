@@ -2,44 +2,41 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useForm, type UseFormRegister } from "react-hook-form";
+import { Field, inputClass } from "@/components/ui/Field";
 import {
-  LEAD_STEPS,
   leadSchema,
   type Lead,
   type LeadInput,
   type LeadResult,
 } from "@/lib/validation/lead";
-import { LeadFormStep } from "./LeadFormStep";
-import { LeadStepper } from "./LeadStepper";
 import { LeadSuccess } from "./LeadSuccess";
 import { TurnstileWidget } from "./TurnstileWidget";
 import { useLeadErrors } from "./useLeadErrors";
 
-const LAST = LEAD_STEPS.length - 1;
-
+/**
+ * One short form (owner request): full name, phone, question / proposal →
+ * POST /api/lead → Telegram. Data stays in the fields if sending fails.
+ */
 export function LeadForm() {
   const t = useTranslations("Contact");
   const locale = useLocale() as Lead["locale"];
   const err = useLeadErrors();
-  const [step, setStep] = useState(0);
   const [serverError, setServerError] = useState<string>();
   const [sentName, setSentName] = useState<string>();
-  const stepRef = useRef<HTMLDivElement>(null);
-  const moved = useRef(false);
 
   const form = useForm<LeadInput, unknown, Lead>({
     resolver: zodResolver(leadSchema),
-    defaultValues: { locale, website: "" },
+    defaultValues: { locale, website: "", name: "", phone: "", message: "" },
     mode: "onTouched",
   });
-  const { register, handleSubmit, trigger, setValue, clearErrors, formState } = form;
+  const { register, handleSubmit, setValue, clearErrors, formState } = form;
+  const { errors } = formState;
 
-  // Clear a field's error as soon as it is edited. Otherwise the message
-  // vanishes on blur — i.e. while the user presses "Next" — and that layout
-  // shift makes the click miss the button.
-  const registerField: UseFormRegister<LeadInput> = (name, options) =>
+  // Clear a field's error as soon as it is edited, so the message doesn't
+  // vanish on blur mid-click and shift the layout under the pointer.
+  const field: UseFormRegister<LeadInput> = (name, options) =>
     register(name, {
       ...options,
       onChange: (event: unknown) => {
@@ -48,18 +45,10 @@ export function LeadForm() {
       },
     });
 
-  // Move focus to the new step's first control (not on first render).
-  useEffect(() => {
-    if (!moved.current) return;
-    stepRef.current?.querySelector<HTMLElement>("input, textarea")?.focus();
-  }, [step]);
-
-  const next = async () => {
-    if (await trigger([...LEAD_STEPS[step]])) {
-      moved.current = true;
-      setStep((s) => Math.min(LAST, s + 1));
-    }
-  };
+  const aria = (name: "name" | "phone" | "message") => ({
+    "aria-invalid": errors[name] ? true : undefined,
+    "aria-describedby": errors[name] ? `lead-${name}-error` : undefined,
+  });
 
   const onSubmit = handleSubmit(async (lead) => {
     setServerError(undefined);
@@ -73,7 +62,6 @@ export function LeadForm() {
       if (result.ok) setSentName(lead.name);
       else setServerError(err(result.error));
     } catch {
-      // Inputs stay filled — the user can just press send again.
       setServerError(err("network"));
     }
   });
@@ -83,27 +71,15 @@ export function LeadForm() {
       <LeadSuccess
         name={sentName}
         onReset={() => {
-          form.reset({ locale, website: "" });
+          form.reset({ locale, website: "", name: "", phone: "", message: "" });
           setSentName(undefined);
-          setStep(0);
         }}
       />
     );
   }
 
   return (
-    <form
-      noValidate
-      onSubmit={(e) => {
-        if (step < LAST) {
-          e.preventDefault();
-          void next();
-        } else void onSubmit(e);
-      }}
-      className="lead-form"
-    >
-      <LeadStepper current={step} />
-
+    <form noValidate onSubmit={onSubmit} className="lead-form">
       {/* Honeypot: off-screen, unfocusable, unlabeled for humans. */}
       <div
         aria-hidden="true"
@@ -118,13 +94,46 @@ export function LeadForm() {
         />
       </div>
 
-      <div ref={stepRef} key={step} className="lead-form__step">
-        <LeadFormStep step={step} register={registerField} errors={formState.errors} />
-      </div>
+      <Field id="lead-name" label={t("fields.name")} error={err(errors.name?.message)}>
+        <input
+          id="lead-name"
+          autoComplete="name"
+          placeholder={t("fields.namePlaceholder")}
+          className={inputClass}
+          {...aria("name")}
+          {...field("name")}
+        />
+      </Field>
 
-      {step === LAST && (
-        <TurnstileWidget onToken={(token) => setValue("turnstileToken", token)} />
-      )}
+      <Field id="lead-phone" label={t("fields.phone")} error={err(errors.phone?.message)}>
+        <input
+          id="lead-phone"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          placeholder={t("fields.phonePlaceholder")}
+          className={inputClass}
+          {...aria("phone")}
+          {...field("phone")}
+        />
+      </Field>
+
+      <Field
+        id="lead-message"
+        label={t("fields.message")}
+        error={err(errors.message?.message)}
+      >
+        <textarea
+          id="lead-message"
+          rows={5}
+          placeholder={t("fields.messagePlaceholder")}
+          className={`${inputClass} resize-y`}
+          {...aria("message")}
+          {...field("message")}
+        />
+      </Field>
+
+      <TurnstileWidget onToken={(token) => setValue("turnstileToken", token)} />
 
       {serverError && (
         <p
@@ -135,26 +144,13 @@ export function LeadForm() {
         </p>
       )}
 
-      <div className="flex items-center justify-between gap-3">
-        {step > 0 ? (
-          <button
-            type="button"
-            onClick={() => setStep((s) => s - 1)}
-            className="lead-btn lead-btn--ghost glow-hover"
-          >
-            {t("back")}
-          </button>
-        ) : (
-          <span />
-        )}
-        <button
-          type="submit"
-          disabled={formState.isSubmitting}
-          className="lead-btn lead-btn--primary glow-hover"
-        >
-          {step < LAST ? t("next") : formState.isSubmitting ? t("sending") : t("submit")}
-        </button>
-      </div>
+      <button
+        type="submit"
+        disabled={formState.isSubmitting}
+        className="lead-btn lead-btn--primary glow-hover w-full"
+      >
+        {formState.isSubmitting ? t("sending") : t("submit")}
+      </button>
     </form>
   );
 }

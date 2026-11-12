@@ -5,29 +5,6 @@ export function escapeHtml(value: string): string {
   return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 }
 
-// The message goes to the owner, who reads Uzbek; option codes map to readable labels.
-const BUSINESS: Record<Lead["businessType"], string> = {
-  ecommerce: "Onlayn savdo",
-  services: "Xizmat koʻrsatish",
-  education: "Taʼlim",
-  logistics: "Logistika",
-  startup: "Startap",
-  other: "Boshqa",
-};
-const BUDGET: Record<NonNullable<Lead["budget"]>, string> = {
-  lt500: "< $500",
-  "500to1500": "$500 – $1 500",
-  "1500to5000": "$1 500 – $5 000",
-  gt5000: "> $5 000",
-  unknown: "Hali bilmaydi",
-};
-const TIMELINE: Record<NonNullable<Lead["timeline"]>, string> = {
-  weeks: "1–2 hafta",
-  month: "1 oy",
-  quarter: "2–3 oy",
-  flexible: "Shoshilinch emas",
-};
-
 export function formatLeadMessage(lead: Lead, now = new Date()): string {
   const time = new Intl.DateTimeFormat("uz-UZ", {
     timeZone: "Asia/Tashkent",
@@ -35,16 +12,14 @@ export function formatLeadMessage(lead: Lead, now = new Date()): string {
     timeStyle: "short",
   }).format(now);
 
+  // The owner reads Uzbek, so labels are Uzbek regardless of the visitor's locale.
   return [
     "🚀 <b>Yangi ariza — faxriddinswe.uz</b>",
     "",
-    `👤 <b>Ism:</b> ${escapeHtml(lead.name)}`,
-    `📱 <b>Aloqa:</b> ${escapeHtml(lead.contact)}`,
-    `🏢 <b>Biznes turi:</b> ${BUSINESS[lead.businessType]}`,
-    `💰 <b>Byudjet:</b> ${lead.budget ? BUDGET[lead.budget] : "—"}`,
-    `⏱ <b>Muddat:</b> ${lead.timeline ? TIMELINE[lead.timeline] : "—"}`,
+    `👤 <b>Ism familiya:</b> ${escapeHtml(lead.name)}`,
+    `📱 <b>Telefon:</b> ${escapeHtml(lead.phone)}`,
     "",
-    `📝 <b>Vazifa:</b>\n${escapeHtml(lead.description)}`,
+    `💬 <b>Savol / taklif:</b>\n${escapeHtml(lead.message)}`,
     "",
     `🌐 ${lead.locale.toUpperCase()} · 🕒 ${time} (Toshkent)`,
   ].join("\n");

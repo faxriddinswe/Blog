@@ -73,9 +73,11 @@
   }
 }
 
-/* The ring brings its own waterfall, so the centered full-height CSS beam is not needed. */
+/* The ring brings its own waterfall; nothing pours on below it (owner request). */
 .hero .beam__core,
-.hero .beam__flow {
+.hero .beam__flow,
+.hero .beam__splash,
+.hero .beam__halftone {
   display: none;
 }
 
@@ -84,8 +86,7 @@
   position: relative;
   width: var(--ring);
   aspect-ratio: 1;
-  /* Room below for the streams fanning out. */
-  margin-bottom: calc(var(--ring) * 0.55);
+  margin-bottom: 0.5rem;
   animation: portrait-rise var(--dur-slow) var(--ease-out) calc(var(--intro-delay) + 0.1s)
     both;
 }
@@ -102,7 +103,7 @@
   bottom: 50%;
   left: 50%;
   z-index: 0;
-  width: calc(var(--ring) * 0.62);
+  width: calc(var(--ring) * 0.42);
   height: 120svh;
   translate: -50% 0;
   /* Soft, overlapping falling sheets (no hard stripes) over a sliding warm↔cool band. */
@@ -242,24 +243,6 @@
   animation-delay: calc(var(--intro-delay) + 2.2s);
 }
 
-/* Spray where the two fans land: amber left, cyan right, breathing. */
-.portrait-ring__splash {
-  position: absolute;
-  top: calc(100% + var(--ring) * 0.32);
-  left: 50%;
-  z-index: 1;
-  width: calc(var(--ring) * 2.4);
-  height: calc(var(--ring) * 0.5);
-  translate: -50% 0;
-  background:
-    radial-gradient(45% 60% at 22% 50%, rgb(251 146 60 / 0.55), transparent 70%),
-    radial-gradient(45% 60% at 78% 50%, rgb(56 189 248 / 0.55), transparent 70%),
-    radial-gradient(30% 50% at 50% 30%, rgb(255 255 255 / 0.25), transparent 70%);
-  filter: blur(14px);
-  animation: splash-breathe 3.2s ease-in-out calc(var(--intro-delay) + 1s) infinite
-    alternate;
-}
-
 @keyframes portrait-rise {
   from {
     transform: translateY(1.5rem) scale(0.96);
@@ -303,17 +286,6 @@
   100% {
     stroke-dashoffset: -0.9;
     opacity: 0;
-  }
-}
-
-@keyframes splash-breathe {
-  from {
-    opacity: 0.6;
-    transform: scaleX(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scaleX(1.06);
   }
 }
 
@@ -406,8 +378,7 @@
   .hero-fragment > *,
   .hero__hint-line,
   .portrait-ring__fall,
-  .portrait-ring__packet,
-  .portrait-ring__splash {
+  .portrait-ring__packet {
     animation: none;
   }
 }

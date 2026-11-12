@@ -65,8 +65,8 @@ void main() {
   // Beam fades in from the top edge and thins out below the head.
   float topFade = smoothstep(1.02, 0.86, uv.y);
   float body = smoothstep(uHead - 0.06, uHead + 0.12, uv.y);
-  float tail = smoothstep(horizon, uHead, uv.y) * 0.35;
-  float fall = topFade * max(body, tail);
+  // The fall ends on the portrait ring — no tail below it.
+  float fall = topFade * body;
 
   float core = exp(-ax * 160.0);
   float glow = exp(-ax * 9.0) * 0.38;
@@ -97,7 +97,7 @@ void main() {
   float breathe = 0.85 + 0.15 * sin(uTime * 1.1);
   float splash = exp(-sd * 3.2) * breathe * (1.0 + uProgress * 0.6);
   vec3 splashCol = mix(warm, cool, smoothstep(-0.25, 0.25, x)) * (0.8 + 0.4 * exp(-sd * 2.0));
-  col += splashCol * splash * 0.55;
+  col += splashCol * splash * 0.12;
 
   // Atmosphere fog.
   float fog = exp(-length(vec2(x * 0.6, uv.y - 0.75)) * 2.4) * 0.08;

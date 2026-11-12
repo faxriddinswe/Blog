@@ -5,10 +5,9 @@ import { useTranslations } from "next-intl";
 const KNOWN = [
   "nameMin",
   "nameMax",
-  "contactInvalid",
-  "businessRequired",
-  "descriptionMin",
-  "descriptionMax",
+  "phoneInvalid",
+  "messageMin",
+  "messageMax",
   "invalid",
   "rate_limited",
   "captcha",

@@ -86,7 +86,7 @@ LeadForm (RHF + zodResolver(leadSchema))  ──POST JSON──▶  app/api/lead
                                                            └─ lib/telegram.ts → sendMessage (HTML-escaped)
 ```
 
-Zod messages are i18n keys (`Contact.errors.*`); API error codes map to the same namespace, so every error the user sees is localized.
+The form has three fields — full name, phone, question/proposal (owner request; replaces the original 4-step form). Zod messages are i18n keys (`Contact.errors.*`); API error codes map to the same namespace, so every error the user sees is localized.
 
 ## Data flow
 

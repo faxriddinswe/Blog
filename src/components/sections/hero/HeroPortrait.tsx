@@ -5,16 +5,15 @@ import portrait from "../../../../public/images/portrait/portrait.png";
 /*
  * Stream geometry, in the overlay's 200×170 viewBox. The ring is the circle
  * (100, 50) r=48, i.e. exactly the photo frame (see .portrait-ring__svg).
- * Each stream runs over the top of the ring, down one half, leaves it at the
- * lower side (135°) and fans out to the floor.
+ * The fall splits at the top of the ring and runs down each half to the bottom.
  */
-const LEFT = "M100 2 A48 48 0 0 0 66.06 83.94 C 54 96, 28 118, 4 168";
-const RIGHT = "M100 2 A48 48 0 0 1 133.94 83.94 C 146 96, 172 118, 196 168";
+const LEFT = "M100 2 A48 48 0 0 0 100 98";
+const RIGHT = "M100 2 A48 48 0 0 1 100 98";
 
 /**
  * The portrait in a round frame under a wide two-tone waterfall: the fall
- * pours onto the ring, splits around it and spreads out to both sides —
- * warm (amber/orange) on the left, cool (cyan/blue) on the right.
+ * pours onto the ring and splits around it — warm (amber/orange) down the
+ * left half, cool (cyan/blue) down the right.
  * The photo is painted from the first frame (no opacity intro): on small
  * screens it is the LCP element. Styles in hero.css.
  */
@@ -26,7 +25,6 @@ export function HeroPortrait() {
       <span className="portrait-ring__fall" aria-hidden="true">
         <span className="portrait-ring__core" />
       </span>
-      <span className="portrait-ring__splash" aria-hidden="true" />
 
       <svg viewBox="0 0 200 170" className="portrait-ring__svg" aria-hidden="true">
         <defs>

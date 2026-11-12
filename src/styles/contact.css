@@ -71,56 +71,6 @@
   gap: 1.75rem;
 }
 
-.lead-form__step {
-  animation: fade-rise var(--dur-fast) var(--ease-out) both;
-}
-
-.lead-step-bar {
-  height: 3px;
-  border-radius: 2px;
-  background: var(--border-strong);
-  transform-origin: left;
-}
-
-.lead-step-bar--on {
-  background: linear-gradient(90deg, var(--accent-orange), var(--accent-peach));
-  box-shadow: 0 0 10px rgb(249 115 22 / 0.6);
-}
-
-.chip {
-  cursor: pointer;
-}
-
-.chip span {
-  display: inline-block;
-  padding: 0.55rem 1rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-strong);
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  transition:
-    border-color var(--dur-fast) var(--ease-out),
-    color var(--dur-fast) var(--ease-out),
-    background-color var(--dur-fast) var(--ease-out);
-}
-
-.chip:hover span {
-  color: var(--text);
-  border-color: var(--text-muted);
-}
-
-.chip input:checked + span {
-  color: var(--bg);
-  background: var(--text);
-  border-color: var(--text);
-  box-shadow: 0 6px 24px -6px rgb(249 115 22 / 0.6);
-}
-
-.chip input:focus-visible + span {
-  outline: 2px solid var(--accent-cyan);
-  outline-offset: 3px;
-}
-
 .lead-btn {
   position: relative;
   display: inline-flex;

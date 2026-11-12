@@ -18,19 +18,19 @@ Secrets never get the `NEXT_PUBLIC_` prefix and are never logged (the API logs o
 
 ## Telegram bot (lead delivery)
 
-1. **Bot.** In Telegram open `@BotFather` → `/newbot` (or use an existing bot) and copy the token.
+1. **Bot.** Leads go to the owner's bot **@faxriddinswe_bot**. In Telegram open `@BotFather` → `/mybots` → `@faxriddinswe_bot` → _API Token_ and copy it.
    - A token that was ever pasted into a chat, issue or screenshot should be rotated: `@BotFather` → `/revoke` → pick the bot → use the new token.
 2. **Token.** Put it in `.env.local`:
    ```bash
    TELEGRAM_BOT_TOKEN=123456:ABC...
    ```
-3. **Chat id.** Open your bot in Telegram and press **Start** (or send any message). Then:
+3. **Chat id.** Open @faxriddinswe_bot in Telegram and press **Start** (or send any message). Then:
    ```bash
    pnpm telegram:chat-id
    # → TELEGRAM_CHAT_ID=123456789   # @yourname
    ```
    The script reads the token from `.env.local` and prints only chat ids. For a group: add the bot to the group, send a message there, rerun — group ids are negative.
-4. Add `TELEGRAM_CHAT_ID=...` to `.env.local`, restart `pnpm dev`, submit the form on `/uz#contact`.
+4. Add `TELEGRAM_CHAT_ID=...` to `.env.local`, restart `pnpm dev`, submit the form on `/uz#contact` (full name, phone, question).
 5. In production, set both variables in Vercel and redeploy.
 
 Without these variables the form still works but answers with a friendly "form is being set up, write on Telegram" message (`503 not_configured`).

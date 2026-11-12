@@ -1,0 +1,21 @@
+import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+// Points next-intl at our request config (non-default location under src/i18n).
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
+const nextConfig: NextConfig = {
+  cacheComponents: true,
+  partialPrefetching: true,
+  poweredByHeader: false,
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
+  },
+};
+
+export default withNextIntl(nextConfig);

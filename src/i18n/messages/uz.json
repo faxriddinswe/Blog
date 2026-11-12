@@ -1,0 +1,35 @@
+{
+  "Metadata": {
+    "title": "Faxriddin Baxtiyorov — Python muhandis va AI agent quruvchi",
+    "description": "Python, backend arxitektura va AI agentlar. Biznesingiz uchun aqlli tizimlar quraman.",
+    "ogAlt": "Faxriddin Baxtiyorov — portfolio"
+  },
+  "Common": {
+    "skipToContent": "Asosiy kontentga oʻtish"
+  },
+  "Nav": {
+    "label": "Asosiy menyu",
+    "home": "Bosh sahifa",
+    "about": "Men haqimda",
+    "projects": "Loyihalar",
+    "services": "Xizmatlar",
+    "blog": "Blog",
+    "contact": "Aloqa"
+  },
+  "LangSwitch": {
+    "label": "Tilni tanlash",
+    "uz": "Oʻzbekcha",
+    "en": "English"
+  },
+  "Hero": {
+    "eyebrow": "Toshkent · {years}+ yillik tajriba",
+    "ctaProjects": "Loyihalarni koʻrish",
+    "ctaApply": "Ariza qoldirish",
+    "scrollHint": "Pastga aylantiring"
+  },
+  "NotFound": {
+    "title": "Sahifa topilmadi",
+    "body": "Bu yoʻl hech qayerga olib bormaydi. Keling, bosh sahifaga qaytamiz.",
+    "back": "Bosh sahifaga"
+  }
+}

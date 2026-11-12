@@ -1,0 +1,121 @@
+/* Waterfall Light Beam — CSS fallback. Only transform/opacity/background-position animate. */
+.beam {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.beam__atmosphere {
+  position: absolute;
+  inset: -20% -10% 0;
+  background:
+    radial-gradient(40% 35% at 50% 18%, rgb(59 130 246 / 0.22), transparent 70%),
+    radial-gradient(45% 40% at 50% 80%, rgb(139 92 246 / 0.18), transparent 70%);
+  filter: blur(40px);
+}
+
+.beam__core {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: clamp(3px, 0.6vw, 8px);
+  /* Ends above the headline so the beam frames the name instead of crossing it. */
+  height: 52%;
+  translate: -50% 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 0) 0%,
+    rgb(255 255 255 / 0.95) 18%,
+    rgb(147 197 253 / 0.85) 70%,
+    rgb(34 211 238 / 0) 100%
+  );
+  filter: blur(1.5px);
+  box-shadow:
+    0 0 24px 6px rgb(147 197 253 / 0.45),
+    0 0 90px 30px rgb(59 130 246 / 0.25);
+}
+
+/* The "waterfall": a striped noise column scrolling downward inside a soft mask. */
+.beam__flow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: clamp(60px, 9vw, 160px);
+  height: 54%;
+  translate: -50% 0;
+  filter: blur(4px);
+  opacity: 0.8;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0) 0 14px,
+      rgb(191 219 254 / 0.22) 18px,
+      rgb(255 255 255 / 0) 30px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0) 0 40px,
+      rgb(34 211 238 / 0.14) 52px,
+      rgb(255 255 255 / 0) 70px
+    );
+  background-size:
+    100% 120px,
+    100% 260px;
+  mask-image: radial-gradient(closest-side, #000 20%, transparent 100%);
+  mix-blend-mode: screen;
+  animation: beam-flow 2.4s linear infinite;
+}
+
+.beam__splash {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: min(120vw, 1400px);
+  aspect-ratio: 5 / 1;
+  translate: -50% 0;
+  background:
+    radial-gradient(closest-side, rgb(255 255 255 / 0.55), transparent 35%),
+    radial-gradient(closest-side, rgb(96 165 250 / 0.45), transparent 70%),
+    radial-gradient(closest-side, rgb(249 115 22 / 0.18), transparent 100%);
+  filter: blur(12px);
+  animation: beam-breathe 5s var(--ease-out) infinite alternate;
+}
+
+.beam__halftone {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(110vw, 1300px);
+  height: 45%;
+  translate: -50% 0;
+  opacity: 0.5;
+  mask-image: radial-gradient(50% 45% at 50% 78%, #000 10%, transparent 75%);
+}
+
+@keyframes beam-flow {
+  to {
+    background-position:
+      0 120px,
+      0 260px;
+  }
+}
+
+@keyframes beam-breathe {
+  from {
+    opacity: 0.75;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam__flow,
+  .beam__splash {
+    animation: none;
+  }
+}

@@ -1,0 +1,41 @@
+# Content guide
+
+## Golden rule
+
+Never put copy inside components. UI text → `src/i18n/messages/*.json`; facts and lists → `src/content/*.ts`.
+
+## Uzbek typography
+
+Use the proper modifier letters: **oʻ gʻ** with `ʻ` (U+02BB) and the tutuq belgisi `ʼ` (U+02BC), e.g. `maʼlumot`. Not `'` or `` ` ``.
+
+## Add / change a UI string
+
+1. Add the key to **both** `src/i18n/messages/uz.json` and `en.json`.
+2. Use it: `const t = useTranslations("Hero"); t("ctaApply")` (server or client).
+3. `pnpm check:i18n` — fails if the files diverge. `pnpm typecheck` — fails on unknown keys.
+
+## Add a project
+
+Edit `src/content/projects.ts`:
+
+```ts
+{
+  slug: "my-bot",
+  name: "My Bot",
+  tagline: { uz: "…", en: "…" },
+  stack: ["Python", "aiogram"],
+  liveUrl: "https://…",
+  githubUrl: "https://github.com/…",
+  cover: "/images/projects/my-bot.webp",
+}
+```
+
+Put screenshots in `public/images/projects/` (WebP/AVIF, ≥1600px wide).
+
+## Add a timeline entry
+
+`src/content/experience.ts` → `timeline`. Use neutral labels (“Python Engineer — product company”), never employer names.
+
+## Blog posts
+
+`src/content/blog/uz/<slug>.mdx` and `src/content/blog/en/<slug>.mdx` (same slug). Frontmatter format is defined in the Blog phase.

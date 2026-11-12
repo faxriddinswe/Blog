@@ -1,0 +1,35 @@
+{
+  "Metadata": {
+    "title": "Faxriddin Baxtiyorov — Python Engineer & AI Agent Builder",
+    "description": "Python, backend architecture and AI agents. I build intelligent systems for your business.",
+    "ogAlt": "Faxriddin Baxtiyorov — portfolio"
+  },
+  "Common": {
+    "skipToContent": "Skip to content"
+  },
+  "Nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "LangSwitch": {
+    "label": "Choose language",
+    "uz": "Oʻzbekcha",
+    "en": "English"
+  },
+  "Hero": {
+    "eyebrow": "Tashkent · {years}+ years of experience",
+    "ctaProjects": "View projects",
+    "ctaApply": "Leave a request",
+    "scrollHint": "Scroll down"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "body": "This path leads nowhere. Let’s head back home.",
+    "back": "Back home"
+  }
+}

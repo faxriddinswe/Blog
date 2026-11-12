@@ -4,6 +4,11 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Portrait title badge; dark only (owner request, 2026-11-12)
+
+- Under the hero portrait: a glowing badge alternating **AI Agent Engineer** / **Backend Engineer** (rise-in, warm→cool gradient text, pulsing dot, turning ring).
+- Light mode removed at the owner's request — the site is dark only (toggle, pre-paint theme script and light tokens deleted).
+
 ### Cleaner hero, themed skills, new footer (owner request, 2026-11-12)
 
 - Hero: removed the floating code / terminal / "lead received" fragments.

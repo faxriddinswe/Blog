@@ -5,7 +5,6 @@ import { Link } from "@/i18n/navigation";
 import { BrandMark } from "./BrandMark";
 import { LangSwitch } from "./LangSwitch";
 import { MobileMenu } from "./MobileMenu";
-import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
   const t = useTranslations("Nav");
@@ -37,7 +36,6 @@ export function Navbar() {
           ))}
         </ul>
         <div className="flex items-center gap-2">
-          <ThemeToggle />
           <LangSwitch />
           <MobileMenu />
         </div>

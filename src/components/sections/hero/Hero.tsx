@@ -22,6 +22,10 @@ export function Hero() {
       <div className="hero__grid">
         <div className="hero__visual">
           <HeroPortrait />
+          <p className="portrait-badge glow-hover">
+            <span aria-hidden="true" className="portrait-badge__dot" />
+            <RotatingText items={site.portraitTitles} className="portrait-badge__text" />
+          </p>
         </div>
 
         <div className="hero__content">

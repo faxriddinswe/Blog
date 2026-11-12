@@ -8,7 +8,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/sections/footer/Footer";
 import { Preloader } from "@/components/layout/Preloader";
 import { PreloaderScript } from "@/components/layout/PreloaderScript";
-import { ThemeScript } from "@/components/layout/ThemeScript";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { routing } from "@/i18n/routing";
 import { inter, jetbrainsMono, spaceGrotesk } from "@/lib/fonts";
@@ -67,7 +66,6 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <head>
-        <ThemeScript />
         <PreloaderScript />
       </head>
       <body className="min-h-dvh">

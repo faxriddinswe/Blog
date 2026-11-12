@@ -9,6 +9,8 @@ export const site = {
   domain: "faxriddinswe.uz",
   location: { city: "Tashkent", timeZone: "Asia/Tashkent" },
   roles: ["Python Engineer", "AI Agent Builder", "Backend Architect"],
+  /** Alternating title under the hero portrait (owner request, 2026-11-12). */
+  portraitTitles: ["AI Agent Engineer", "Backend Engineer"],
   education: {
     school: "PDP University",
     degree: {

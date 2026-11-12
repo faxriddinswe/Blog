@@ -33,6 +33,10 @@
   --accent-peach: #fdba74;
   --accent-warm: linear-gradient(135deg, var(--accent-orange), var(--accent-peach));
 
+  /* Gradient for the title under the hero portrait. */
+  --title-a: var(--accent-peach);
+  --title-b: var(--accent-cyan);
+
   /* Opacity of not-yet-revealed words (kept ≥ 3:1 contrast per theme). */
   --reveal-dim: 0.38;
 
@@ -70,22 +74,4 @@
   --curtain-duration: 0.55s;
   /* Set to --preloader-total by the head script when the preloader plays. */
   --intro-delay: 0s;
-}
-
-/*
- * Light theme (owner request). Same token names, light values; the pre-paint
- * ThemeScript sets html[data-theme] from localStorage before first paint.
- * Accents stay the same light-and-glow colours, except peach, which is also
- * used for small text and must keep AA contrast on white.
- */
-html[data-theme="light"] {
-  --bg: #f6f7f9;
-  --bg-elevated: #ffffff;
-  --bg-light: #e9ecf1;
-  --border: rgb(11 12 16 / 0.09);
-  --border-strong: rgb(11 12 16 / 0.18);
-  --text: #0b0c10;
-  --text-muted: #555b66;
-  --accent-peach: #9a3412; /* orange-800: AA as small text even on tinted boxes */
-  --reveal-dim: 0.5;
 }

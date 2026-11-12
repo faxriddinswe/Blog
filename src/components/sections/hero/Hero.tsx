@@ -6,7 +6,6 @@ import { RotatingText } from "@/components/motion/RotatingText";
 import { SplitRise } from "@/components/motion/SplitRise";
 import { GlowPillLink } from "@/components/ui/GlowPillLink";
 import { site, stats } from "@/content/site";
-import { HeroFragments } from "./HeroFragments";
 import { HeroPortrait } from "./HeroPortrait";
 
 const years = stats.find((s) => s.id === "years")?.value ?? 0;
@@ -18,7 +17,6 @@ export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="hero">
       <LightBeamFallback />
-      <HeroFragments />
 
       {/* Mobile: portrait on top, text centered below. ≥768px: text left, portrait right. */}
       <div className="hero__grid">

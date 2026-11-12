@@ -2,6 +2,13 @@
   position: relative;
   overflow: clip;
   isolation: isolate;
+  padding-top: clamp(4rem, 8vw, 6rem);
+  border-top: 1px solid var(--border);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--bg-elevated) 60%, transparent)
+  );
 }
 
 /* The beam's horizon returns at the very bottom. */
@@ -9,13 +16,73 @@
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -10rem;
+  bottom: -12rem;
   z-index: -1;
   width: min(120vw, 1400px);
   aspect-ratio: 4 / 1;
   translate: -50% 0;
   background:
-    radial-gradient(closest-side, rgb(96 165 250 / 0.35), transparent 70%),
-    radial-gradient(closest-side, rgb(249 115 22 / 0.18), transparent 100%);
+    radial-gradient(closest-side, rgb(96 165 250 / 0.3), transparent 70%),
+    radial-gradient(closest-side, rgb(249 115 22 / 0.16), transparent 100%);
   filter: blur(20px);
+}
+
+/* Warm → cool divider under the brand row. */
+.footer__rule {
+  height: 1px;
+  margin-block: clamp(2.5rem, 5vw, 3.5rem);
+  background: linear-gradient(
+    90deg,
+    var(--accent-orange),
+    var(--accent-peach) 25%,
+    var(--border) 50%,
+    var(--accent-cyan) 75%,
+    var(--accent-blue)
+  );
+  opacity: 0.7;
+}
+
+.footer__heading {
+  margin-bottom: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.footer__social {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+
+.footer__social:hover {
+  color: var(--accent-peach);
+}
+
+/* "Live" dot next to the Tashkent time (opacity pulse: compositor). */
+.footer__live-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px 2px rgb(34 197 94 / 0.6);
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__live-dot {
+    animation: none;
+  }
 }

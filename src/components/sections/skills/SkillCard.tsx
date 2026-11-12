@@ -37,15 +37,15 @@ export function SkillCard({ group, locale }: SkillCardProps) {
         <Scene />
       </div>
       <div className="relative z-10 p-6 md:p-7">
-        <h3 className="font-display text-2xl font-semibold tracking-tight text-text-on-light">
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-text">
           {group.title[locale]}
         </h3>
-        <p className="mt-2 text-text-muted-on-light">{group.description[locale]}</p>
+        <p className="mt-2 text-text-muted">{group.description[locale]}</p>
         <ul className="mt-5 flex flex-wrap gap-2">
           {group.items.map((item) => (
             <li
               key={item}
-              className="rounded-full border border-black/10 bg-white/70 px-3 py-1 font-mono text-xs text-text-on-light"
+              className="rounded-full border border-border bg-bg/60 px-3 py-1 font-mono text-xs text-text"
             >
               {item}
             </li>

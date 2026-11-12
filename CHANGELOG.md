@@ -4,6 +4,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Cleaner hero, themed skills, new footer (owner request, 2026-11-12)
+
+- Hero: removed the floating code / terminal / "lead received" fragments.
+- Skills ("G'oyadan ishlaydigan tizimgacha"): no longer a separate light block — follows the site theme (tokens + `color-mix`), cards on `--bg-elevated`; drifting warm/cool aurora behind the grid and a gentle idle float of the cards on desktop (compositor transforms only).
+- Footer redesigned: brand row (mark, name, tagline, back-to-top), warm→cool rule, three columns — sections, social icons (GitHub, LinkedIn, X, Telegram), contact (Telegram bot, location, live Tashkent time with a pulsing dot) — and a bottom bar.
+
 ### Always-alive light, "Men haqimda", all-projects page (owner request, 2026-11-12)
 
 - **Living rings everywhere**: buttons, icons, navbar, cards, technology rows and frames carry an always-lit, always-turning warm↔cool border (hover brightens it and blooms the aura). Rebuilt for performance: a compositor-only `rotate` of a conic square clipped by the element + an opaque fill layer (`--glow-fill`), instead of animating an `@property` angle. Touch devices keep the rings lit but still; the hero portrait ring turns everywhere.

@@ -1,20 +1,47 @@
-/* ---------- Light section (dark → light → dark rhythm) ---------- */
-.section--light {
-  background: var(--bg-light);
-  color: var(--text-on-light);
-  border-radius: clamp(1.5rem, 4vw, 3rem);
-  margin-inline: clamp(0rem, 1vw, 0.75rem);
-  /* A warm dawn on the top edge, as if the beam's light spilled in. */
-  background-image: radial-gradient(
-    60% 30% at 50% 0%,
-    rgb(253 186 116 / 0.35),
-    transparent 70%
-  );
+/* ---------- Skills section: follows the site theme, with a drifting aurora ---------- */
+.skills-section {
+  overflow: clip;
+  isolation: isolate;
 }
 
-.section--light ::selection {
-  background: rgb(59 130 246 / 0.25);
-  color: var(--text-on-light);
+/* Two blurred warm/cool lights drifting slowly behind the grid (transform only). */
+.skills-section::before,
+.skills-section::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 55vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.skills-section::before {
+  top: 5%;
+  left: -15vw;
+  background: var(--accent-orange);
+  animation: aurora-a 18s ease-in-out infinite alternate;
+}
+
+.skills-section::after {
+  bottom: 0;
+  right: -15vw;
+  background: var(--accent-blue);
+  animation: aurora-b 22s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-a {
+  to {
+    transform: translate(18vw, 12vh) scale(1.15);
+  }
+}
+
+@keyframes aurora-b {
+  to {
+    transform: translate(-20vw, -14vh) scale(1.1);
+  }
 }
 
 /* ---------- Bento grid ---------- */
@@ -41,12 +68,57 @@
   overflow: clip;
   min-height: 19rem;
   border-radius: var(--radius-lg);
-  border: 1px solid rgb(11 12 16 / 0.08);
-  background: #fff;
-  --glow-fill: #fff;
-  box-shadow:
-    0 1px 0 rgb(255 255 255 / 0.8) inset,
-    0 20px 40px -24px rgb(11 12 16 / 0.18);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  --glow-fill: var(--bg-elevated);
+}
+
+/* Cards drift gently on desktop: a second animation on the separate `translate`
+   property, so it never clashes with the scroll-driven rise (transform).
+   `.skills-grid .skill-card` outranks `.glow-edge`, which sets the rise alone. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .skills-grid .skill-card {
+    animation:
+      card-rise linear both,
+      card-float 6s ease-in-out infinite alternate;
+    animation-timeline: view(), auto;
+    animation-range:
+      entry 0% cover 35%,
+      normal;
+  }
+
+  .skills-grid .skill-card:nth-child(2) {
+    animation-delay:
+      0s,
+      -2s;
+  }
+
+  .skills-grid .skill-card:nth-child(3) {
+    animation-delay:
+      0s,
+      -4s;
+  }
+
+  .skills-grid .skill-card:nth-child(4) {
+    animation-delay:
+      0s,
+      -1s;
+  }
+
+  .skills-grid .skill-card:nth-child(5) {
+    animation-delay:
+      0s,
+      -3s;
+  }
+}
+
+@keyframes card-float {
+  from {
+    translate: 0 -5px;
+  }
+  to {
+    translate: 0 5px;
+  }
 }
 
 /* Spotlight: warm core, cool falloff, follows --mx/--my. */
@@ -78,7 +150,11 @@
   min-height: 9rem;
   padding: 1.5rem 1.5rem 0;
   /* Halftone wash behind every scene. */
-  background-image: radial-gradient(circle, rgb(11 12 16 / 0.12) 1px, transparent 1.5px);
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--text) 14%, transparent) 1px,
+    transparent 1.5px
+  );
   background-size: 8px 8px;
   mask-image: linear-gradient(to bottom, #000 55%, transparent);
 }
@@ -90,7 +166,7 @@
   justify-self: start;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--text-on-light);
+  color: var(--text);
 }
 
 .scene-code__line {
@@ -106,7 +182,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: #fff;
+  background: var(--bg-elevated);
   border-left: 2px solid var(--accent-orange);
   transform-origin: right;
   animation: type-line 7s steps(var(--chars)) infinite;
@@ -156,8 +232,8 @@
   display: block;
   padding: 0.25rem 0.55rem;
   border-radius: 999px;
-  background: #fff;
-  border: 1px solid rgb(11 12 16 / 0.1);
+  background: var(--bg-elevated);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   box-shadow: 0 4px 14px -6px rgb(59 130 246 / 0.5);
@@ -212,7 +288,7 @@
 .scene-db__row i {
   height: 0.6rem;
   border-radius: 4px;
-  background: rgb(11 12 16 / 0.12);
+  background: color-mix(in srgb, var(--text) 12%, transparent);
 }
 
 .scene-db__row i:first-child {
@@ -227,7 +303,7 @@
   border-radius: 999px;
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: #9a3412;
+  color: var(--text);
   background: rgb(253 186 116 / 0.35);
   animation: flash 4s var(--ease-out) infinite;
 }
@@ -313,9 +389,9 @@
 .scene-browser {
   width: min(22rem, 92%);
   border-radius: var(--radius-md);
-  border: 1px solid rgb(11 12 16 / 0.1);
-  background: #fff;
-  box-shadow: 0 16px 30px -18px rgb(11 12 16 / 0.35);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  background: var(--bg-elevated);
+  box-shadow: 0 16px 30px -18px color-mix(in srgb, var(--text) 35%, transparent);
   overflow: clip;
 }
 
@@ -323,14 +399,14 @@
   display: flex;
   gap: 0.3rem;
   padding: 0.5rem 0.7rem;
-  border-bottom: 1px solid rgb(11 12 16 / 0.08);
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
 }
 
 .scene-browser__bar i {
   width: 0.45rem;
   height: 0.45rem;
   border-radius: 50%;
-  background: rgb(11 12 16 / 0.15);
+  background: color-mix(in srgb, var(--text) 15%, transparent);
 }
 
 .scene-browser__body {
@@ -343,7 +419,7 @@
 .scene-browser__block {
   height: 2.2rem;
   border-radius: 6px;
-  background: rgb(11 12 16 / 0.08);
+  background: color-mix(in srgb, var(--text) 8%, transparent);
   animation: block-in 5s var(--ease-out) infinite;
 }
 

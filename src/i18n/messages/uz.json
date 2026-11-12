@@ -33,12 +33,7 @@
     "ctaApply": "Ariza qoldirish",
     "scrollHint": "Pastga aylantiring",
     "rolesLabel": "Yoʻnalishlar",
-    "portraitAlt": "Faxriddin Baxtiyorov portreti",
-    "fragments": {
-      "telegramTitle": "Ariza bot",
-      "telegramMessage": "Yangi ariza qabul qilindi ✓",
-      "telegramMeta": "hozir"
-    }
+    "portraitAlt": "Faxriddin Baxtiyorov portreti"
   },
   "NotFound": {
     "title": "Sahifa topilmadi",
@@ -155,7 +150,11 @@
     "socialsLabel": "Ijtimoiy tarmoqlar",
     "localTime": "Toshkent vaqti",
     "backToTop": "Tepaga qaytish",
-    "rights": "Barcha huquqlar himoyalangan."
+    "rights": "Barcha huquqlar himoyalangan.",
+    "sectionsTitle": "Boʻlimlar",
+    "socialTitle": "Tarmoqlar",
+    "contactTitle": "Aloqa",
+    "location": "Toshkent, Oʻzbekiston"
   },
   "Technologies": {
     "eyebrow": "Texnologiyalar",

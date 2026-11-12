@@ -5,7 +5,7 @@ import { skillGroups } from "@/content/skills";
 import type { Locale } from "@/i18n/routing";
 import { SkillCard } from "./SkillCard";
 
-/** Light section (dark → light → dark rhythm) with a spotlight bento grid. */
+/** Bento grid of living skill cards on a drifting warm/cool aurora (follows the site theme). */
 export function Skills() {
   const t = useTranslations("Skills");
   const locale = useLocale() as Locale;
@@ -14,7 +14,7 @@ export function Skills() {
     <section
       id="skills"
       aria-labelledby="skills-title"
-      className="section section--light"
+      className="section skills-section"
     >
       <div className="container-x">
         <SectionHeading
@@ -22,7 +22,6 @@ export function Skills() {
           eyebrow={t("eyebrow")}
           title={t("title")}
           lead={t("lead")}
-          tone="light"
         />
         <Spotlight className="skills-grid mt-14">
           {skillGroups.map((group) => (

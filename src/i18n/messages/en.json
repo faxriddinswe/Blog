@@ -33,12 +33,7 @@
     "ctaApply": "Leave a request",
     "scrollHint": "Scroll down",
     "rolesLabel": "Focus areas",
-    "portraitAlt": "Portrait of Faxriddin Baxtiyorov",
-    "fragments": {
-      "telegramTitle": "Lead bot",
-      "telegramMessage": "New request received ✓",
-      "telegramMeta": "now"
-    }
+    "portraitAlt": "Portrait of Faxriddin Baxtiyorov"
   },
   "NotFound": {
     "title": "Page not found",
@@ -155,7 +150,11 @@
     "socialsLabel": "Social profiles",
     "localTime": "Tashkent time",
     "backToTop": "Back to top",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "sectionsTitle": "Sections",
+    "socialTitle": "Elsewhere",
+    "contactTitle": "Contact",
+    "location": "Tashkent, Uzbekistan"
   },
   "Technologies": {
     "eyebrow": "Technologies",

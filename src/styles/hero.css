@@ -195,27 +195,6 @@
   pointer-events: none;
 }
 
-/* ---------- Floating fragments ---------- */
-.hero-fragment {
-  position: absolute;
-  z-index: 3;
-  opacity: 0.55;
-}
-
-.hero-fragment > * {
-  animation: float 9s ease-in-out infinite alternate;
-  animation-delay: calc(var(--phase, 0s) * -1);
-}
-
-@keyframes float {
-  from {
-    transform: translate3d(0, -8px, 0) rotate(-1deg);
-  }
-  to {
-    transform: translate3d(0, 10px, 0) rotate(1deg);
-  }
-}
-
 /* ---------- Scroll hint ---------- */
 .hero__hint {
   position: absolute;
@@ -269,7 +248,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-fragment > *,
   .hero__hint-line,
   .portrait-ring__glow,
   .portrait-ring__halo {

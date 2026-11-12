@@ -8,6 +8,8 @@
 @import "./about.css";
 @import "./skills.css";
 @import "./glow.css";
+@import "./experience.css";
+@import "./projects.css";
 
 @theme inline {
   --color-bg: var(--bg);

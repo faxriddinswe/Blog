@@ -45,4 +45,4 @@ Rule: **first paint → CSS; desktop interaction/scroll → GSAP (lazy chunk); s
 
 ## Planned components
 
-Experience line-draw on scroll, pinned horizontal Projects gallery (GSAP ScrollTrigger, desktop lazy chunk), service steps lighting up.
+Services "how we work" steps lighting up, Contact clock arcs, form step transitions (Motion).

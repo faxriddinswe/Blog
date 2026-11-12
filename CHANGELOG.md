@@ -4,6 +4,15 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Phase 4 — Experience & Projects (2026-11-12)
+
+- Experience timeline: SVG rail draws with scroll, nodes light up (opacity/scale only), entries fade up — CSS view timelines, no JS.
+- Projects: pinned horizontal gallery on ≥1024px (sticky stage + scroll-driven `translateX`, scroll length scales with project count); native scroll-snap swipe row on mobile, older browsers and reduced motion.
+- Project cards: GlowFrame (phase-shifted for warm cards), tall screenshot drifting inside a browser window (pauses on hover), numbered, tech tags, "Visit site ↗" / GitHub with `rel="noopener noreferrer"`.
+- 4 clearly marked DEMO projects + generated SVG mock screenshots (owner request); demo links render as "Link coming soon", never fake URLs.
+- Socials: GitHub, LinkedIn, X, Telegram bot added with `href: null` until the owner sends URLs.
+- Lighthouse: desktop 99/100/100, mobile (simulated) 87/100/100.
+
 ### Phase 3 — Marquee, About, Skills (2026-11-12)
 
 - Owner facts: 20+ projects since 2024 (freelance, remote for international companies, startups); confirmed tool list; bio drafted from those facts (UZ/EN).

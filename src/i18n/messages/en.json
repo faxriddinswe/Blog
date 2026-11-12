@@ -56,5 +56,28 @@
     "eyebrow": "Skills",
     "title": "From idea to a system that runs.",
     "lead": "The tools I use every day — no percentage bars, just real work."
+  },
+  "Experience": {
+    "eyebrow": "Experience",
+    "title": "Shipping real work since 2024.",
+    "present": "present",
+    "kinds": {
+      "work": "Work",
+      "freelance": "Freelance",
+      "project": "Project",
+      "education": "Education"
+    }
+  },
+  "Projects": {
+    "eyebrow": "Projects",
+    "title": "Things I’ve built.",
+    "lead": "Each one: a real problem, a working solution.",
+    "live": "Visit site",
+    "github": "GitHub",
+    "demoBadge": "Demo",
+    "demoNote": "Sample project — real ones are coming soon.",
+    "linkSoon": "Link coming soon",
+    "stackLabel": "Tech stack",
+    "screenshotAlt": "{name} interface"
   }
 }

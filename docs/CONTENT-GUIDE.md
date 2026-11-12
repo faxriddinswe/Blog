@@ -30,7 +30,13 @@ Edit `src/content/projects.ts`:
 }
 ```
 
-Put screenshots in `public/images/projects/` (WebP/AVIF, ≥1600px wide).
+Put screenshots in `public/images/projects/`. They drift vertically inside the card window, so use a **tall** capture (ideally 1200×2100, PNG/WebP) — other sizes work but the drift distance assumes 1200×2100. Set `accent: "warm" | "cool"`.
+
+Current entries are **demo placeholders** (`demo: true` → "Demo" badge, links hidden). For a real project, remove `demo`, add `liveUrl` / `githubUrl`; missing links simply show "Link coming soon".
+
+## Socials
+
+`src/content/site.ts` → `socials`. Set `href` to the full URL; `null` renders a disabled "soon" item.
 
 ## Skills & marquee
 

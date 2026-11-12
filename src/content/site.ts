@@ -33,5 +33,11 @@ export const stats: Stat[] = [
   },
 ];
 
-// TODO(owner): public social links. Empty until provided — UI hides missing ones.
-export const socials: SocialLink[] = [];
+// Owner chose these four to show publicly (2026-11-12).
+// TODO(owner): URLs / handles — until then they render as "soon", never as fake links.
+export const socials: SocialLink[] = [
+  { kind: "github", label: "GitHub", href: null },
+  { kind: "linkedin", label: "LinkedIn", href: null },
+  { kind: "x", label: "X", href: null },
+  { kind: "telegram", label: "Telegram bot", href: null },
+];

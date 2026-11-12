@@ -56,5 +56,28 @@
     "eyebrow": "Koʻnikmalar",
     "title": "Gʻoyadan ishlaydigan tizimgacha.",
     "lead": "Har kuni ishlatadigan vositalarim — foizli shkalalarsiz, faqat haqiqiy ish."
+  },
+  "Experience": {
+    "eyebrow": "Tajriba",
+    "title": "2024-yildan beri — real loyihalarda.",
+    "present": "hozir",
+    "kinds": {
+      "work": "Ish",
+      "freelance": "Freelance",
+      "project": "Loyiha",
+      "education": "Taʼlim"
+    }
+  },
+  "Projects": {
+    "eyebrow": "Loyihalar",
+    "title": "Qurgan narsalarim.",
+    "lead": "Har biri — aniq muammo, ishlaydigan yechim.",
+    "live": "Saytga oʻtish",
+    "github": "GitHub",
+    "demoBadge": "Demo",
+    "demoNote": "Namuna loyiha — haqiqiylari tez orada qoʻshiladi.",
+    "linkSoon": "Havola tez orada",
+    "stackLabel": "Texnologiyalar",
+    "screenshotAlt": "{name} interfeysi"
   }
 }

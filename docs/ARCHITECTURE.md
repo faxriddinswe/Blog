@@ -37,7 +37,7 @@ SEO shows 92 locally only because the canonical points at `https://faxriddinswe.
 4. **Fonts.** Only Space Grotesk 600 (headline) is preloaded; Inter and JetBrains Mono 400 swap in. `latin` covers Uzbek ʻ ʼ, so no `latin-ext` (230 KB → 82 KB).
 5. **Desktop-only chunks.** `DesktopEnhancements` lazy-loads Lenis + GSAP (smooth scroll, cursor) only for fine pointers without reduced motion; touch devices never download them.
 6. **WebGL beam, lazily.** `HeroBeam` mounts the R3F canvas after `requestIdleCallback`, on capable desktops only (`isLowPowerDevice()`), pauses via `IntersectionObserver` (`frameloop="never"`), and reads hero scroll progress itself.
-7. **Scroll parallax via CSS scroll-driven animations** (`animation-timeline: view()`), progressive enhancement behind `@supports`.
+7. **Scroll-linked effects via CSS scroll-driven animations** — hero parallax, bio word reveal, timeline draw and the pinned Projects gallery. This replaces GSAP ScrollTrigger from the brief for these effects: same result, zero JS, compositor-friendly. Browsers without `animation-timeline` get static/fallback layouts (e.g. a swipe row for Projects). Parallax (`animation-timeline: view()`), progressive enhancement behind `@supports`.
 8. **Magnetic CTAs** use rAF + a CSS `translate` transition — no GSAP on the critical path.
 
 ## Rendering model

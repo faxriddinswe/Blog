@@ -1,0 +1,135 @@
+/* ---------- Projects: swipe row by default ---------- */
+.projects {
+  position: relative;
+  padding-block: clamp(5rem, 12vw, 9rem);
+}
+
+.projects__viewport {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+
+.projects__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.projects__track {
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  width: max-content;
+  padding-inline: var(--gutter);
+  padding-block: 1.5rem;
+}
+
+.project-card {
+  width: min(36rem, 85vw);
+  scroll-snap-align: start;
+}
+
+.project-card .glow-frame {
+  height: 100%;
+}
+
+/* Warm cards flip the heated border's phase so neighbours don't glow in sync. */
+.project-card[data-accent="warm"] .glow-frame {
+  animation-delay: -7s;
+}
+
+/* Browser-like window with the tall screenshot drifting inside it. */
+.project-card__screen {
+  /* Keep both in sync: the drift distance below needs the ratio as a number. */
+  --screen-ratio: 0.625;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  /* aspect-ratio boxes otherwise grow to fit the tall screenshot. */
+  min-height: 0;
+  overflow: clip;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.project-card__shot {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: auto;
+  animation: shot-drift 18s ease-in-out infinite alternate;
+}
+
+.project-card:hover .project-card__shot {
+  animation-play-state: paused;
+}
+
+@keyframes shot-drift {
+  0%,
+  8% {
+    transform: translateY(0);
+  }
+  92%,
+  100% {
+    /* Screenshots are 1200×2100: travel exactly the part that overflows the window. */
+    transform: translateY(calc(-100% + 100% * var(--screen-ratio) * 1200 / 2100));
+  }
+}
+
+/* ---------- Pinned horizontal gallery (wide screens, motion OK) ---------- */
+@supports (animation-timeline: view()) {
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .projects {
+      /* Scroll length grows with the number of cards. */
+      height: calc(100svh + var(--count) * 55svh);
+      padding-block: 0;
+      view-timeline: --projects block;
+    }
+
+    .projects__stage {
+      position: sticky;
+      top: 0;
+      display: flex;
+      height: 100svh;
+      flex-direction: column;
+      justify-content: center;
+      overflow: clip;
+      /* Clear the fixed navbar. */
+      padding-top: 5rem;
+    }
+
+    .projects__viewport {
+      overflow: visible;
+      scroll-snap-type: none;
+    }
+
+    .projects__track {
+      animation: projects-slide linear both;
+      animation-timeline: --projects;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .project-card {
+      width: min(32rem, 36vw);
+    }
+
+    /* Wider, shorter window so header + card fit one viewport. */
+    .project-card__screen {
+      --screen-ratio: 0.5;
+      aspect-ratio: 2 / 1;
+    }
+  }
+}
+
+@keyframes projects-slide {
+  to {
+    /* Track width minus one viewport: the last card ends flush right. */
+    transform: translateX(calc(-100% + 100vw));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card__shot {
+    animation: none;
+  }
+}

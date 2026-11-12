@@ -19,21 +19,3 @@
     radial-gradient(closest-side, rgb(249 115 22 / 0.18), transparent 100%);
   filter: blur(20px);
 }
-
-.footer__name {
-  margin-top: clamp(3rem, 8vw, 6rem);
-  font-family: var(--font-display);
-  font-weight: 600;
-  /* The full name is ~9 em wide in Space Grotesk 600: 10.4vw keeps it edge to edge. */
-  font-size: clamp(2.25rem, 10.4vw, 14rem);
-  line-height: 0.8;
-  letter-spacing: var(--tracking-display);
-  white-space: nowrap;
-  text-align: center;
-  /* Top-lit like the hero headline; fades into the floor. */
-  background: linear-gradient(to bottom, var(--text) 20%, rgb(245 246 248 / 0.08) 95%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  user-select: none;
-}

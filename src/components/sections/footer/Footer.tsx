@@ -38,12 +38,7 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Giant name, cropped by the page edge — the last thing the beam lights. */}
-      <p aria-hidden="true" className="footer__name">
-        {site.name}
-      </p>
-
-      <div className="container-x pb-8 font-mono text-xs text-text-muted">
+      <div className="container-x mt-14 pb-8 font-mono text-xs text-text-muted">
         © {site.name}. {t("rights")}
       </div>
     </footer>

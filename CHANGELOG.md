@@ -4,6 +4,10 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Footer (owner request, 2026-11-12)
+
+- Removed the giant name at the bottom of the footer.
+
 ### Preloader redesign (owner request, 2026-11-12)
 
 - The "F." mark sits in a ring; a beam falls onto the ring, splits in two and flows down both halves, and the streams flash where they meet; name letters, 0→100 counter and curtain kept (still ≤ 1.5 s, pure CSS/SVG).

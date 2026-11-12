@@ -44,7 +44,9 @@ Scale: `text-display` (clamp 3.25 → 9rem), `text-h1`, `text-h2`; `tracking-dis
 | Glow pill CTA + magnetic halo (`--glow`) | ✅ Phase 2                 | `ui/GlowPillLink.tsx`, `motion/Magnetic.tsx`                    |
 | Film grain                               | ✅                         | `layout/Grain.tsx`                                              |
 | Custom cursor                            | ✅ Phase 2                 | `layout/Cursor.tsx`, `styles/cursor.css`                        |
-| GlowFrame, Spotlight cards               | ⏳                         | —                                                               |
+| GlowFrame (heated rotating border)       | ✅ Phase 3                 | `ui/GlowFrame.tsx`, `styles/glow.css`                           |
+| Spotlight bento cards                    | ✅ Phase 3                 | `motion/Spotlight.tsx`, `sections/skills/*`                     |
+| Light section (`.section--light`)        | ✅ Phase 3                 | `styles/skills.css`                                             |
 
 The beam lands on the portrait's hair line in both versions: CSS uses `--portrait-bottom`, `--portrait-h`, `--portrait-head` on `.hero`; the shader measures the same box at runtime.
 

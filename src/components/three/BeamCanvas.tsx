@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef } from "react";
 import type { ShaderMaterial } from "three";
 import { beamFragment, beamVertex } from "./beam-shader";
 
-/** Defaults (shader y, 0 = bottom) until the portrait is measured. */
+/** Defaults (shader y, 0 = bottom) until the portrait ring is measured. */
 const HEAD_Y = 0.75;
 const HORIZON_Y = 0.3;
 /** Mouse smoothing per frame (0–1): low = lazier sway. */
@@ -31,20 +31,18 @@ function BeamPlane() {
     [],
   );
 
-  // Aim the beam at the portrait's hair line and put the horizon at its base,
-  // using the same layout the CSS beam uses (offset* ignores scroll transforms).
+  // Land the beam on the top of the portrait ring and put the horizon at its
+  // bottom. Rect deltas are scroll-independent (both shift equally).
   useEffect(() => {
     const measure = () => {
       const hero = canvas.closest<HTMLElement>(".hero");
-      const portrait = hero?.querySelector<HTMLElement>(".hero-portrait");
-      if (!hero || !portrait) return;
-      const headShare =
-        Number.parseFloat(getComputedStyle(hero).getPropertyValue("--portrait-head")) ||
-        0;
-      const h = hero.offsetHeight;
+      const ring = hero?.querySelector<HTMLElement>(".portrait-ring");
+      if (!hero || !ring) return;
+      const h = hero.getBoundingClientRect();
+      const r = ring.getBoundingClientRect();
       layout.current = {
-        head: 1 - (portrait.offsetTop + portrait.offsetHeight * headShare) / h,
-        horizon: 1 - (portrait.offsetTop + portrait.offsetHeight) / h,
+        head: 1 - (r.top - h.top) / h.height,
+        horizon: 1 - (r.bottom - h.top) / h.height,
       };
     };
     measure();

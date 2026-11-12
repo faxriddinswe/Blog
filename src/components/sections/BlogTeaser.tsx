@@ -29,7 +29,7 @@ export async function BlogTeaser() {
           />
           <Link
             href="/blog"
-            className="rounded-full border border-border-strong px-5 py-2.5 text-sm hover:border-text-muted"
+            className="glow-hover rounded-full border border-border-strong px-5 py-2.5 text-sm hover:border-text-muted"
           >
             {t("allPosts")} →
           </Link>

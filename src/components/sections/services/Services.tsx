@@ -24,7 +24,7 @@ export function Services() {
 
         <ul className="mt-14 grid gap-px overflow-clip rounded-(--radius-lg) border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <li key={service.id} className="service-card">
+            <li key={service.id} className="service-card glow-edge">
               <span className="service-card__icon">
                 <ServiceIcon name={service.icon} />
               </span>

@@ -22,7 +22,7 @@ export function GlowPillLink({
     <Link
       {...props}
       className={cn(
-        "group relative isolate inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium transition-[translate,border-color] duration-(--dur-fast) ease-brand",
+        "glow-hover group relative isolate inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium transition-[translate,border-color] duration-(--dur-fast) ease-brand",
         variant === "light" &&
           [
             "bg-text text-bg shadow-[0_0_0_1px_rgb(255_255_255/0.6)]",

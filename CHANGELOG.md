@@ -4,7 +4,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
-### Hero emblem (owner request, 2026-11-12)
+### Hero portrait ring & interactive light (owner request, 2026-11-12)
+
+- Corrected: the **portrait** (not the logo) now sits in a round frame on the beam; the beam pours onto the ring, splits and flows down both halves, rejoining at the bottom; the name sits below. Shader aims at the ring.
+- New `.glow-hover` (buttons) and `.glow-edge` (cards): rotating warm↔cool border + outer aura on hover/focus; cards also rise and light their edges while crossing the viewport (CSS view timelines). Applied to CTAs, form buttons, socials, project links, back-to-top, service/skill/post cards; GlowFrame burns brighter on hover.
+
+### Hero emblem (superseded)
 
 - The "F." mark in a ring now lives permanently in the hero, on the beam above the portrait: the beam pours onto the ring, splits and keeps flowing down both halves (looping light packets), rejoins at the bottom and continues onto the portrait; the name sits below. Portrait slightly smaller/lower to make room. Reduced motion: static lit ring.
 

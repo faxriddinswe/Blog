@@ -140,7 +140,7 @@ export function LeadForm() {
           <button
             type="button"
             onClick={() => setStep((s) => s - 1)}
-            className="lead-btn lead-btn--ghost"
+            className="lead-btn lead-btn--ghost glow-hover"
           >
             {t("back")}
           </button>
@@ -150,7 +150,7 @@ export function LeadForm() {
         <button
           type="submit"
           disabled={formState.isSubmitting}
-          className="lead-btn lead-btn--primary"
+          className="lead-btn lead-btn--primary glow-hover"
         >
           {step < LAST ? t("next") : formState.isSubmitting ? t("sending") : t("submit")}
         </button>

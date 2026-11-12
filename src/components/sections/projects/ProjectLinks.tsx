@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import type { Project } from "@/content/projects";
 
 const pill =
-  "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-(--dur-fast)";
+  "glow-hover inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-(--dur-fast)";
 
 /**
  * "Visit site ↗" + GitHub. External links open in a new tab with

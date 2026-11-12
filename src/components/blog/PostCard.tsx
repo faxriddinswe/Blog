@@ -9,7 +9,7 @@ export function PostCard({ post }: { post: PostSummary }) {
   const { meta } = post;
 
   return (
-    <article className="post-card group">
+    <article className="post-card glow-edge group">
       <Link href={`/blog/${post.slug}`} className="post-card__link">
         <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-text-muted">
           <time dateTime={meta.date}>

@@ -44,6 +44,7 @@ export function HeroBeam() {
   const markReady = () => {
     // CSS keeps atmosphere/halftone and fades its core/flow when WebGL takes over.
     host.current?.closest(".beam")?.setAttribute("data-webgl", "on");
+    host.current?.closest(".hero")?.setAttribute("data-webgl", "on");
   };
 
   return (

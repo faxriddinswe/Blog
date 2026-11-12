@@ -7,7 +7,6 @@ import { SplitRise } from "@/components/motion/SplitRise";
 import { HeroBeam } from "@/components/three/HeroBeam";
 import { GlowPillLink } from "@/components/ui/GlowPillLink";
 import { site, stats } from "@/content/site";
-import { HeroEmblem } from "./HeroEmblem";
 import { HeroFragments } from "./HeroFragments";
 import { HeroPortrait } from "./HeroPortrait";
 
@@ -23,10 +22,9 @@ export function Hero() {
         <HeroBeam />
       </LightBeamFallback>
       <HeroFragments />
-      <HeroPortrait />
-      <HeroEmblem />
 
       <div className="hero__content">
+        <HeroPortrait />
         <p
           className="intro rounded-full border border-border bg-bg/60 px-3.5 py-1.5 font-mono text-[11px] tracking-widest text-text-muted uppercase backdrop-blur-md"
           style={delay(0.2)}

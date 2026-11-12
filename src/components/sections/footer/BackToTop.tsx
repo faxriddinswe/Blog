@@ -18,7 +18,7 @@ export function BackToTop({ label }: { label: string }) {
     <button
       type="button"
       onClick={onClick}
-      className="group inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm text-text hover:border-text-muted"
+      className="glow-hover group inline-flex items-center gap-2 rounded-full border border-border-strong px-5 py-2.5 text-sm text-text hover:border-text-muted"
     >
       {label}
       <span

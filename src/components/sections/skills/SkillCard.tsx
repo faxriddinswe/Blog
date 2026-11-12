@@ -31,7 +31,7 @@ export function SkillCard({ group, locale }: SkillCardProps) {
   const Scene = SCENES[group.scene];
 
   return (
-    <article data-spotlight className={cn("skill-card", SIZE[group.size])}>
+    <article data-spotlight className={cn("skill-card glow-edge", SIZE[group.size])}>
       <div className="skill-card__stage">
         <Scene />
       </div>

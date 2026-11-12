@@ -18,7 +18,7 @@ export function SocialLinks({ label, className }: SocialLinksProps) {
             href={s.href ?? undefined}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-border-strong px-4 py-2 text-sm text-text transition-colors duration-(--dur-fast) hover:border-accent-peach hover:text-accent-peach"
+            className="glow-hover inline-flex items-center gap-1.5 rounded-full border border-border-strong px-4 py-2 text-sm text-text transition-colors duration-(--dur-fast) hover:border-accent-peach hover:text-accent-peach"
           >
             {s.label}
             <span aria-hidden="true">↗</span>

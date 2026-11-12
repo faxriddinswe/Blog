@@ -21,11 +21,7 @@
   top: 0;
   left: 50%;
   width: clamp(3px, 0.6vw, 8px);
-  /* Falls exactly onto the portrait's hair line (vars from .hero), never across the name. */
-  height: calc(
-    100% - var(--portrait-bottom, 48%) - var(--portrait-h, 0px) *
-      (1 - var(--portrait-head, 0)) + 2rem
-  );
+  height: 52%;
   translate: -50% 0;
   background: linear-gradient(
     to bottom,
@@ -46,7 +42,7 @@
   top: 0;
   left: 50%;
   width: clamp(60px, 9vw, 160px);
-  height: calc(100% - var(--portrait-bottom, 46%) - var(--portrait-h, 0px) * 0.75);
+  height: 54%;
   translate: -50% 0;
   filter: blur(4px);
   opacity: 0.8;

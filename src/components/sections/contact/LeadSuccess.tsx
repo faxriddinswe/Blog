@@ -29,7 +29,11 @@ export function LeadSuccess({ name, onReset }: LeadSuccessProps) {
         {t("successTitle")}
       </h3>
       <p className="mt-2 text-text-muted">{t("successBody", { name })}</p>
-      <button type="button" onClick={onReset} className="lead-btn lead-btn--ghost mt-8">
+      <button
+        type="button"
+        onClick={onReset}
+        className="lead-btn lead-btn--ghost glow-hover mt-8"
+      >
         {t("again")}
       </button>
     </div>

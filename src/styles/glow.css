@@ -56,3 +56,137 @@
     --gf-angle: 200deg;
   }
 }
+
+/* =========================================================================
+ * Interactive light (owner request): buttons and cards "ignite" on hover —
+ * a rotating warm↔cool border plus an outer aura — and cards also rise and
+ * light up their edges while they cross the viewport on scroll.
+ * Borders are a masked conic gradient on ::after, so only opacity and the
+ * @property angle animate.
+ * ========================================================================= */
+.glow-hover,
+.glow-edge {
+  position: relative;
+  isolation: isolate;
+  transition:
+    box-shadow var(--dur-fast) var(--ease-out),
+    translate var(--dur-fast) var(--ease-out);
+}
+
+.glow-hover::after,
+.glow-edge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--gf-angle),
+    var(--accent-orange),
+    var(--accent-peach) 12%,
+    transparent 26%,
+    var(--accent-blue) 50%,
+    var(--accent-cyan) 62%,
+    transparent 76%,
+    var(--accent-orange)
+  );
+  /* Keep only the 1.5px ring: content box minus border box. */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.glow-hover:hover,
+.glow-hover:focus-visible,
+.glow-edge:hover,
+.glow-edge:focus-within {
+  box-shadow:
+    0 0 28px -6px rgb(249 115 22 / 0.55),
+    0 0 60px -14px rgb(59 130 246 / 0.6);
+}
+
+.glow-hover:hover::after,
+.glow-hover:focus-visible::after,
+.glow-edge:hover::after,
+.glow-edge:focus-within::after {
+  opacity: 1;
+  animation: gf-spin 3s linear infinite;
+}
+
+.glow-hover:hover {
+  translate: 0 -2px;
+}
+
+/* Cards: rise into place and light their edges while crossing the viewport. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .glow-edge {
+      animation: card-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+
+    .glow-edge::after {
+      animation: edge-scroll linear both;
+      animation-timeline: view();
+      animation-range: cover 15% cover 85%;
+    }
+
+    /* Hover wins over the scroll-driven glow. */
+    .glow-edge:hover::after,
+    .glow-edge:focus-within::after {
+      opacity: 1;
+      animation: gf-spin 3s linear infinite;
+      animation-timeline: auto;
+    }
+  }
+}
+
+@keyframes card-rise {
+  from {
+    transform: translateY(3rem) scale(0.97);
+  }
+}
+
+@keyframes edge-scroll {
+  0% {
+    opacity: 0;
+    --gf-angle: 0deg;
+  }
+  50% {
+    opacity: 0.85;
+    --gf-angle: 180deg;
+  }
+  100% {
+    opacity: 0;
+    --gf-angle: 360deg;
+  }
+}
+
+/* GlowFrame cards burn brighter under the cursor. */
+.glow-frame::before {
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.glow-frame:hover::before {
+  opacity: 0.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-hover:hover::after,
+  .glow-edge:hover::after {
+    animation: none;
+  }
+
+  .glow-hover:hover {
+    translate: none;
+  }
+}

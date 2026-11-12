@@ -33,11 +33,14 @@ export const stats: Stat[] = [
   },
 ];
 
-// Owner chose these four to show publicly (2026-11-12).
-// TODO(owner): URLs / handles — until then they render as "soon", never as fake links.
+// Owner-confirmed public profiles (2026-11-12).
 export const socials: SocialLink[] = [
-  { kind: "github", label: "GitHub", href: null },
-  { kind: "linkedin", label: "LinkedIn", href: null },
-  { kind: "x", label: "X", href: null },
-  { kind: "telegram", label: "Telegram bot", href: null },
+  { kind: "github", label: "GitHub", href: "https://github.com/faxriddinswe" },
+  {
+    kind: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/faxriddinswe/",
+  },
+  { kind: "x", label: "X", href: "https://x.com/faxriddinswe" },
+  { kind: "telegram", label: "@faxriddin_askbot", href: "https://t.me/faxriddin_askbot" },
 ];

@@ -62,6 +62,19 @@ request ─▶ src/proxy.ts (next-intl middleware)
 - `pnpm check:i18n` — fails if `uz.json` / `en.json` keys diverge.
 - Unknown paths under a locale hit `app/[locale]/[...rest]` → localized `not-found.tsx`. That segment sets `instant = false` because it always 404s.
 
+## Lead pipeline
+
+```
+LeadForm (RHF + zodResolver(leadSchema))  ──POST JSON──▶  app/api/lead/route.ts
+   lib/validation/lead.ts  ◀── same schema ──┘            ├─ leadSchema.safeParse (source of truth)
+                                                           ├─ honeypot → silent 200
+                                                           ├─ lib/rate-limit.ts (per instance)
+                                                           ├─ lib/turnstile.ts (only if secret set)
+                                                           └─ lib/telegram.ts → sendMessage (HTML-escaped)
+```
+
+Zod messages are i18n keys (`Contact.errors.*`); API error codes map to the same namespace, so every error the user sees is localized.
+
 ## Data flow
 
 Content is data. Components never hold copy:

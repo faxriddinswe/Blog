@@ -4,6 +4,17 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Phase 5 — Services & Contact / lead pipeline (2026-11-12)
+
+- Services ("Biznesingizni tizimlashtiramiz"): 6 services with custom SVG icons and hover halos; 4-step "how we work" lit in sequence by a CSS view timeline; CTA to the form.
+- Contact: live Asia/Tashkent clock (warm hour arc, cool minute arc; client-only to avoid hydration mismatch), public socials, multi-step lead form in a GlowFrame.
+- Lead form: react-hook-form + Zod (shared schema with the server), 4 steps with per-step validation, focus moves to each new step, errors clear while typing, native-radio chips, honeypot, optional env-gated Turnstile, localized server errors, data kept on failure, animated success state.
+- `POST /api/lead`: schema re-validation → honeypot → in-memory rate limit (5/10 min/IP) → Turnstile (if configured) → Telegram `sendMessage` with HTML-escaped input and Tashkent timestamp; typed `{ ok } | { ok:false, error }`.
+- `pnpm telegram:chat-id` finds the chat id without exposing the token. `docs/DEPLOYMENT.md` documents bot setup, responses and the rate-limit limitation.
+- Socials filled (GitHub, LinkedIn, X, Telegram bot).
+- Fixed during QA: duplicate `id="contact"`, unselected optional radios (`null`) silently blocking submit, error-removal layout shift eating the "Next" click.
+- Lighthouse: A11y 100, mobile Perf 90–92, desktop 99.
+
 ### Phase 4 — Experience & Projects (2026-11-12)
 
 - Experience timeline: SVG rail draws with scroll, nodes light up (opacity/scale only), entries fade up — CSS view timelines, no JS.

@@ -79,5 +79,81 @@
     "linkSoon": "Link coming soon",
     "stackLabel": "Tech stack",
     "screenshotAlt": "{name} interface"
+  },
+  "Services": {
+    "eyebrow": "AI solutions",
+    "title": "Let’s systemize your business.",
+    "lead": "Instead of manual work, messy chats and forgotten orders — a system that runs itself.",
+    "processTitle": "How we work",
+    "cta": "Leave a request"
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Let’s talk about your project.",
+    "lead": "Answer a few questions — your request lands straight in my Telegram.",
+    "clockLabel": "Now in Tashkent",
+    "clockZone": "UTC+5",
+    "socialsLabel": "Social profiles",
+    "steps": {
+      "contact": "Contact",
+      "business": "Business",
+      "task": "Task",
+      "budget": "Budget"
+    },
+    "stepOf": "Step {current} of {total}",
+    "fields": {
+      "name": "Your name",
+      "namePlaceholder": "e.g. Alex",
+      "contact": "Telegram or phone",
+      "contactPlaceholder": "@username or +998 90 123 45 67",
+      "businessType": "Type of business",
+      "description": "Describe the task",
+      "descriptionPlaceholder": "What should be automated? How do you work today?",
+      "budget": "Budget (optional)",
+      "timeline": "Timeline (optional)",
+      "website": "Website"
+    },
+    "business": {
+      "ecommerce": "E-commerce",
+      "services": "Services",
+      "education": "Education",
+      "logistics": "Logistics",
+      "startup": "Startup",
+      "other": "Other"
+    },
+    "budget": {
+      "lt500": "< $500",
+      "500to1500": "$500 – 1,500",
+      "1500to5000": "$1,500 – 5,000",
+      "gt5000": "> $5,000",
+      "unknown": "Not sure yet"
+    },
+    "timeline": {
+      "weeks": "1–2 weeks",
+      "month": "1 month",
+      "quarter": "2–3 months",
+      "flexible": "No rush"
+    },
+    "next": "Next",
+    "back": "Back",
+    "submit": "Send request",
+    "sending": "Sending…",
+    "errors": {
+      "nameMin": "Name must be at least 2 letters",
+      "nameMax": "Name is too long",
+      "contactInvalid": "Enter a @username or a phone number",
+      "businessRequired": "Choose a business type",
+      "descriptionMin": "A bit more detail, please (20+ characters)",
+      "descriptionMax": "Text is too long (up to 2000 characters)",
+      "invalid": "Please check your details and try again.",
+      "rate_limited": "Too many attempts. Please try again in a few minutes.",
+      "captcha": "Verification failed. Refresh the page and try again.",
+      "delivery": "Couldn’t deliver your request. Try again shortly or message me on Telegram.",
+      "not_configured": "The form is being set up. Please message me on Telegram.",
+      "network": "Network error. Your answers are kept — just send again."
+    },
+    "successTitle": "Request sent!",
+    "successBody": "Thanks, {name}. I’ll get back to you soon.",
+    "again": "Send another request"
   }
 }

@@ -79,5 +79,81 @@
     "linkSoon": "Havola tez orada",
     "stackLabel": "Texnologiyalar",
     "screenshotAlt": "{name} interfeysi"
+  },
+  "Services": {
+    "eyebrow": "AI yechimlar",
+    "title": "Biznesingizni tizimlashtiramiz.",
+    "lead": "Qoʻl mehnati, tartibsiz chatlar va unutilgan buyurtmalar oʻrniga — oʻzi ishlaydigan tizim.",
+    "processTitle": "Qanday ishlaymiz",
+    "cta": "Ariza qoldirish"
+  },
+  "Contact": {
+    "eyebrow": "Aloqa",
+    "title": "Loyihangizni muhokama qilamiz.",
+    "lead": "Bir necha savolga javob bering — ariza toʻgʻridan-toʻgʻri menga Telegramda keladi.",
+    "clockLabel": "Toshkentda hozir",
+    "clockZone": "UTC+5",
+    "socialsLabel": "Ijtimoiy tarmoqlar",
+    "steps": {
+      "contact": "Aloqa",
+      "business": "Biznes",
+      "task": "Vazifa",
+      "budget": "Byudjet"
+    },
+    "stepOf": "{current}-qadam / {total}",
+    "fields": {
+      "name": "Ismingiz",
+      "namePlaceholder": "Masalan, Aziz",
+      "contact": "Telegram yoki telefon",
+      "contactPlaceholder": "@username yoki +998 90 123 45 67",
+      "businessType": "Biznesingiz turi",
+      "description": "Vazifani tasvirlang",
+      "descriptionPlaceholder": "Nima avtomatlashtirilishi kerak? Hozir qanday ishlaysiz?",
+      "budget": "Byudjet (ixtiyoriy)",
+      "timeline": "Muddat (ixtiyoriy)",
+      "website": "Veb-sayt"
+    },
+    "business": {
+      "ecommerce": "Onlayn savdo",
+      "services": "Xizmat koʻrsatish",
+      "education": "Taʼlim",
+      "logistics": "Logistika",
+      "startup": "Startap",
+      "other": "Boshqa"
+    },
+    "budget": {
+      "lt500": "< $500",
+      "500to1500": "$500 – 1 500",
+      "1500to5000": "$1 500 – 5 000",
+      "gt5000": "> $5 000",
+      "unknown": "Hali bilmayman"
+    },
+    "timeline": {
+      "weeks": "1–2 hafta",
+      "month": "1 oy",
+      "quarter": "2–3 oy",
+      "flexible": "Shoshilinch emas"
+    },
+    "next": "Keyingisi",
+    "back": "Orqaga",
+    "submit": "Yuborish",
+    "sending": "Yuborilmoqda…",
+    "errors": {
+      "nameMin": "Ism kamida 2 ta harf boʻlsin",
+      "nameMax": "Ism juda uzun",
+      "contactInvalid": "@username yoki telefon raqamini kiriting",
+      "businessRequired": "Biznes turini tanlang",
+      "descriptionMin": "Biroz batafsilroq yozing (kamida 20 belgi)",
+      "descriptionMax": "Matn juda uzun (2000 belgigacha)",
+      "invalid": "Maʼlumotlarni tekshirib, qayta urinib koʻring.",
+      "rate_limited": "Juda koʻp urinish. Bir necha daqiqadan soʻng qayta yuboring.",
+      "captcha": "Tekshiruvdan oʻtilmadi. Sahifani yangilab, qayta urinib koʻring.",
+      "delivery": "Arizani yetkazib boʻlmadi. Birozdan soʻng qayta urinib koʻring yoki Telegram orqali yozing.",
+      "not_configured": "Forma hozircha sozlanmoqda. Iltimos, Telegram orqali yozing.",
+      "network": "Internet bilan bogʻlanishda xato. Maʼlumotlaringiz saqlandi — qayta yuboring."
+    },
+    "successTitle": "Ariza yuborildi!",
+    "successBody": "Rahmat, {name}. Tez orada siz bilan bogʻlanaman.",
+    "again": "Yana ariza yuborish"
   }
 }

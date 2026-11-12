@@ -1,0 +1,203 @@
+/* ---------- Contact backdrop: the beam's light returns at the end ---------- */
+.contact {
+  isolation: isolate;
+}
+
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(40% 35% at 75% 40%, rgb(59 130 246 / 0.16), transparent 70%),
+    radial-gradient(35% 30% at 20% 70%, rgb(249 115 22 / 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+/* ---------- Tashkent clock ---------- */
+.clock {
+  position: relative;
+  display: grid;
+  width: 10rem;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  place-items: center;
+}
+
+.clock__dial {
+  position: absolute;
+  inset: 0;
+  rotate: -90deg; /* arcs start at 12 o'clock */
+}
+
+.clock__track,
+.clock__arc {
+  fill: none;
+  stroke-width: 3;
+}
+
+.clock__track {
+  stroke: var(--border-strong);
+}
+
+.clock__arc {
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  transition: stroke-dashoffset var(--dur-fast) var(--ease-out);
+}
+
+.clock__arc--warm {
+  stroke: var(--accent-orange);
+  filter: drop-shadow(0 0 4px rgb(249 115 22 / 0.8));
+}
+
+.clock__arc--cool {
+  stroke: var(--accent-cyan);
+  filter: drop-shadow(0 0 4px rgb(34 211 238 / 0.8));
+}
+
+.clock__face {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ---------- Lead form ---------- */
+.lead-form {
+  position: relative;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.lead-form__step {
+  animation: fade-rise var(--dur-fast) var(--ease-out) both;
+}
+
+.lead-step-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border-strong);
+  transform-origin: left;
+}
+
+.lead-step-bar--on {
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent-peach));
+  box-shadow: 0 0 10px rgb(249 115 22 / 0.6);
+}
+
+.chip {
+  cursor: pointer;
+}
+
+.chip span {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.chip:hover span {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+.chip input:checked + span {
+  color: var(--bg);
+  background: var(--text);
+  border-color: var(--text);
+  box-shadow: 0 6px 24px -6px rgb(249 115 22 / 0.6);
+}
+
+.chip input:focus-visible + span {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+.lead-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition:
+    translate var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.lead-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.lead-btn--primary {
+  color: var(--bg);
+  background: var(--text);
+  box-shadow: 0 8px 36px -8px rgb(249 115 22 / 0.7);
+}
+
+.lead-btn--primary:hover:not(:disabled) {
+  translate: 0 -2px;
+}
+
+.lead-btn--ghost {
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+}
+
+.lead-btn--ghost:hover {
+  border-color: var(--text-muted);
+}
+
+/* ---------- Success ---------- */
+.lead-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 2rem;
+  text-align: center;
+}
+
+.lead-success__icon {
+  width: 5rem;
+  height: 5rem;
+  overflow: visible;
+  filter: drop-shadow(0 0 18px rgb(249 115 22 / 0.6));
+}
+
+.lead-success__ring,
+.lead-success__check {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  animation: draw var(--dur-slow) var(--ease-out) both;
+}
+
+.lead-success__ring {
+  stroke: var(--accent-orange);
+}
+
+.lead-success__check {
+  stroke: var(--text);
+  animation-delay: 0.35s;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

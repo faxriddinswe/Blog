@@ -301,7 +301,44 @@ Keep `docs/OWNER-INPUTS.md` updated as a checklist. Needed items:
 
 Until provided: build with tasteful placeholders and `TODO(owner)` markers.
 
-## 14. Phase workflow
+## 14. Repository, migration & go-live (IMPORTANT)
+
+- Repo: github.com/faxriddinswe/Blog. `main` = production (Vercel → faxriddinswe.uz).
+- All work on branch `redesign`. Never commit to `main`. v1 preserved in tag `v1-legacy`.
+- Push `redesign` (with owner approval, one ask per phase is fine) → Vercel Preview URL.
+- Go-live = merge `redesign` → `main`, ONLY after: gates green, owner checked
+  preview, redirects tested, Vercel settings + env vars set. Ask explicitly first.
+- Rollback: Vercel Instant Rollback or `git revert` of the merge (document both).
+
+Vercel settings (owner does them; you write exact instructions):
+
+- Project currently builds a static site. New app needs Next.js preset/build
+  settings. Verify in current Vercel docs whether `vercel.json` `framework`
+  or the dashboard setting applies to preview builds, and tell the owner exactly
+  WHAT to change and WHEN (too early could break `main` builds).
+- Env vars for Preview + Production: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID,
+  optional Turnstile keys.
+
+Content migration:
+
+- posts/*.md → src/content/blog/uz/<same-slug>.mdx; frontmatter from js/posts.js
+  (dates normalized to YYYY-MM-DD; description from first paragraph). Do not
+  rewrite post text. Fix MDX pitfalls (bare <, {, }, HTML comments, raw HTML).
+  Render-check every post. No EN versions → show "only in Uzbek" notice on /en.
+- posts/images → public/blog/images (update paths).
+- images/profile.jpg → temporary hero portrait; ask owner for higher-res transparent one.
+- cv.pdf → public/cv/cv.pdf. js/projects.js → seed content/projects.ts
+  (ask owner for live URLs, screenshots, better descriptions).
+- lectures.html → ask owner: keep a Lectures section or drop it.
+- Delete v1 files from `redesign` only after migration is verified.
+
+Old URL redirects (permanent, in next.config; verify query-matching syntax):
+/index.html → /uz · /blog.html → /uz/blog · /post.html?<param>=<slug> → /uz/blog/<slug>
+(read v1 post.html/js to find exact param) · /building.html → /uz#projects ·
+/resume.html → /cv/cv.pdf · /cv.pdf → /cv/cv.pdf · /lectures.html → per owner.
+Test every redirect on the preview deployment.
+
+## 15. Phase workflow
 
 Work phase by phase (prompts in `prompts/`). For every phase:
 

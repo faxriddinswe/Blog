@@ -25,6 +25,19 @@ const nextConfig: NextConfig = {
   // www → apex (brief §4). Runs before the i18n proxy.
   async redirects() {
     return [
+      // v1 (static site) URLs → v2. See docs/MIGRATION.md.
+      { source: "/index.html", destination: "/uz", permanent: true },
+      { source: "/blog.html", destination: "/uz/blog", permanent: true },
+      {
+        source: "/post.html",
+        has: [{ type: "query", key: "post", value: "(?<slug>[a-z0-9-]+)" }],
+        destination: "/uz/blog/:slug",
+        permanent: true,
+      },
+      { source: "/post.html", destination: "/uz/blog", permanent: true },
+      { source: "/building.html", destination: "/uz#projects", permanent: true },
+      { source: "/resume.html", destination: "/cv/cv.pdf", permanent: true },
+      { source: "/cv.pdf", destination: "/cv/cv.pdf", permanent: true },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.faxriddinswe.uz" }],

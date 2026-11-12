@@ -142,7 +142,12 @@
     "missingBody": "You can read it in the other language.",
     "readIn": "Read in Uzbek",
     "empty": "No articles yet.",
-    "teaserTitle": "Latest from the blog"
+    "teaserTitle": "Latest from the blog",
+    "onlyIn": "{language} only",
+    "languages": {
+      "uz": "Uzbek",
+      "en": "English"
+    }
   },
   "Footer": {
     "tagline": "AI agents, backend systems and automation.",

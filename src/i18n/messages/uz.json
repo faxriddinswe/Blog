@@ -142,7 +142,12 @@
     "missingBody": "Maqolani boshqa tilda oʻqishingiz mumkin.",
     "readIn": "Inglizcha oʻqish",
     "empty": "Hozircha maqolalar yoʻq.",
-    "teaserTitle": "Blogdan soʻnggi maqolalar"
+    "teaserTitle": "Blogdan soʻnggi maqolalar",
+    "onlyIn": "Faqat {language}",
+    "languages": {
+      "uz": "oʻzbekcha",
+      "en": "inglizcha"
+    }
   },
   "Footer": {
     "tagline": "AI agentlar, backend tizimlar va avtomatlashtirish.",

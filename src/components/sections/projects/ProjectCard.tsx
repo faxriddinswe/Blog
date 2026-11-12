@@ -21,16 +21,24 @@ export function ProjectCard({ project, index, locale }: ProjectCardProps) {
         <article aria-labelledby={headingId} className="flex h-full flex-col">
           {/* Tall screenshot drifts slowly inside the window; pauses on hover. */}
           <div className="project-card__screen">
-            <Image
-              src={project.cover}
-              alt={t("screenshotAlt", { name: project.name })}
-              width={1200}
-              height={2100}
-              sizes="(min-width: 1024px) 36rem, 85vw"
-              // SVG mocks are served as-is; real screenshots should be raster and optimized.
-              unoptimized={project.cover.endsWith(".svg")}
-              className="project-card__shot"
-            />
+            {project.cover ? (
+              <Image
+                src={project.cover}
+                alt={t("screenshotAlt", { name: project.name })}
+                width={1200}
+                height={2100}
+                sizes="(min-width: 1024px) 36rem, 85vw"
+                className="project-card__shot"
+              />
+            ) : (
+              // No screenshot yet: a branded placeholder instead of an empty frame.
+              <div aria-hidden="true" className="project-card__placeholder">
+                <span className="project-card__placeholder-name">{project.name}</span>
+                <span className="font-mono text-xs opacity-70">
+                  {project.stack.join(" · ")}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">

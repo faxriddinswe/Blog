@@ -1,0 +1,68 @@
+export const metadata = {
+  title: "Linux olamiga sayohat (2 qism )",
+  description:
+    "O'tgan postda Linux haqida ba'zi ajoyib ishlarni o'rgangandik. Ushbu postda System controlling va hujumlarga qarshi ajoyib strategiyalarni amalda qo'llab ko'…",
+  date: "2026-08-02",
+  readingMinutes: 2,
+  tags: [],
+};
+
+## 🐧 Linux: System Control va Hujumlardan Himoyalanish
+
+O'tgan postda Linux haqida ba'zi ajoyib ishlarni o'rgangandik. Ushbu postda **System controlling** va hujumlarga qarshi ajoyib strategiyalarni amalda qo'llab ko'ramiz.
+
+---
+
+## 🛠️ System Control
+
+Tasavvur qiling, tizimda ba'zi o'zgarishlar qildingiz. Tizim ushbu o'zgarishlarni qabul qilishi uchun uni qayta ishga tushirish kerak. Xo'sh, buni qanday amalga oshirasiz? _(Virtual machinada o'chirish tugmasi yo'q, aylanay 🙃)_
+
+Sizga `systemctl` (ya'ni **System Control**) buyrug'i kerak. Linux operatsion tizimida ishlab turgan dasturlarni **servicelar** deb atashadi. Servicelarni restart, stop, start, disable yoki enable qilish uchun `systemctl` buyrug'i kerak bo'ladi.
+
+```bash
+# SSH serviceni restart qilish
+systemctl restart sshd
+
+# Dasturning statusini tekshirish uchun
+systemctl status sshd
+
+# Dasturni disable (avtomatik ishga tushishini o'chirish) qilish uchun
+systemctl disable sshd
+```
+
+> 💡 **Maslahat:** Agar dasturingizni to'laqonli background (orqa fonda) ishlab turishini ta'minlamoqchi bo'lsangiz, `systemd` haqida o'rganishni maslahat beraman. Juda oddiy strukturaga ega va dasturingizni doimo ishlab turishini aynan shu `systemd` (_system daemon_) fayli ta'minlab beradi.
+
+---
+
+## 💣 Fork Bombing
+
+2020-yil, Shanghai JiaoTong Universityda birinchi kursni endi boshlagan yilim edi. Dunyoning turli xil mamlakatlaridan kelgan juda bilimli va kuchli kursdoshlar bilan tanishdim. Biroz vaqt o'tib bir do'stimga yuqoridagi rasmni boshqacha yozuv bilan yubordim. Yozuv quyidagicha edi:
+
+> _"Bu buyruqni tersang mushukning rasmi chiqadi:"_
+>
+> ```bash
+> :(){ :|:& };:
+> ```
+
+Sodda va hali OS darslarini endi tushunishni boshlagan murg'ak qalbli bola, ushbu buyruqni o'z kompyuteriga kiritgan va 5 daqiqadan so'ng kompyuteri o'zidan-o'zi o'chib qolgani haqida menga xabar yozdi 🥲 _(bola sodda bo'lsa menda nima ayb)_.
+
+Ushbu buyruq **Fork bomb** deyiladi va u rekursiv tarzda tizimda processlar yaratishni boshlaydi (Linux operatsion tizimida processlar main processdan fork qilinadi, shuning uchun ham uni fork bomb deb atashadi). Buyruqning asosiy maqsadi tizimda processlarni ko'paytirish hisoblanadi. Ko'p process — ko'p resurs uvol qilish va kompyuterning sekinlashishi, ba'zan o'chib qolishiga ham olib keladi.
+
+### 🛡️ Xo'sh, buning oldini qanday olish mumkin?
+
+Albatta, siz tizimga limit qo'yishingiz mumkin. Processlar sonini cheklash uchun `ulimit` buyrug'idan foydalanish orqali siz fork bombingga qarshi turib bera olasiz. Qiziq, shunday emasmi?
+
+```bash
+# Nechta process ocha olishimizni tekshirish uchun
+ulimit -u
+
+# Ko'proq ma'lumot olish uchun
+ulimit -a
+
+# Processlar sonini 20 taga cheklaymiz
+ulimit -S -u 20
+```
+
+## 📌 Conclusion (Xulosa)
+
+Xullas, kim nima desa ishonib ketavermang. Kompyuteringizga begona buyruqlarni kiritib ko'rmang. Ogoh bo'ling. Postdan o'rganganlaringizni boshqalar bilan ham bo'lishing! 🚀

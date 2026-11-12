@@ -10,66 +10,89 @@ export interface Project {
   stack: string[];
   liveUrl?: string;
   githubUrl?: string;
-  /** Tall screenshot under /public/images/projects/ — it auto-scrolls inside the frame. */
-  cover: string;
+  /** Tall screenshot under /public/images/projects/; without one a branded placeholder shows. */
+  cover?: string;
+  year?: number;
   /** Glow accent for the card. */
   accent: "warm" | "cool";
-  /**
-   * Demo placeholder, not a real project. Rendered with a visible "Demo" badge
-   * and disabled links so nothing fake reads as a claim.
-   */
+  /** Placeholder, not a real project: "Demo" badge and no links. */
   demo?: boolean;
 }
 
-// TODO(owner): replace these DEMO entries with real projects (owner asked for
-// demos until the site is finished, 2026-11-12). Remove `demo: true` when real.
+// Migrated from v1 js/projects.js (docs/MIGRATION.md). English taglines are
+// the owner's v1 descriptions; Uzbek ones are direct translations of them.
+// TODO(owner): live URLs, screenshots, problem/solution/result.
 export const projects: Project[] = [
   {
-    slug: "ai-sales-agent",
-    name: "AI Sales Agent",
-    demo: true,
+    slug: "postflow",
+    name: "Postflow",
     accent: "cool",
-    cover: "/images/projects/demo-ai-agent.svg",
+    year: 2026,
+    stack: ["Python", "FastAPI"],
+    githubUrl: "https://github.com/faxriddinswe/PostFlow",
     tagline: {
-      uz: "Telegram'da mijoz savollariga javob beradigan va lidlarni CRM'ga yozadigan agent.",
-      en: "An agent that answers customers in Telegram and logs leads to the CRM.",
+      uz: "Postlaringizni Telegram kanalingizga ulashadigan platforma.",
+      en: "A platform where you share your posts to your Telegram channel.",
     },
-    stack: ["Python", "FastAPI", "LLM", "RAG", "PostgreSQL"],
   },
   {
-    slug: "order-bot-platform",
-    name: "Order Bot Platform",
-    demo: true,
+    slug: "namoz-bot",
+    name: "Namoz bot",
     accent: "warm",
-    cover: "/images/projects/demo-order-bot.svg",
+    year: 2026,
+    stack: ["Python"],
+    githubUrl: "https://github.com/faxriddinswe/namoz_bot",
     tagline: {
-      uz: "Buyurtma qabul qiluvchi Telegram bot va admin panel.",
-      en: "A Telegram ordering bot with an admin dashboard.",
+      uz: "Namoz vaqtlarini Telegram akkauntingizga yuboradigan bot.",
+      en: "A bot that shares prayer times to your Telegram account.",
     },
-    stack: ["Python", "Django", "Redis", "PostgreSQL"],
   },
   {
-    slug: "docs-assistant",
-    name: "Docs Assistant",
-    demo: true,
+    slug: "caretrack-platform",
+    name: "CareTrack platform",
     accent: "cool",
-    cover: "/images/projects/demo-docs-rag.svg",
+    year: 2026,
+    stack: ["JavaScript", "React"],
+    githubUrl: "https://github.com/faxriddinswe/CareTrack-platform",
     tagline: {
-      uz: "Kompaniya ichki hujjatlari boʻyicha manbali javob beruvchi RAG yordamchi.",
-      en: "A RAG assistant that answers from internal docs, with sources.",
+      uz: "Parvarish ehtiyojlaringizni kuzatib borish uchun platforma.",
+      en: "A platform where you can track your care needs.",
     },
-    stack: ["Python", "RAG", "MCP", "Docker"],
   },
   {
-    slug: "workflow-api",
-    name: "Workflow Automation API",
-    demo: true,
+    slug: "daysleft",
+    name: "DaysLeft",
     accent: "warm",
-    cover: "/images/projects/demo-workflow.svg",
+    year: 2025,
+    stack: ["JavaScript"],
+    githubUrl: "https://github.com/faxriddinswe/left-year-time",
     tagline: {
-      uz: "Takroriy jarayonlarni navbat va webhooklar orqali avtomatlashtiruvchi API.",
-      en: "An API that automates repetitive work with queues and webhooks.",
+      uz: "Joriy yil tugashiga qolgan aniq vaqt va foizni koʻrsatadigan sodda veb-ilova.",
+      en: "A clean, minimal web app showing the exact time and percentage left in the current year.",
     },
-    stack: ["FastAPI", "Redis", "Docker", "Linux", "REST API"],
+  },
+  {
+    slug: "techhouse-website",
+    name: "TechHouse website",
+    accent: "cool",
+    year: 2025,
+    stack: ["JavaScript"],
+    githubUrl: "https://github.com/faxriddinswe/Tech-house-website",
+    tagline: {
+      uz: "Maishiy texnika doʻkoni sayti: oshxona, tozalash, isitish-sovutish va smart uy mahsulotlari.",
+      en: "A store site for household appliances: kitchen, cleaning, heating & cooling and smart-home products.",
+    },
+  },
+  {
+    slug: "art-gallery",
+    name: "Art gallery",
+    accent: "warm",
+    year: 2025,
+    stack: ["HTML", "CSS"],
+    githubUrl: "https://github.com/faxriddinswe/art_gallery",
+    tagline: {
+      uz: "Sanʼat asarlari rasmlari va tafsilotlarini koʻrsatadigan sodda veb-ilova.",
+      en: "A clean, minimal web app showing art gallery images and their details.",
+    },
   },
 ];

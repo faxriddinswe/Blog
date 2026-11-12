@@ -1,8 +1,11 @@
 /* Hero composition. Scroll parallax lives at the bottom (scroll-driven animations). */
 .hero {
-  --portrait-h: min(64svh, 620px);
+  --portrait-h: min(52svh, 500px);
   /* Lift the portrait so the face sits above the headline; text crosses the suit only. */
-  --portrait-bottom: 27svh;
+  --portrait-bottom: 24svh;
+  /* The ringed "F." mark floats on the beam, this far above the hair line. */
+  --emblem: clamp(5.25rem, 8.5vw, 7.5rem);
+  --emblem-gap: clamp(1.25rem, 3svh, 2.25rem);
   /* Share of the portrait box above the hair line (from the cut-out's alpha bbox). */
   --portrait-head: 0.06;
   position: relative;
@@ -75,6 +78,140 @@
   pointer-events: none;
 }
 
+/* ---------- Emblem: "F." in a ring, the beam splits around it ---------- */
+.hero-emblem {
+  position: absolute;
+  left: 50%;
+  bottom: calc(
+    var(--portrait-bottom) + var(--portrait-h) * (1 - var(--portrait-head)) +
+      var(--emblem-gap)
+  );
+  z-index: 4;
+  display: grid;
+  width: var(--emblem);
+  aspect-ratio: 1;
+  place-items: center;
+  translate: -50% 0;
+  animation: emblem-in var(--dur-slow) var(--ease-out) calc(var(--intro-delay) + 0.05s)
+    both;
+}
+
+.hero-emblem__svg {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  filter: drop-shadow(0 0 4px rgb(147 197 253 / 0.9))
+    drop-shadow(0 0 16px rgb(59 130 246 / 0.55));
+}
+
+/* Opaque disc: the beam behind stops at the ring and resumes below it. */
+.hero-emblem__disc {
+  fill: var(--bg);
+  stroke: var(--border-strong);
+  stroke-width: 0.6;
+}
+
+/* Both halves lit, drawn from the top point down when the intro plays. */
+.hero-emblem__arc {
+  fill: none;
+  stroke: rgb(186 230 253 / 0.75);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: emblem-arc 0.6s cubic-bezier(0.45, 0, 0.25, 1)
+    calc(var(--intro-delay) + 0.2s) both;
+}
+
+/* Bright packets flowing top → bottom along each half (the "water"). */
+.hero-emblem__flow {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 0.16 0.84;
+  stroke-dashoffset: 0.16;
+  animation: emblem-flow 1.8s cubic-bezier(0.4, 0, 0.6, 1) calc(var(--intro-delay) + 0.8s)
+    infinite;
+}
+
+.hero-emblem__flow--late {
+  animation-delay: calc(var(--intro-delay) + 1.7s);
+}
+
+.hero-emblem__logo {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: calc(var(--emblem) * 0.42);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+}
+
+/* Where the two streams rejoin and pour on toward the portrait. */
+.hero-emblem__join {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fff 0%,
+    rgb(147 197 253 / 0.8) 40%,
+    rgb(59 130 246 / 0) 70%
+  );
+  animation: emblem-join 1.8s ease-in-out calc(var(--intro-delay) + 0.8s) infinite;
+}
+
+@keyframes emblem-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes emblem-arc {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes emblem-flow {
+  from {
+    stroke-dashoffset: 0.16;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    stroke-dashoffset: -0.84;
+    opacity: 0;
+  }
+}
+
+@keyframes emblem-join {
+  0%,
+  60% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+}
+
 /* ---------- Floating fragments ---------- */
 .hero-fragment {
   position: absolute;
@@ -143,16 +280,22 @@
   }
 
   .hero {
-    --portrait-h: min(46svh, 400px);
-    --portrait-bottom: 34svh;
+    --portrait-h: min(40svh, 340px);
+    --portrait-bottom: 35svh;
     padding-bottom: 10svh;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-fragment > *,
-  .hero__hint-line {
+  .hero__hint-line,
+  .hero-emblem__flow,
+  .hero-emblem__join {
     animation: none;
+  }
+
+  .hero-emblem__flow {
+    opacity: 0;
   }
 }
 

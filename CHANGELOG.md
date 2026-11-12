@@ -4,6 +4,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Technologies section (owner request, 2026-11-12)
+
+- New home section "Texnologiyalar / Technologies" (+ nav link): category name as text, technologies as **logos only** — Backend (Python, FastAPI, Django, REST API), AI (agents, LLM, RAG, MCP), Data (PostgreSQL, Redis), DevOps (Docker, Linux), Frontend (HTML, CSS, JavaScript).
+- Brand logos from Simple Icons (CC0-1.0); our own stroke glyphs for agents / LLM / RAG (no brand marks exist). Too-dark brand colours (Django, MCP) are lifted to light so they stay visible.
+- Each logo has an accessible name and hover tooltip; tiles glow in their brand colour on hover; rows rise on scroll.
+
 ### Hero: rotating glow ring only (owner request, 2026-11-12)
 
 - Removed the waterfall entirely (CSS fall and the WebGL beam). The portrait now has only a glowing amber ↔ cyan ring that slowly turns around it, plus a soft aura.

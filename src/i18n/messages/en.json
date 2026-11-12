@@ -18,7 +18,8 @@
     "contact": "Contact",
     "experience": "Experience",
     "menu": "Menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "technologies": "Technologies"
   },
   "LangSwitch": {
     "label": "Choose language",
@@ -150,5 +151,10 @@
     "localTime": "Tashkent time",
     "backToTop": "Back to top",
     "rights": "All rights reserved."
+  },
+  "Technologies": {
+    "eyebrow": "Technologies",
+    "title": "The stack I work with.",
+    "lead": "The tools I use every day, by area."
   }
 }

@@ -18,7 +18,8 @@
     "contact": "Aloqa",
     "experience": "Tajriba",
     "menu": "Menyu",
-    "closeMenu": "Menyuni yopish"
+    "closeMenu": "Menyuni yopish",
+    "technologies": "Texnologiyalar"
   },
   "LangSwitch": {
     "label": "Tilni tanlash",
@@ -150,5 +151,10 @@
     "localTime": "Toshkent vaqti",
     "backToTop": "Tepaga qaytish",
     "rights": "Barcha huquqlar himoyalangan."
+  },
+  "Technologies": {
+    "eyebrow": "Texnologiyalar",
+    "title": "Ishlatadigan texnologiyalarim.",
+    "lead": "Har kuni ishlaydigan vositalarim — yoʻnalishlar boʻyicha."
   }
 }

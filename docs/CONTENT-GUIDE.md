@@ -42,6 +42,10 @@ Current entries are **demo placeholders** (`demo: true` → "Demo" badge, links 
 
 `src/content/skills.ts` → `skillGroups`. Each group has a bento `size` (`wide | tall | small`) and a `scene`. The tech marquee is generated from all `items`, so adding a tool there updates both.
 
+## Technologies (logo section)
+
+`src/content/technologies.ts` → categories with `label` and items `{ name, logo }`. Add a logo key in `components/sections/technologies/logos.ts`: import the Simple Icons export (`si<Name>`, CC0) or draw a 24×24 stroke glyph. Only logos are shown; `name` is the accessible label and tooltip.
+
 ## Bio & stats
 
 Bio: `About.bio` in both message files (one paragraph — it is revealed word by word). Stats: `stats` in `src/content/site.ts` — only owner-confirmed numbers.

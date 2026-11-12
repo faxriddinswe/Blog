@@ -4,6 +4,10 @@
 @import "./intro.css";
 @import "./hero.css";
 @import "./cursor.css";
+@import "./marquee.css";
+@import "./about.css";
+@import "./skills.css";
+@import "./glow.css";
 
 @theme inline {
   --color-bg: var(--bg);
@@ -91,5 +95,19 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--container);
+    padding-inline: var(--gutter);
+  }
+
+  .section {
+    position: relative;
+    padding-block: clamp(5rem, 12vw, 10rem);
   }
 }

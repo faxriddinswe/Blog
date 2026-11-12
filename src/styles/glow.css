@@ -1,0 +1,58 @@
+/* GlowFrame: rotating heated border. --gf-angle animates via @property. */
+@property --gf-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow-frame {
+  --gf-radius: var(--radius-lg);
+  position: relative;
+  isolation: isolate;
+  padding: 1px;
+  border-radius: var(--gf-radius);
+  background: conic-gradient(
+    from var(--gf-angle) at 50% 50%,
+    var(--accent-orange),
+    var(--accent-peach) 15%,
+    rgb(255 255 255 / 0.08) 30%,
+    var(--accent-blue) 50%,
+    var(--accent-cyan) 62%,
+    rgb(255 255 255 / 0.08) 80%,
+    var(--accent-orange)
+  );
+  animation: gf-spin 14s linear infinite;
+}
+
+/* Outer glow: same gradient, blurred, behind the frame. */
+.glow-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(22px);
+  opacity: 0.35;
+}
+
+.glow-frame__inner {
+  position: relative;
+  height: 100%;
+  overflow: clip;
+  border-radius: calc(var(--gf-radius) - 1px);
+  background: var(--bg-elevated);
+}
+
+@keyframes gf-spin {
+  to {
+    --gf-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-frame {
+    animation: none;
+    --gf-angle: 200deg;
+  }
+}

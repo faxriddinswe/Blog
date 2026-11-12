@@ -61,6 +61,16 @@ for (const run of runs) {
     const file = `${out}/${name}${path.replaceAll("/", "_")}.png`;
     await page.screenshot({ path: file });
     console.log(`${file}  ${JSON.stringify(state)}`);
+
+    // Optional: SECTIONS="about,skills" also captures each section in view.
+    for (const id of (process.env.SECTIONS ?? "").split(",").filter(Boolean)) {
+      await page.evaluate((sel) => {
+        const el = document.getElementById(sel);
+        if (el) window.scrollTo({ top: el.offsetTop, behavior: "instant" });
+      }, id);
+      await page.waitForTimeout(1500);
+      await page.screenshot({ path: file.replace(".png", `-${id}.png`) });
+    }
     await page.close();
   }
   await context.close();

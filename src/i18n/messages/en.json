@@ -41,5 +41,20 @@
   },
   "Preloader": {
     "label": "Loading"
+  },
+  "Marquee": {
+    "label": "Technologies I work with"
+  },
+  "About": {
+    "eyebrow": "About",
+    "title": "The part nobody sees, and everyone relies on.",
+    "bio": "I’m Faxriddin, a backend engineer from Tashkent. Since 2024 I’ve shipped 20+ projects: freelancing, working remotely with international companies and building backends for startups. Today my focus is AI agents — systems that read, decide and act inside a business through LLMs, RAG and MCP tools. I build them on solid Python, FastAPI and PostgreSQL foundations. Alongside the work, I study Software Engineering at PDP University.",
+    "portraitAlt": "Faxriddin Baxtiyorov, halftone portrait",
+    "statsLabel": "In numbers"
+  },
+  "Skills": {
+    "eyebrow": "Skills",
+    "title": "From idea to a system that runs.",
+    "lead": "The tools I use every day — no percentage bars, just real work."
   }
 }

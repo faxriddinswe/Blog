@@ -32,6 +32,14 @@ Edit `src/content/projects.ts`:
 
 Put screenshots in `public/images/projects/` (WebP/AVIF, ≥1600px wide).
 
+## Skills & marquee
+
+`src/content/skills.ts` → `skillGroups`. Each group has a bento `size` (`wide | tall | small`) and a `scene`. The tech marquee is generated from all `items`, so adding a tool there updates both.
+
+## Bio & stats
+
+Bio: `About.bio` in both message files (one paragraph — it is revealed word by word). Stats: `stats` in `src/content/site.ts` — only owner-confirmed numbers.
+
 ## Add a timeline entry
 
 `src/content/experience.ts` → `timeline`. Use neutral labels (“Python Engineer — product company”), never employer names.

@@ -4,6 +4,19 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Phase 3 — Marquee, About, Skills (2026-11-12)
+
+- Owner facts: 20+ projects since 2024 (freelance, remote for international companies, startups); confirmed tool list; bio drafted from those facts (UZ/EN).
+- Portrait upgraded: denoise + EDSR ×2 super-resolution (640 → 1280 px) with the BiRefNet mask re-applied.
+- Tech marquee: CSS infinite loop; scroll velocity drives speed and direction via WAAPI `playbackRate` (rAF only while visible).
+- About: scroll-scrubbed word-by-word bio (CSS view timeline), stat counters (2+, 20+; SSR renders real values), halftone duotone portrait in a rotating heated GlowFrame with parallax.
+- Skills: light section with a spotlight bento grid; five CSS-only live scenes (agent orbit, code typing, DB rows + cache hit, docker terminal, browser layout).
+- New shared UI: `SectionHeading`, `GlowFrame`, `.container-x`, `.section`.
+- Navbar logo in a translucent pill so it reads over light sections.
+- a11y: unlit reveal words kept ≥ 3:1 contrast. Lighthouse A11y 100, mobile Perf 89–95, desktop 98–99.
+- `pnpm qa:shots` can capture sections: `SECTIONS=about,skills`.
+- pnpm 12.18.0 installed in `~/.local` (no sudo).
+
 ### Phase 2 — Motion core & Hero (2026-11-12)
 
 - **Content fix (owner):** experience headline is now **2+ years** (work since 2024), replacing 3+. Timeline entry 2024 → present added; type of work still TODO.

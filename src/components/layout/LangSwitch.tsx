@@ -15,7 +15,7 @@ export function LangSwitch() {
     <div
       role="group"
       aria-label={t("label")}
-      className="flex items-center gap-1 rounded-full border border-border bg-bg-elevated/60 p-1 backdrop-blur-md"
+      className="flex items-center gap-1 rounded-full border border-border bg-bg-elevated/70 p-1 backdrop-blur-md"
     >
       {routing.locales.map((locale) => {
         const isActive = locale === active;

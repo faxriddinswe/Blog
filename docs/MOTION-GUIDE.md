@@ -45,4 +45,4 @@ Rule: **first paint → CSS; desktop interaction/scroll → GSAP (lazy chunk); s
 
 ## Planned components
 
-`ScrollWordReveal` (SplitText + ScrollTrigger scrub), `Marquee` (scroll velocity), `Counter`, `Spotlight`, `GlowFrame` — next phases.
+Experience line-draw on scroll, pinned horizontal Projects gallery (GSAP ScrollTrigger, desktop lazy chunk), service steps lighting up.

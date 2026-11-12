@@ -52,3 +52,19 @@ export const preloader = {
   total: 1.5,
   storageKey: "fx:preloaded",
 } as const;
+
+/** Tech marquee: base loop length and how hard scroll velocity pushes it. */
+export const marquee = {
+  /** Seconds for one full loop at rest. */
+  loopSeconds: 40,
+  /** px/frame of scroll → extra playback rate. */
+  velocityGain: 0.08,
+  maxRate: 6,
+  /** Per-frame return toward the base rate (0–1). */
+  decay: 0.08,
+} as const;
+
+/** Stat counters. */
+export const counter = {
+  durationMs: 1400,
+} as const;

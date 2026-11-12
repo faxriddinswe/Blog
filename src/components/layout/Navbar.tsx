@@ -14,7 +14,7 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="font-display text-lg font-semibold tracking-tight text-text"
+          className="rounded-full border border-border bg-bg-elevated/70 px-4 py-2 font-display text-base font-semibold tracking-tight text-text backdrop-blur-md"
         >
           {site.shortName}
           <span aria-hidden="true" className="text-accent-orange">

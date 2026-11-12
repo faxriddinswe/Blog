@@ -25,7 +25,12 @@ export const stats: Stat[] = [
     suffix: "+",
     label: { uz: "yillik tajriba", en: "years of experience" },
   },
-  // TODO(owner): more stats (projects shipped, bots built, …) — only confirmed numbers.
+  {
+    id: "projects",
+    value: 20,
+    suffix: "+",
+    label: { uz: "yakunlangan loyiha", en: "projects shipped" },
+  },
 ];
 
 // TODO(owner): public social links. Empty until provided — UI hides missing ones.

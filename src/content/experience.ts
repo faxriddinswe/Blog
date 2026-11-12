@@ -14,15 +14,24 @@ export interface TimelineEntry {
   summary?: Localized;
 }
 
+// Owner-confirmed (2026-11-12): since 2024, 20+ projects across freelance,
+// remote work for international companies and backend roles at startups.
+// Exact per-track dates were not given, so the tracks share one entry.
 export const timeline: TimelineEntry[] = [
   {
-    id: "engineering-2024",
+    id: "backend-2024",
     kind: "work",
-    title: { uz: "Python va backend muhandislik", en: "Python & backend engineering" },
-    // TODO(owner): type of work (freelance / product company / personal projects); split into periods if needed.
-    context: { uz: "TODO(owner)", en: "TODO(owner)" },
+    title: { uz: "Backend muhandis", en: "Backend Engineer" },
+    context: {
+      uz: "Freelance · Xorijiy kompaniyalar (remote) · Startaplar",
+      en: "Freelance · International companies (remote) · Startups",
+    },
     start: 2024,
     end: null,
+    summary: {
+      uz: "20 dan ortiq loyiha: API va backend tizimlar, AI agentlar, avtomatlashtirish.",
+      en: "20+ projects: APIs and backend systems, AI agents, automation.",
+    },
   },
   {
     id: "pdp-university",

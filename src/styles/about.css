@@ -1,0 +1,77 @@
+/* ---------- Scroll-scrubbed word reveal ---------- */
+.word-reveal__word {
+  /* Fallback: fully lit. */
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .word-reveal {
+      view-timeline: --reveal block;
+    }
+
+    .word-reveal__word {
+      /* 0.38 keeps unlit words ≥ 3:1 on --bg (WCAG large text); lit = 1. */
+      opacity: 0.38;
+      animation: word-light linear both;
+      animation-timeline: --reveal;
+      /* Each word owns a short slice; together they sweep from 10% to 60% of "cover". */
+      animation-range: cover calc(10% + var(--p) * 45%) cover calc(15% + var(--p) * 45%);
+    }
+  }
+}
+
+@keyframes word-light {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Portrait card (halftone duotone of the same photo) ---------- */
+.about-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background:
+    radial-gradient(60% 50% at 50% 30%, rgb(59 130 246 / 0.35), transparent 70%),
+    radial-gradient(70% 40% at 50% 100%, rgb(249 115 22 / 0.25), transparent 70%),
+    var(--bg-elevated);
+}
+
+.about-portrait__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 15%;
+  filter: grayscale(1) contrast(1.15) brightness(0.95);
+  mix-blend-mode: luminosity;
+}
+
+/* Halftone dots over the photo, strongest at the edges. */
+.about-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgb(8 9 12 / 0.55) 1px, transparent 1.6px);
+  background-size: 5px 5px;
+  mask-image: radial-gradient(70% 60% at 50% 35%, transparent 35%, #000 100%);
+  pointer-events: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about-portrait__img {
+      animation: about-parallax linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes about-parallax {
+  from {
+    transform: translateY(-6%) scale(1.12);
+  }
+  to {
+    transform: translateY(6%) scale(1.12);
+  }
+}

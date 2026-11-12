@@ -1,5 +1,6 @@
 import { preloader } from "@/lib/motion/tokens";
 import { mq } from "@/lib/motion/media";
+import { InlineScript } from "./InlineScript";
 
 /**
  * Runs synchronously before first paint (see Next docs: preventing flash
@@ -15,5 +16,5 @@ const script = `(function(){var d=document.documentElement;try{if(matchMedia(${J
 )},"1");d.dataset.preloader="show"}}catch(e){d.dataset.preloader="skip"}})();`;
 
 export function PreloaderScript() {
-  return <script dangerouslySetInnerHTML={{ __html: script }} />;
+  return <InlineScript html={script} />;
 }

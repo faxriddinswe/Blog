@@ -4,6 +4,11 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Preloader redesign (owner request, 2026-11-12)
+
+- The "F." mark sits in a ring; a beam falls onto the ring, splits in two and flows down both halves, and the streams flash where they meet; name letters, 0→100 counter and curtain kept (still ≤ 1.5 s, pure CSS/SVG).
+- Pre-paint script rendered through `InlineScript` (server `text/javascript`, client `text/plain`) — removes React's dev warning about `<script>` in components (Next docs pattern).
+
 ### Phase 7 — SEO & polish (2026-11-12)
 
 - Mobile menu on a native `<dialog>` (browser-provided focus trap, Esc, inert background); closes on navigation.

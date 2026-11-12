@@ -54,7 +54,17 @@
 
   /* Motion (mirrors src/lib/motion/tokens.ts for CSS-only animations) */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* expo.out */
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1); /* expo.inOut — curtains only */
   --dur-fast: 0.6s;
   --dur-base: 0.9s;
   --dur-slow: 1.2s;
+  --stagger-char: 0.03s;
+  --stagger-word: 0.09s;
+  --stagger-item: 0.12s;
+
+  /* Preloader length — must equal preloader.total in src/lib/motion/tokens.ts */
+  --preloader-total: 1.5s;
+  --curtain-duration: 0.55s;
+  /* Set to --preloader-total by the head script when the preloader plays. */
+  --intro-delay: 0s;
 }

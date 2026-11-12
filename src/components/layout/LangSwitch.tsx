@@ -27,13 +27,14 @@ export function LangSwitch() {
             hrefLang={locale}
             lang={locale}
             aria-current={isActive ? "true" : undefined}
-            aria-label={t(locale)}
             className={cn(
               "rounded-full px-3 py-1.5 font-mono text-xs uppercase transition-colors duration-(--dur-fast)",
               isActive ? "bg-text text-bg" : "text-text-muted hover:text-text",
             )}
           >
             {locale}
+            {/* Accessible name starts with the visible label (WCAG 2.5.3). */}
+            <span className="sr-only"> — {t(locale)}</span>
           </Link>
         );
       })}

@@ -15,10 +15,12 @@ export function Navbar() {
         <Link
           href="/"
           className="font-display text-lg font-semibold tracking-tight text-text"
-          aria-label={t("home")}
         >
           {site.shortName}
-          <span className="text-accent-orange">.</span>
+          <span aria-hidden="true" className="text-accent-orange">
+            .
+          </span>
+          <span className="sr-only"> — {t("home")}</span>
         </Link>
         <LangSwitch />
       </nav>

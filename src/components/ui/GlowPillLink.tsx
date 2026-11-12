@@ -9,25 +9,33 @@ interface GlowPillLinkProps extends ComponentProps<typeof Link> {
 }
 
 /**
- * Glow pill CTA (brief §7). Static halo for now; magnetic pull and
- * cursor-proximity glow are added in the motion phase.
+ * Glow pill CTA (brief §7). The warm halo reads `--glow` (0–1), which a
+ * parent <Magnetic> sets from cursor proximity; without it the halo idles.
  */
 export function GlowPillLink({
   variant = "light",
   className,
+  children,
   ...props
 }: GlowPillLinkProps) {
   return (
     <Link
       {...props}
       className={cn(
-        "group relative inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium transition-transform duration-(--dur-fast) ease-brand hover:-translate-y-0.5",
+        "group relative isolate inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium transition-[translate,border-color] duration-(--dur-fast) ease-brand",
         variant === "light" &&
-          "bg-text text-bg shadow-[0_0_0_1px_rgb(255_255_255/0.6),0_8px_40px_-6px_rgb(249_115_22/0.55)] hover:shadow-[0_0_0_1px_rgb(255_255_255/0.8),0_10px_60px_-4px_rgb(249_115_22/0.75)]",
+          [
+            "bg-text text-bg shadow-[0_0_0_1px_rgb(255_255_255/0.6)]",
+            // Halo: lives behind the pill, grows with cursor proximity.
+            "before:absolute before:-inset-2 before:-z-10 before:rounded-full before:bg-[radial-gradient(closest-side,rgb(249_115_22/0.7),rgb(253_186_116/0.25)_60%,transparent)] before:blur-lg before:transition-opacity before:duration-(--dur-fast)",
+            "before:scale-[calc(0.9+var(--glow,0)*0.25)] before:opacity-[calc(0.45+var(--glow,0)*0.55)]",
+          ].join(" "),
         variant === "ghost" &&
-          "border border-border-strong bg-bg-elevated/40 text-text backdrop-blur-md hover:border-text-muted",
+          "border border-border-strong bg-bg-elevated/50 text-text backdrop-blur-md hover:border-text-muted",
         className,
       )}
-    />
+    >
+      {children}
+    </Link>
   );
 }

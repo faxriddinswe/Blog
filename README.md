@@ -15,15 +15,16 @@ pnpm dev                 # http://localhost:3000 → redirects to /uz
 
 ## Scripts
 
-| Command                     | What it does                              |
-| --------------------------- | ----------------------------------------- |
-| `pnpm dev`                  | Dev server (Turbopack)                    |
-| `pnpm build` / `pnpm start` | Production build / serve                  |
-| `pnpm lint`                 | ESLint                                    |
-| `pnpm typecheck`            | `next typegen` + `tsc --noEmit`           |
-| `pnpm check:i18n`           | Verifies `uz.json` / `en.json` keys match |
-| `pnpm check`                | i18n + lint + typecheck                   |
-| `pnpm format`               | Prettier                                  |
+| Command                        | What it does                                                        |
+| ------------------------------ | ------------------------------------------------------------------- |
+| `pnpm dev`                     | Dev server (Turbopack)                                              |
+| `pnpm build` / `pnpm start`    | Production build / serve                                            |
+| `pnpm lint`                    | ESLint                                                              |
+| `pnpm typecheck`               | `next typegen` + `tsc --noEmit`                                     |
+| `pnpm check:i18n`              | Verifies `uz.json` / `en.json` keys match                           |
+| `pnpm check`                   | i18n + lint + typecheck                                             |
+| `pnpm format`                  | Prettier                                                            |
+| `pnpm qa:shots [url] [outDir]` | Screenshots at 375 / 1440 / reduced motion; fails on console errors |
 
 ## Docs
 

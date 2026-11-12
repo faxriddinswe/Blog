@@ -25,11 +25,21 @@
     "eyebrow": "Toshkent · {years}+ yillik tajriba",
     "ctaProjects": "Loyihalarni koʻrish",
     "ctaApply": "Ariza qoldirish",
-    "scrollHint": "Pastga aylantiring"
+    "scrollHint": "Pastga aylantiring",
+    "rolesLabel": "Yoʻnalishlar",
+    "portraitAlt": "Faxriddin Baxtiyorov portreti",
+    "fragments": {
+      "telegramTitle": "Ariza bot",
+      "telegramMessage": "Yangi ariza qabul qilindi ✓",
+      "telegramMeta": "hozir"
+    }
   },
   "NotFound": {
     "title": "Sahifa topilmadi",
     "body": "Bu yoʻl hech qayerga olib bormaydi. Keling, bosh sahifaga qaytamiz.",
     "back": "Bosh sahifaga"
+  },
+  "Preloader": {
+    "label": "Yuklanmoqda"
   }
 }

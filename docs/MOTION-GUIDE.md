@@ -25,6 +25,24 @@ No magic numbers in components — import a token or add one here first.
 
 Hidden routes stay mounted. Every GSAP context / ScrollTrigger / Lenis instance must be created in an effect and killed in its cleanup (`gsap.context().revert()` — verify API on install).
 
+## Where motion lives
+
+| Concern                          | Tech                               | File                                                               |
+| -------------------------------- | ---------------------------------- | ------------------------------------------------------------------ |
+| Preloader, hero intro, word rise | CSS keyframes                      | `styles/intro.css`, `layout/Preloader.tsx`, `motion/SplitRise.tsx` |
+| Rotating role                    | React state + CSS `rise-in`        | `motion/RotatingText.tsx`                                          |
+| Hero parallax, splash travel     | CSS scroll-driven animations       | `styles/hero.css`                                                  |
+| Smooth scroll                    | Lenis on the GSAP ticker (desktop) | `layout/SmoothScroll.tsx`                                          |
+| Cursor                           | `gsap.quickTo` (desktop)           | `layout/Cursor.tsx`                                                |
+| Magnetic CTAs                    | rAF + CSS transition               | `motion/Magnetic.tsx`                                              |
+| Beam                             | GLSL fbm advected downward         | `three/beam-shader.ts`                                             |
+
+Rule: **first paint → CSS; desktop interaction/scroll → GSAP (lazy chunk); shader → R3F (lazy chunk).** Never import `@/lib/motion/gsap` from a component in the initial bundle — go through a `dynamic()` boundary like `DesktopEnhancements`.
+
+## Timing contract
+
+`--preloader-total` (CSS) must equal `preloader.total` (JS). `--curtain-duration` is its tail; headline words start dropping exactly when the curtain starts moving.
+
 ## Planned components
 
-`SplitReveal`, `Magnetic`, `Marquee`, `ScrollWordReveal`, `Counter`, `Spotlight`, WebGL `BeamShader` — added in the Motion phase after verifying GSAP / Lenis / Motion versions and licenses.
+`ScrollWordReveal` (SplitText + ScrollTrigger scrub), `Marquee` (scroll velocity), `Counter`, `Spotlight`, `GlowFrame` — next phases.

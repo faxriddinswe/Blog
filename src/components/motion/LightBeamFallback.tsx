@@ -4,7 +4,14 @@
  * shader. Layer order mirrors the brief: atmosphere → core → flow → splash → halftone.
  * Styles live in src/styles/beam.css.
  */
-export function LightBeamFallback() {
+import type { ReactNode } from "react";
+
+interface LightBeamFallbackProps {
+  /** Optional upgrade layer (the WebGL canvas) rendered above the CSS stack. */
+  children?: ReactNode;
+}
+
+export function LightBeamFallback({ children }: LightBeamFallbackProps) {
   return (
     <div aria-hidden="true" className="beam">
       <div className="beam__atmosphere" />
@@ -12,6 +19,7 @@ export function LightBeamFallback() {
       <div className="beam__flow" />
       <div className="beam__splash" />
       <div className="beam__halftone halftone" />
+      {children}
     </div>
   );
 }

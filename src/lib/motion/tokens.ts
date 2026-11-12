@@ -10,7 +10,7 @@ export const duration = {
 } as const;
 
 export const ease = {
-  /** GSAP ease name — verify against installed GSAP before use. */
+  /** GSAP ease name (verified: gsap 3.15 core eases include "expo.out"). */
   gsap: "expo.out",
   /** Same curve as cubic-bezier for Motion / CSS. */
   bezier: [0.16, 1, 0.3, 1] as const,
@@ -20,4 +20,35 @@ export const stagger = {
   tight: 0.03,
   base: 0.06,
   loose: 0.12,
+} as const;
+
+/** Lenis: lower lerp = heavier, silkier scroll. */
+export const smoothScroll = {
+  lerp: 0.1,
+  wheelMultiplier: 1,
+} as const;
+
+/** Pointer-driven effects. */
+export const pointer = {
+  /** Fraction of the pointer offset a magnetic element follows. */
+  magneticStrength: 0.35,
+  /** Extra px around a magnetic element where the pull starts. */
+  magneticRadius: 80,
+  /** Seconds for quickTo followers to catch up. */
+  followLag: 0.45,
+  cursorLag: 0.18,
+} as const;
+
+/** Rotating role text in the hero. */
+export const rotation = {
+  intervalMs: 2600,
+} as const;
+
+/**
+ * Preloader timeline (seconds). Must equal --preloader-total in tokens.css,
+ * because the CSS intro and JS listeners both key off it.
+ */
+export const preloader = {
+  total: 1.5,
+  storageKey: "fx:preloaded",
 } as const;

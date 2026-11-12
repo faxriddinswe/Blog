@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./beam.css";
+@import "./intro.css";
+@import "./hero.css";
+@import "./cursor.css";
 
 @theme inline {
   --color-bg: var(--bg);

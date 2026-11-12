@@ -1,0 +1,163 @@
+/*
+ * First-visit intro. Pure CSS so it starts at first paint — no waiting for
+ * hydration, no flash, and the LCP headline is in the HTML from the start.
+ * The head script sets html[data-preloader="show" | "skip"].
+ */
+
+@property --pl-n {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+html[data-preloader="show"] {
+  --intro-delay: var(--preloader-total);
+}
+
+/* ---------- Preloader ---------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  animation: pl-curtain var(--curtain-duration) var(--ease-in-out)
+    calc(var(--preloader-total) - var(--curtain-duration)) forwards;
+}
+
+html:not([data-preloader="show"]) .preloader {
+  display: none;
+}
+
+.preloader__name {
+  display: flex;
+  overflow: clip;
+  padding-block: 0.12em;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 5rem);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+}
+
+.preloader__char {
+  display: inline-block;
+  white-space: pre;
+  animation: rise-in var(--dur-fast) var(--ease-out) both;
+  animation-delay: calc(var(--i) * var(--stagger-char));
+}
+
+.preloader__meta {
+  position: absolute;
+  inset-inline: var(--gutter);
+  bottom: var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.preloader__count {
+  counter-reset: pl var(--pl-n);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 0.8;
+  color: var(--text);
+  animation: pl-count calc(var(--preloader-total) - 0.45s) var(--ease-out) forwards;
+}
+
+.preloader__count::after {
+  content: counter(pl);
+}
+
+.preloader__bar {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-blue),
+    var(--accent-cyan),
+    var(--accent-orange)
+  );
+  transform-origin: left;
+  animation: pl-bar calc(var(--preloader-total) - 0.45s) var(--ease-out) forwards;
+}
+
+@keyframes pl-count {
+  to {
+    --pl-n: 100;
+  }
+}
+
+@keyframes pl-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pl-curtain {
+  to {
+    transform: translateY(-101%);
+    visibility: hidden;
+  }
+}
+
+/* ---------- Hero intro ---------- */
+@keyframes rise-in {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Elements that fade up after the curtain. --d is the per-element offset. */
+.intro {
+  animation: fade-rise var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(var(--intro-delay) + var(--d, 0s));
+}
+
+/* Split headline: each word clips its characters while they rise. */
+.split-word {
+  display: inline-block;
+  overflow: clip;
+  /* Room for descenders (y, g) and the last glyph's overhang under negative tracking. */
+  padding: 0 0.06em 0.14em;
+  margin: 0 -0.06em -0.14em;
+}
+
+/*
+ * LCP: the headline must be painted at first paint. So the words sit in their
+ * final place under the preloader (fill-mode none — no backwards fill) and
+ * only drop into their masks when the curtain starts lifting, then rise.
+ * Without the preloader (repeat visit / reduced motion) the name is static.
+ */
+.split-word__inner {
+  display: inline-block;
+}
+
+html[data-preloader="show"] .split-word__inner {
+  animation: rise-in var(--dur-slow) var(--ease-out);
+  animation-delay: calc(
+    var(--preloader-total) - var(--curtain-duration) + var(--i) * var(--stagger-word)
+  );
+}

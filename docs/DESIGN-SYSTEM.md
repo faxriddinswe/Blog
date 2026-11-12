@@ -29,20 +29,24 @@ Rule: accents are **light**, not paint — glows, edges, small marks. Never larg
 | Body    | Inter          | SIL OFL 1.1                       | `font-sans`    |
 | Mono    | JetBrains Mono | SIL OFL 1.1                       | `font-mono`    |
 
-Loaded with `next/font/google` (self-hosted at build, no runtime request), subsets `latin` + `latin-ext` for Uzbek `oʻ gʻ`.
+Loaded with `next/font/google` (self-hosted at build). Subset `latin` only — it already includes Uzbek `ʻ ʼ` (U+02BB–02BC). Only Space Grotesk 600 is preloaded.
 
 Scale: `text-display` (clamp 3.25 → 9rem), `text-h1`, `text-h2`; `tracking-display` (−0.045em).
 
 ## Signature elements
 
-| Element                                  | Status                 | Where                                                        |
-| ---------------------------------------- | ---------------------- | ------------------------------------------------------------ |
-| Waterfall Light Beam — CSS fallback      | ✅ Phase 1             | `components/motion/LightBeamFallback.tsx`, `styles/beam.css` |
-| Waterfall Light Beam — WebGL             | ⏳                     | `components/three/`                                          |
-| Halftone dots                            | ✅ utility `.halftone` | `styles/globals.css`                                         |
-| Glow pill CTA (static)                   | ✅                     | `components/ui/GlowPillLink.tsx`                             |
-| Film grain                               | ✅                     | `components/layout/Grain.tsx`                                |
-| GlowFrame, Spotlight cards, magnetic CTA | ⏳                     | —                                                            |
+| Element                                  | Status                     | Where                                                           |
+| ---------------------------------------- | -------------------------- | --------------------------------------------------------------- |
+| Waterfall Light Beam — CSS fallback      | ✅                         | `components/motion/LightBeamFallback.tsx`, `styles/beam.css`    |
+| Waterfall Light Beam — WebGL shader      | ✅ Phase 2                 | `components/three/{beam-shader.ts,BeamCanvas.tsx,HeroBeam.tsx}` |
+| Portrait rim light                       | ✅ Phase 2                 | `sections/hero/HeroPortrait.tsx`, `styles/hero.css`             |
+| Halftone dots                            | ✅ `.halftone` + in shader | `styles/globals.css`, `beam-shader.ts`                          |
+| Glow pill CTA + magnetic halo (`--glow`) | ✅ Phase 2                 | `ui/GlowPillLink.tsx`, `motion/Magnetic.tsx`                    |
+| Film grain                               | ✅                         | `layout/Grain.tsx`                                              |
+| Custom cursor                            | ✅ Phase 2                 | `layout/Cursor.tsx`, `styles/cursor.css`                        |
+| GlowFrame, Spotlight cards               | ⏳                         | —                                                               |
+
+The beam lands on the portrait's hair line in both versions: CSS uses `--portrait-bottom`, `--portrait-h`, `--portrait-head` on `.hero`; the shader measures the same box at runtime.
 
 ## Accessibility
 

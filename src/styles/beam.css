@@ -21,8 +21,11 @@
   top: 0;
   left: 50%;
   width: clamp(3px, 0.6vw, 8px);
-  /* Ends above the headline so the beam frames the name instead of crossing it. */
-  height: 52%;
+  /* Falls exactly onto the portrait's hair line (vars from .hero), never across the name. */
+  height: calc(
+    100% - var(--portrait-bottom, 48%) - var(--portrait-h, 0px) *
+      (1 - var(--portrait-head, 0)) + 2rem
+  );
   translate: -50% 0;
   background: linear-gradient(
     to bottom,
@@ -43,7 +46,7 @@
   top: 0;
   left: 50%;
   width: clamp(60px, 9vw, 160px);
-  height: 54%;
+  height: calc(100% - var(--portrait-bottom, 46%) - var(--portrait-h, 0px) * 0.75);
   translate: -50% 0;
   filter: blur(4px);
   opacity: 0.8;
@@ -117,5 +120,27 @@
   .beam__flow,
   .beam__splash {
     animation: none;
+  }
+}
+
+/* WebGL upgrade: the canvas adds light on top (screen ≈ additive on dark). */
+.beam__canvas {
+  position: absolute !important;
+  inset: 0;
+  mix-blend-mode: screen;
+  animation: fade-in var(--dur-slow) var(--ease-out) both;
+}
+
+.beam :is(.beam__core, .beam__flow, .beam__splash) {
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.beam[data-webgl="on"] :is(.beam__core, .beam__flow, .beam__splash) {
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
 }

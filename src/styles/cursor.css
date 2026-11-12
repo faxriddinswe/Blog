@@ -90,3 +90,100 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
 .mobile-menu[open] .mobile-menu__item {
   animation: fade-rise var(--dur-fast) var(--ease-out) both;
 }
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  color: var(--text);
+  backdrop-filter: blur(12px);
+}
+
+.theme-toggle__icon {
+  grid-area: 1 / 1;
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    rotate var(--dur-fast) var(--ease-out),
+    scale var(--dur-fast) var(--ease-out);
+}
+
+.theme-toggle__icon--moon {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Dark: show the moon; light: show the sun (spun in). */
+html:not([data-theme="light"]) .theme-toggle__icon--sun,
+html[data-theme="light"] .theme-toggle__icon--moon {
+  opacity: 0;
+  rotate: -90deg;
+  scale: 0.5;
+}
+
+html[data-theme="light"] .theme-toggle__icon--sun {
+  color: var(--accent-orange);
+}
+
+/* ---------- Language switch (single button, flips to the other code on hover) ---------- */
+.lang-switch {
+  display: inline-flex;
+  height: 2.5rem;
+  align-items: center;
+  gap: 0.4rem;
+  padding-inline: 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  backdrop-filter: blur(12px);
+}
+
+.lang-switch__globe {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  opacity: 0.75;
+}
+
+.lang-switch__codes {
+  display: inline-grid;
+  overflow: clip;
+  height: 1.2em;
+  line-height: 1.2;
+}
+
+.lang-switch__code {
+  grid-area: 1 / 1;
+  transition: translate var(--dur-fast) var(--ease-out);
+}
+
+.lang-switch__code--next {
+  translate: 0 110%;
+  color: var(--accent-orange);
+}
+
+.lang-switch:hover .lang-switch__code,
+.lang-switch:focus-visible .lang-switch__code {
+  translate: 0 -110%;
+}
+
+.lang-switch:hover .lang-switch__code--next,
+.lang-switch:focus-visible .lang-switch__code--next {
+  translate: 0 0;
+}

@@ -24,7 +24,8 @@
   "LangSwitch": {
     "label": "Choose language",
     "uz": "Oʻzbekcha",
-    "en": "English"
+    "en": "English",
+    "switchTo": "Switch to {language}"
   },
   "Hero": {
     "eyebrow": "Tashkent · {years}+ years of experience",
@@ -54,7 +55,6 @@
     "eyebrow": "About",
     "title": "The part nobody sees, and everyone relies on.",
     "bio": "I’m Faxriddin, a backend engineer from Tashkent. Since 2024 I’ve shipped 20+ projects: freelancing, working remotely with international companies and building backends for startups. Today my focus is AI agents — systems that read, decide and act inside a business through LLMs, RAG and MCP tools. I build them on solid Python, FastAPI and PostgreSQL foundations. Alongside the work, I study Software Engineering at PDP University.",
-    "portraitAlt": "Faxriddin Baxtiyorov, halftone portrait",
     "statsLabel": "In numbers"
   },
   "Skills": {
@@ -75,7 +75,7 @@
   },
   "Projects": {
     "eyebrow": "Projects",
-    "title": "Things I’ve built.",
+    "title": "Projects I’ve built.",
     "lead": "Each one: a real problem, a working solution.",
     "live": "Visit site",
     "github": "GitHub",
@@ -94,7 +94,7 @@
   },
   "Contact": {
     "eyebrow": "Contact",
-    "title": "Let’s talk about your project.",
+    "title": "Have questions?",
     "lead": "Leave your name, phone and question — your request lands straight in my Telegram.",
     "clockLabel": "Now in Tashkent",
     "clockZone": "UTC+5",
@@ -156,5 +156,8 @@
     "eyebrow": "Technologies",
     "title": "The stack I work with.",
     "lead": "The tools I use every day, by area."
+  },
+  "Theme": {
+    "toggle": "Light / dark mode"
   }
 }

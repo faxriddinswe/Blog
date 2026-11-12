@@ -24,7 +24,8 @@
   "LangSwitch": {
     "label": "Tilni tanlash",
     "uz": "Oʻzbekcha",
-    "en": "English"
+    "en": "English",
+    "switchTo": "{language} tiliga oʻtish"
   },
   "Hero": {
     "eyebrow": "Toshkent · {years}+ yillik tajriba",
@@ -54,7 +55,6 @@
     "eyebrow": "Men haqimda",
     "title": "Koʻrinmaydigan, lekin hamma tayanadigan qism.",
     "bio": "Men Faxriddin — Toshkentlik backend muhandisman. 2024-yildan beri 20 dan ortiq loyihani yakunladim: freelance, xorijiy kompaniyalar bilan remote va startaplarda backend muhandis sifatida. Bugun asosiy yoʻnalishim — AI agentlar: LLM, RAG va MCP vositalari yordamida biznes ichida oʻqiydigan, qaror qabul qiladigan va harakat qiladigan tizimlar. Ularni mustahkam Python, FastAPI va PostgreSQL poydevori ustiga quraman. Ish bilan bir qatorda PDP Universityda dasturiy injiniring yoʻnalishida tahsil olaman.",
-    "portraitAlt": "Faxriddin Baxtiyorov, halftone uslubidagi portret",
     "statsLabel": "Raqamlarda"
   },
   "Skills": {
@@ -75,7 +75,7 @@
   },
   "Projects": {
     "eyebrow": "Loyihalar",
-    "title": "Qurgan narsalarim.",
+    "title": "Qilgan loyihalarim.",
     "lead": "Har biri — aniq muammo, ishlaydigan yechim.",
     "live": "Saytga oʻtish",
     "github": "GitHub",
@@ -94,7 +94,7 @@
   },
   "Contact": {
     "eyebrow": "Aloqa",
-    "title": "Loyihangizni muhokama qilamiz.",
+    "title": "Savollaringiz bormi?",
     "lead": "Ism, telefon va savolingizni qoldiring — ariza toʻgʻridan-toʻgʻri menga Telegramda keladi.",
     "clockLabel": "Toshkentda hozir",
     "clockZone": "UTC+5",
@@ -156,5 +156,8 @@
     "eyebrow": "Texnologiyalar",
     "title": "Ishlatadigan texnologiyalarim.",
     "lead": "Har kuni ishlaydigan vositalarim — yoʻnalishlar boʻyicha."
+  },
+  "Theme": {
+    "toggle": "Kun / tun rejimi"
   }
 }

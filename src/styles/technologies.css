@@ -6,7 +6,11 @@
   padding: 1.25rem clamp(1rem, 3vw, 2rem);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  background: linear-gradient(90deg, rgb(15 17 23 / 0.9), rgb(15 17 23 / 0.4));
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bg-elevated) 90%, transparent),
+    color-mix(in srgb, var(--bg-elevated) 40%, transparent)
+  );
 }
 
 @media (min-width: 768px) {

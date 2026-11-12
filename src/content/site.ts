@@ -4,6 +4,8 @@ import type { Localized, SocialLink, Stat } from "./types";
 export const site = {
   name: "Faxriddin Baxtiyorov",
   shortName: "Faxriddin",
+  /** Logo text in the navbar (owner request). */
+  monogram: "FB",
   domain: "faxriddinswe.uz",
   location: { city: "Tashkent", timeZone: "Asia/Tashkent" },
   roles: ["Python Engineer", "AI Agent Builder", "Backend Architect"],

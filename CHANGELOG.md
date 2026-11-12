@@ -4,6 +4,16 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Light mode, FB logo, single language button, looping projects (owner request, 2026-11-12)
+
+- **Light / night mode**: light token set (`html[data-theme="light"]`), pre-paint `ThemeScript` (saved choice, dark by default — no flash), sun/moon `ThemeToggle` with a short cross-fade; theme is re-applied after locale switches (the `[locale]` root layout re-renders `<html>`). Preloader stays a dark stage in both themes.
+- **Language button**: one button shows the current language (globe + "UZ"); hover flips it to the other ("EN"), click switches on the same page.
+- **Logo**: navbar shows a gradient-ring "spark" mark + **FB**; favicon, Apple icon and preloader updated to match.
+- **About**: photo removed; bio + counters only.
+- **Projects**: title "Qilgan loyihalarim" / "Projects I’ve built"; cards drift left in an endless loop (~12 s per card, duplicate copy is `inert`); reduced motion → still, keyboard-scrollable row.
+- **Contact**: title "Savollaringiz bormi?" / "Have questions?".
+- a11y: axe-core WCAG 2 AA clean on home, blog and posts in both themes, with and without reduced motion; light-mode peach darkened for AA.
+
 ### Technologies section (owner request, 2026-11-12)
 
 - New home section "Texnologiyalar / Technologies" (+ nav link): category name as text, technologies as **logos only** — Backend (Python, FastAPI, Django, REST API), AI (agents, LLM, RAG, MCP), Data (PostgreSQL, Redis), DevOps (Docker, Linux), Frontend (HTML, CSS, JavaScript).

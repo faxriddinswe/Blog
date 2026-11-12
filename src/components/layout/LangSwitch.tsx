@@ -3,41 +3,37 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
 
-/** Switches locale while staying on the same page (brief §9 Global). */
+/**
+ * One button: shows the current language ("UZ"); hovering flips it to the
+ * other one ("EN") and clicking switches to it on the same page.
+ */
 export function LangSwitch() {
   const t = useTranslations("LangSwitch");
   const active = useLocale();
   const pathname = usePathname();
+  const other = routing.locales.find((l) => l !== active) ?? routing.defaultLocale;
 
   return (
-    <div
-      role="group"
-      aria-label={t("label")}
-      className="flex items-center gap-1 rounded-full border border-border bg-bg-elevated/70 p-1 backdrop-blur-md"
+    <Link
+      href={pathname}
+      locale={other}
+      hrefLang={other}
+      title={t("switchTo", { language: t(other) })}
+      className="lang-switch glow-hover"
     >
-      {routing.locales.map((locale) => {
-        const isActive = locale === active;
-        return (
-          <Link
-            key={locale}
-            href={pathname}
-            locale={locale}
-            hrefLang={locale}
-            lang={locale}
-            aria-current={isActive ? "true" : undefined}
-            className={cn(
-              "rounded-full px-3 py-1.5 font-mono text-xs uppercase transition-colors duration-(--dur-fast)",
-              isActive ? "bg-text text-bg" : "text-text-muted hover:text-text",
-            )}
-          >
-            {locale}
-            {/* Accessible name starts with the visible label (WCAG 2.5.3). */}
-            <span className="sr-only"> — {t(locale)}</span>
-          </Link>
-        );
-      })}
-    </div>
+      <svg viewBox="0 0 24 24" aria-hidden="true" className="lang-switch__globe">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+      </svg>
+      <span className="lang-switch__codes">
+        <span className="lang-switch__code">{active.toUpperCase()}</span>
+        <span aria-hidden="true" className="lang-switch__code lang-switch__code--next">
+          {other.toUpperCase()}
+        </span>
+      </span>
+      {/* Accessible name starts with the visible label (WCAG 2.5.3). */}
+      <span className="sr-only"> — {t("switchTo", { language: t(other) })}</span>
+    </Link>
   );
 }

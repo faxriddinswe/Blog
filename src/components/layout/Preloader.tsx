@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 /**
  * First-visit intro (pure CSS, see src/styles/intro.css):
- * a beam falls onto the ring around the "F." mark, splits in two and flows
+ * a beam falls onto the ring around the "FB" mark, splits in two and flows
  * down both halves, flashes where the streams meet, then the curtain lifts.
  * Name letters and the 0→100 counter run alongside.
  */
@@ -23,9 +23,7 @@ export function Preloader() {
           <path d="M50 2 A48 48 0 0 0 50 98" pathLength={1} className="preloader__arc" />
           <path d="M50 2 A48 48 0 0 1 50 98" pathLength={1} className="preloader__arc" />
         </svg>
-        <span className="preloader__logo">
-          F<span className="text-accent-orange">.</span>
-        </span>
+        <span className="preloader__logo">{site.monogram}</span>
         <span className="preloader__flash" />
 
         <div className="preloader__name">

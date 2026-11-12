@@ -22,7 +22,7 @@
 .prose-x {
   font-size: 1.125rem;
   line-height: 1.75;
-  color: rgb(245 246 248 / 0.88);
+  color: color-mix(in srgb, var(--text) 88%, transparent);
 }
 
 .prose-x > * + * {

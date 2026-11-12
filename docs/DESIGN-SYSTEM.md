@@ -21,6 +21,10 @@ Defined in `src/styles/tokens.css`, exposed to Tailwind in `src/styles/globals.c
 
 Rule: accents are **light**, not paint — glows, edges, small marks. Never large flat fills.
 
+## Themes
+
+Dark is the default brand look; light mode overrides the same tokens under `html[data-theme="light"]` (`--bg #F6F7F9`, `--bg-elevated #FFF`, `--text #0B0C10`, `--text-muted #555B66`, `--accent-peach #9A3412` for AA small text). `ThemeScript` (pre-paint) + `ThemeToggle` (sun/moon) in the navbar; choice stored in `localStorage["fx:theme"]`. Never hard-code dark colours — use tokens or `color-mix(in srgb, var(--bg) …)`.
+
 ## Typography
 
 | Role    | Family         | License                           | Tailwind       |

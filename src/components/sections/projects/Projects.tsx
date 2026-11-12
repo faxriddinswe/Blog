@@ -6,13 +6,27 @@ import type { Locale } from "@/i18n/routing";
 import { ProjectCard } from "./ProjectCard";
 
 /**
- * Pinned horizontal gallery on wide screens (sticky stage + scroll-driven
- * translateX, projects.css); a native swipe/scroll-snap row everywhere else.
+ * Projects drift left in an endless loop at a calm pace (owner request).
+ * The track holds the list twice and slides by exactly one copy; the copy is
+ * inert and hidden from assistive tech, so links are reachable once.
+ * Reduced motion: a still, swipeable row instead (projects.css).
  */
 export function Projects() {
   const t = useTranslations("Projects");
   const locale = useLocale() as Locale;
   const hasDemo = projects.some((p) => p.demo);
+
+  const list = (copy: boolean) => (
+    <ol
+      className="projects__group"
+      aria-hidden={copy || undefined}
+      inert={copy || undefined}
+    >
+      {projects.map((project, i) => (
+        <ProjectCard key={project.slug} project={project} index={i} locale={locale} />
+      ))}
+    </ol>
+  );
 
   return (
     <section
@@ -21,30 +35,28 @@ export function Projects() {
       className="projects"
       style={{ "--count": projects.length } as CSSProperties}
     >
-      <div className="projects__stage">
-        <div className="container-x flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            id="projects-title"
-            eyebrow={t("eyebrow")}
-            title={t("title")}
-            lead={t("lead")}
-          />
-          {hasDemo && (
-            <p className="max-w-xs font-mono text-xs text-text-muted">{t("demoNote")}</p>
-          )}
-        </div>
+      <div className="container-x flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading
+          id="projects-title"
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+          lead={t("lead")}
+        />
+        {hasDemo && (
+          <p className="max-w-xs font-mono text-xs text-text-muted">{t("demoNote")}</p>
+        )}
+      </div>
 
-        <div className="projects__viewport">
-          <ol className="projects__track">
-            {projects.map((project, i) => (
-              <ProjectCard
-                key={project.slug}
-                project={project}
-                index={i}
-                locale={locale}
-              />
-            ))}
-          </ol>
+      {/* Focusable + labelled: with reduced motion this becomes a scrollable row (keyboard users can scroll it). */}
+      <div
+        className="projects__viewport"
+        tabIndex={0}
+        role="region"
+        aria-labelledby="projects-title"
+      >
+        <div className="projects__track">
+          {list(false)}
+          {list(true)}
         </div>
       </div>
     </section>

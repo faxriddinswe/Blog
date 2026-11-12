@@ -1,33 +1,41 @@
-/* ---------- Projects: swipe row by default ---------- */
+/* ---------- Projects: endless left-drifting loop ---------- */
 .projects {
+  --gap: clamp(1rem, 2.5vw, 2rem);
   position: relative;
   padding-block: clamp(5rem, 12vw, 9rem);
 }
 
 .projects__viewport {
   margin-top: clamp(2.5rem, 5vw, 4rem);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--gutter);
-  scrollbar-width: none;
-}
-
-.projects__viewport::-webkit-scrollbar {
-  display: none;
+  overflow: clip;
+  padding-block: 1.5rem;
+  /* Cards fade in/out at the edges instead of being cut. */
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
 
 .projects__track {
   display: flex;
-  gap: clamp(1rem, 2.5vw, 2rem);
   width: max-content;
-  padding-inline: var(--gutter);
-  padding-block: 1.5rem;
+  /* ~12 s per card: a calm, readable pace. */
+  animation: projects-loop calc(var(--count) * 12s) linear infinite;
+}
+
+.projects__group {
+  display: flex;
+  gap: var(--gap);
+  /* Trailing gap so the second copy starts exactly one gap after the first. */
+  padding-right: var(--gap);
+}
+
+@keyframes projects-loop {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .project-card {
-  width: min(36rem, 85vw);
-  scroll-snap-align: start;
+  width: min(30rem, 80vw);
+  flex-shrink: 0;
 }
 
 .project-card .glow-frame {
@@ -77,58 +85,29 @@
 }
 
 /* ---------- Pinned horizontal gallery (wide screens, motion OK) ---------- */
-@supports (animation-timeline: view()) {
-  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-    .projects {
-      /* Scroll length grows with the number of cards. */
-      height: calc(100svh + var(--count) * 55svh);
-      padding-block: 0;
-      view-timeline: --projects block;
-    }
 
-    .projects__stage {
-      position: sticky;
-      top: 0;
-      display: flex;
-      height: 100svh;
-      flex-direction: column;
-      justify-content: center;
-      overflow: clip;
-      /* Clear the fixed navbar. */
-      padding-top: 5rem;
-    }
-
-    .projects__viewport {
-      overflow: visible;
-      scroll-snap-type: none;
-    }
-
-    .projects__track {
-      animation: projects-slide linear both;
-      animation-timeline: --projects;
-      animation-range: contain 0% contain 100%;
-    }
-
-    .project-card {
-      width: min(32rem, 36vw);
-    }
-
-    /* Wider, shorter window so header + card fit one viewport. */
-    .project-card__screen {
-      --screen-ratio: 0.5;
-      aspect-ratio: 2 / 1;
-    }
-  }
-}
-
-@keyframes projects-slide {
-  to {
-    /* Track width minus one viewport: the last card ends flush right. */
-    transform: translateX(calc(-100% + 100vw));
-  }
-}
-
+/* Reduced motion: no drifting — a still row you can swipe/scroll. */
 @media (prefers-reduced-motion: reduce) {
+  .projects__viewport {
+    overflow-x: auto;
+    mask-image: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+  }
+
+  .projects__track {
+    animation: none;
+    padding-inline: var(--gutter);
+  }
+
+  .projects__group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .project-card {
+    scroll-snap-align: start;
+  }
+
   .project-card__shot {
     animation: none;
   }

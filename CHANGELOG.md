@@ -4,6 +4,15 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Repo integration & content migration (Phase 07, 2026-11-12)
+
+- Connected to github.com/faxriddinswe/Blog: local branch renamed to `redesign`, tag `v1-legacy` on `origin/main`, v1 merged with `--allow-unrelated-histories` (redesign descends from main). v1 files excluded from lint/format until deleted.
+- 6 v1 posts migrated to MDX (text unchanged; MDX pitfalls fixed by `scripts/migrate-v1-posts.py`); images → `public/blog/images`; CV → `public/cv/cv.pdf`.
+- `/en/blog` lists Uzbek-only posts with an "Uzbek only" badge.
+- Real projects from v1 replace the demos; branded placeholder visual when no screenshot.
+- Permanent redirects for v1 URLs.
+- CLAUDE.md §14, `docs/MIGRATION.md`, `docs/ROADMAP.md`.
+
 ### Portrait title badge; dark only (owner request, 2026-11-12)
 
 - Under the hero portrait: a glowing badge alternating **AI Agent Engineer** / **Backend Engineer** (rise-in, warm→cool gradient text, pulsing dot, turning ring).

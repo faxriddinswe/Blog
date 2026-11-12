@@ -4,17 +4,17 @@ v1 (static HTML on `main`, live at faxriddinswe.uz) is preserved in tag **`v1-le
 
 ## Files: old → new
 
-| v1 path                                                                                                         | v2 destination                                                   | Status       |
-| --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------ |
-| `posts/*.md` (7)                                                                                                | `src/content/blog/uz/<slug>.mdx`                                 | ⬜ Phase 07  |
-| `js/posts.js` (metadata)                                                                                        | MDX `metadata` export per post                                   | ⬜ Phase 07  |
-| `posts/images/*`                                                                                                | `public/blog/images/*`                                           | ⬜ Phase 07  |
-| `images/profile.jpg` (960×1280, with background)                                                                | candidate hero portrait source (higher-res than the current one) | ⬜ ask owner |
-| `cv.pdf`                                                                                                        | `public/cv/cv.pdf`                                               | ⬜ Phase 07  |
-| `js/projects.js` (6)                                                                                            | `src/content/projects.ts` (replaces the 4 demo projects)         | ⬜ Phase 07  |
-| `js/lectures.js`, `lectures.html` (2 YouTube lectures)                                                          | keep as a section, or drop                                       | ❓ owner     |
-| `index.html`, `blog.html`, `post.html`, `building.html`, `resume.html`, `css/`, `js/nav.js`, `js/marked.min.js` | deleted after migration is verified                              | ⬜ Phase 07  |
-| `.gitattributes` (`*.mp4` via LFS)                                                                              | kept                                                             | ✅           |
+| v1 path                                                                                                         | v2 destination                                                   | Status                                                                                  |
+| --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `posts/*.md` (7)                                                                                                | `src/content/blog/uz/<slug>.mdx`                                 | ✅ 6 migrated via `scripts/migrate-v1-posts.py`, render-checked; `markdown-qollanma` ❓ |
+| `js/posts.js` (metadata)                                                                                        | MDX `metadata` export per post                                   | ✅                                                                                      |
+| `posts/images/*`                                                                                                | `public/blog/images/*`                                           | ✅ (git mv)                                                                             |
+| `images/profile.jpg` (960×1280, with background)                                                                | candidate hero portrait source (higher-res than the current one) | ⬜ ask owner                                                                            |
+| `cv.pdf`                                                                                                        | `public/cv/cv.pdf`                                               | ✅ (git mv)                                                                             |
+| `js/projects.js` (6)                                                                                            | `src/content/projects.ts` (replaces the 4 demo projects)         | ✅ demos replaced; placeholder visual until screenshots                                 |
+| `js/lectures.js`, `lectures.html` (2 YouTube lectures)                                                          | keep as a section, or drop                                       | ❓ owner                                                                                |
+| `index.html`, `blog.html`, `post.html`, `building.html`, `resume.html`, `css/`, `js/nav.js`, `js/marked.min.js` | deleted after the Preview check                                  | ⬜ Phase 08                                                                             |
+| `.gitattributes` (`*.mp4` via LFS)                                                                              | kept                                                             | ✅                                                                                      |
 
 ## Redirects (permanent, `next.config.ts`)
 
@@ -31,7 +31,11 @@ v1 post links are `post.html?post=<slug>` (param read in `post.html`: `URLSearch
 | `/cv.pdf`                | `/cv/cv.pdf`                                                                                   |
 | `/lectures.html`         | per owner decision                                                                             |
 
-Every redirect is tested on the Vercel Preview before go-live.
+Verified locally on a production build (all 308, CV served as PDF). `/post.html?post=x` lands on `/uz/blog/x?post=x` — Next passes query strings through on redirects; harmless (canonical has no query). Re-test on the Vercel Preview before go-live.
+
+### MDX fixes applied
+
+`{ }` escaped and bare `<word>` → `&lt;` outside code (incl. code fences inside blockquotes), `<br>` → `<br />`, leading H1 demoted to H2 (the page already renders the title as H1). Post text unchanged.
 
 ## Posts (from `js/posts.js`)
 

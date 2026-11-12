@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lectures — Faxriddin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <main class="container container-wide">
+    <div class="lectures-header">
+      <h1 class="page-title left">Lectures</h1>
+      <p class="lectures-stats" id="lectures-stats"></p>
+    </div>
+
+    <div class="lectures-controls">
+      <div class="filter-pills" id="filter-pills"></div>
+    </div>
+
+    <div class="lecture-grid" id="lecture-grid"></div>
+  </main>
+
+  <script src="js/lectures.js"></script>
+  <script>
+    const grid = document.getElementById("lecture-grid");
+    const statsEl = document.getElementById("lectures-stats");
+    const pillsEl = document.getElementById("filter-pills");
+
+    const TAG_COLORS = ["green", "blue", "purple", "orange", "pink"];
+    const categoryColorMap = {};
+
+    function colorFor(category) {
+      if (!categoryColorMap[category]) {
+        const idx = Object.keys(categoryColorMap).length % TAG_COLORS.length;
+        categoryColorMap[category] = TAG_COLORS[idx];
+      }
+      return categoryColorMap[category];
+    }
+
+    let activeCategory = "All";
+
+    function renderStats(list) {
+      const counts = {};
+      list.forEach((l) => (counts[l.category] = (counts[l.category] || 0) + 1));
+      const parts = Object.entries(counts).map(([cat, n]) => `${n} ${cat.toLowerCase()}`);
+      statsEl.textContent = `${list.length} lectures${parts.length ? " • " + parts.join(" • ") : ""}`;
+    }
+
+    function renderPills() {
+      const counts = {};
+      LECTURES.forEach((l) => (counts[l.category] = (counts[l.category] || 0) + 1));
+      const categories = ["All", ...Object.keys(counts)];
+
+      pillsEl.innerHTML = categories
+        .map((cat) => {
+          const count = cat === "All" ? LECTURES.length : counts[cat];
+          const active = cat === activeCategory ? "active" : "";
+          return `<button class="pill ${active}" data-cat="${cat}">${cat}${cat !== "All" ? ` <span>${count}</span>` : ""
+            }</button>`;
+        })
+        .join("");
+
+      pillsEl.querySelectorAll(".pill").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeCategory = btn.dataset.cat;
+          renderPills();
+          renderGrid();
+        });
+      });
+    }
+
+    function renderGrid() {
+      const filtered = LECTURES.filter((l) => {
+        return activeCategory === "All" || l.category === activeCategory;
+      });
+
+      renderStats(filtered);
+
+      grid.innerHTML = filtered
+        .map((l) => {
+          const ytId = l.youtube ? new URL(l.youtube).searchParams.get("v") : null;
+          const thumb = l.thumb
+            ? l.thumb
+            : ytId
+              ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+              : "";
+          return `
+            <div class="lecture-card" data-href="${l.youtube || l.video || ""}">
+              <div class="lecture-thumb">
+                ${thumb ? `<img src="${thumb}" alt="${l.title}" loading="lazy" />` : ""}
+                <span class="play-btn">
+                  <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+                </span>
+                <span class="duration-badge">${l.duration}</span>
+              </div>
+              <span class="lecture-tag tag-${colorFor(l.category)}">${l.category}</span>
+              <h3 class="lecture-title">${l.title}</h3>
+            </div>`;
+        })
+        .join("");
+
+      grid.querySelectorAll(".lecture-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          window.open(card.dataset.href, "_blank");
+        });
+      });
+    }
+
+    renderPills();
+    renderGrid();
+  </script>
+  <script src="js/nav.js"></script>
+</body>
+
+</html>

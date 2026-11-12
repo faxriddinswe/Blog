@@ -22,6 +22,39 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "mdx"],
+  // www → apex (brief §4). Runs before the i18n proxy.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.faxriddinswe.uz" }],
+        destination: "https://faxriddinswe.uz/:path*",
+        permanent: true,
+      },
+    ];
+  },
+  // Baseline security headers. A strict CSP is left out on purpose: the
+  // pre-paint preloader script and JSON-LD are inline; see DEPLOYMENT.md.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "DENY" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+        ],
+      },
+    ];
+  },
   turbopack: {
     rules: {
       "*.css": {

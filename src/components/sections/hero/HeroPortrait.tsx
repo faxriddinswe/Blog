@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import type { CSSProperties } from "react";
 import portrait from "../../../../public/images/portrait/portrait.png";
 
 /**
@@ -12,7 +11,7 @@ export function HeroPortrait() {
   const t = useTranslations("Hero");
 
   return (
-    <div className="hero-portrait intro" style={{ "--d": "0.15s" } as CSSProperties}>
+    <div className="hero-portrait">
       <Image
         src={portrait}
         alt={t("portraitAlt")}

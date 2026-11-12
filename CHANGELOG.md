@@ -4,6 +4,16 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Phase 7 — SEO & polish (2026-11-12)
+
+- `sitemap.xml` (all locales + posts, hreflang alternates), `robots.txt`.
+- Open Graph images via `next/og`: home (portrait + beam) and per blog post (title); Twitter `summary_large_image`.
+- JSON-LD `Person` (confirmed facts only).
+- Brand icon (`icon.svg`, `apple-icon`) replacing the default Next.js favicon.
+- `www` → apex 308 redirect; baseline security headers incl. HSTS.
+- Perf: hero portrait intro is transform-only so it counts as painted at first frame (mobile LCP 3.5 s → 1.8 s with devtools throttling).
+- Lighthouse (canonical-correct build): SEO 100, A11y 100, BP 100 on home, blog and posts; desktop Perf 99–100, mobile 97 (devtools) / 90–93 (simulated).
+
 ### Phase 6 — Blog, teaser & footer (2026-11-12)
 
 - MDX blog with `@next/mdx` (decision in ARCHITECTURE.md): Zod-validated post metadata, explicit post registry, `/[locale]/blog` + `/[locale]/blog/[slug]` fully prerendered, per-post metadata/OG/hreflang (only for existing translations), missing-translation notice.

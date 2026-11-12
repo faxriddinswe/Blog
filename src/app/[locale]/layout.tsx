@@ -42,6 +42,7 @@ export async function generateMetadata({
       locale: locale === "uz" ? "uz_UZ" : "en_US",
       url: `/${locale}`,
     },
+    twitter: { card: "summary_large_image" },
   };
 }
 

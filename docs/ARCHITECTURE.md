@@ -19,21 +19,24 @@
 
 `@react-three/drei` is intentionally not installed: the beam is a single full-screen shader quad and needs none of its helpers. MDX, Shiki and react-hook-form arrive in their phases.
 
-## Performance architecture (Phase 2)
+## Performance architecture
 
-The critical path ships **no animation library**. Measured on `/uz` (local prod build, Lighthouse 12):
+The critical path ships **no animation library**. Latest audit (Phase 7, local prod build with `NEXT_PUBLIC_SITE_URL` pointed at the audited origin so canonicals resolve):
 
-| Run                         | Perf   | A11y | BP  | LCP       | TBT        | CLS   |
-| --------------------------- | ------ | ---- | --- | --------- | ---------- | ----- |
-| Mobile, devtools throttling | 98     | 100  | 100 | 1.6 s     | 120 ms     | 0.001 |
-| Mobile, simulated (Lantern) | 84–93  | 100  | 100 | 3.0–3.3 s | 140–330 ms | 0.001 |
-| Desktop                     | 98–100 | 100  | 100 | 0.5–0.7 s | 0–20 ms    | 0.003 |
+| Page / run                                          | Perf     | A11y | BP  | SEO | LCP         | CLS   |
+| --------------------------------------------------- | -------- | ---- | --- | --- | ----------- | ----- |
+| `/uz` mobile, devtools throttling (slow 4G, 4× CPU) | 97       | 100  | 100 | 100 | 1.8 s       | 0.001 |
+| `/uz` mobile, simulated (Lantern)                   | 90–93    | 100  | 100 | 100 | 2.7–3.5 s   | 0.001 |
+| `/uz` desktop                                       | 99       | 100  | 100 | 100 | 0.8 s       | 0.003 |
+| `/en/blog`, posts — mobile / desktop                | 97 / 100 | 100  | 100 | 100 | 2.1 / 0.6 s | 0.001 |
 
-SEO shows 92 locally only because the canonical points at `https://faxriddinswe.uz` while auditing `localhost`.
+Observed (unthrottled) LCP equals FCP (~0.36 s): the LCP element is painted in the first frame. Lantern's simulated LCP adds modeled JS execution after it, hence the higher number; real-device throttling meets the < 2.5 s target.
+
+Auditing `localhost` against a production build shows SEO 92 only because canonicals point at `https://faxriddinswe.uz`; with the env pointed at the audited origin it is 100.
 
 1. **Intro in CSS, not JS.** Preloader (letters, 0→100 counter via `@property`, curtain), headline rise and staggered fade-ups are CSS keyframes (`styles/intro.css`) — they start at first paint, independent of hydration.
 2. **Flash-free preloader decision.** `PreloaderScript` (inline, in `<head>`) sets `html[data-preloader=show|skip]` before first paint: first visit of the session only, never with reduced motion.
-3. **LCP-eligible headline.** The name is split by _words_ (per-char inline-blocks would each be a tiny LCP candidate). Words sit in their final place under the preloader (`animation-fill-mode: none`), so they are painted at FCP, then drop into their masks as the curtain lifts. On narrow screens the portrait (`fetchPriority="high"`) can be the LCP instead.
+3. **LCP-eligible headline.** The name is split by _words_ (per-char inline-blocks would each be a tiny LCP candidate). Words sit in their final place under the preloader (`animation-fill-mode: none`), so they are painted at FCP, then drop into their masks as the curtain lifts. On narrow screens the portrait (`fetchPriority="high"`) is the LCP instead, so it also must not start at `opacity: 0` — its intro is a transform-only rise.
 4. **Fonts.** Only Space Grotesk 600 (headline) is preloaded; Inter and JetBrains Mono 400 swap in. `latin` covers Uzbek ʻ ʼ, so no `latin-ext` (230 KB → 82 KB).
 5. **Desktop-only chunks.** `DesktopEnhancements` lazy-loads Lenis + GSAP (smooth scroll, cursor) only for fine pointers without reduced motion; touch devices never download them.
 6. **WebGL beam, lazily.** `HeroBeam` mounts the R3F canvas after `requestIdleCallback`, on capable desktops only (`isLowPowerDevice()`), pauses via `IntersectionObserver` (`frameloop="never"`), and reads hero scroll progress itself.
@@ -61,6 +64,16 @@ request ─▶ src/proxy.ts (next-intl middleware)
 - `src/i18n/global.d.ts` — message keys are typed; a wrong key fails `typecheck`.
 - `pnpm check:i18n` — fails if `uz.json` / `en.json` keys diverge.
 - Unknown paths under a locale hit `app/[locale]/[...rest]` → localized `not-found.tsx`. That segment sets `instant = false` because it always 404s.
+
+## SEO
+
+- Per-page metadata with canonical + hreflang (`x-default` → `/uz`) in `[locale]/layout.tsx`, blog index and posts (posts only list locales that exist).
+- `app/sitemap.ts` — every locale of every page + posts with `xhtml:link` alternates; `lastModified` comes from post dates (no clock reads while prerendering).
+- `app/robots.ts` — allow all, disallow `/api/`, sitemap + host.
+- Open Graph images (`next/og`, 1200×630): `[locale]/opengraph-image.tsx` (name, roles, portrait, beam) and `[locale]/blog/[slug]/opengraph-image.tsx` (post title). Shared template `lib/og.tsx`; fonts from `@fontsource` (OFL), portrait from `assets/og/`. Twitter card `summary_large_image`.
+- JSON-LD `Person` on the home page (`components/seo/PersonJsonLd.tsx`) — confirmed facts only, `<` escaped.
+- Icons: `app/icon.svg` (brand mark) and `app/apple-icon.tsx`.
+- `next.config.ts`: `www.faxriddinswe.uz` → apex (308), baseline security headers (nosniff, referrer policy, frame DENY, permissions policy, HSTS). No strict CSP yet: inline pre-paint and JSON-LD scripts would need nonces/hashes — candidate for a later hardening pass.
 
 ## Lead pipeline
 

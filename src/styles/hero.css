@@ -47,6 +47,22 @@
     drop-shadow(0 -6px 18px rgb(59 130 246 / 0.45)) brightness(0.88) contrast(1.05);
 }
 
+/*
+ * Intro: rise only — no opacity. The portrait is often the mobile LCP
+ * element, and an element at opacity 0 does not count as painted. Under the
+ * preloader the jump is invisible; on repeat visits it simply slides up.
+ */
+.hero-portrait {
+  animation: portrait-rise var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(var(--intro-delay) + 0.15s);
+}
+
+@keyframes portrait-rise {
+  from {
+    transform: translateY(4%);
+  }
+}
+
 /* Floor shade between portrait and headline for AA contrast on any photo. */
 .hero::after {
   content: "";
@@ -164,10 +180,16 @@
       view-timeline: --hero block;
     }
 
+    /* Intro rise (transform) + scroll parallax (translate) — separate properties, no clash. */
     .hero-portrait {
-      animation: hero-portrait-out linear both;
-      animation-timeline: --hero;
-      animation-range: exit 0% exit 100%;
+      animation:
+        portrait-rise var(--dur-slow) var(--ease-out) calc(var(--intro-delay) + 0.15s)
+          both,
+        hero-portrait-out linear both;
+      animation-timeline: auto, --hero;
+      animation-range:
+        normal,
+        exit 0% exit 100%;
     }
 
     .hero__content {

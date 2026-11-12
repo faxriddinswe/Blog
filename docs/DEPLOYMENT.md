@@ -53,6 +53,37 @@ Without these variables the form still works but answers with a friendly "form i
 
 Create a widget at Cloudflare → Turnstile, add `faxriddinswe.uz` (and `localhost` for testing), then set `NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`. The widget appears on the last form step only.
 
+## Vercel: preview & go-live (Phase 08)
+
+Current state: the Vercel project builds `main` as a **static site** (v1) and serves faxriddinswe.uz.
+
+### Why nothing changes in the dashboard up front
+
+`vercel.json` on `redesign` sets `"framework": "nextjs"`, which **overrides the dashboard Framework Preset per deployment** (Vercel docs: _vercel.json → framework_). So:
+
+- deployments of `redesign` (Preview) build as Next.js;
+- deployments of `main` (no `vercel.json`) keep building as the static v1 site;
+- after the merge, `main` also has `vercel.json` → production builds as Next.js. No dashboard switch, no window where `main` is broken.
+
+`installCommand`/`buildCommand` pin pnpm 12.18.0 through `npx`, so Vercel's own pnpm detection doesn't matter.
+
+### Owner checklist
+
+**Before the first preview push** (safe — does not affect production):
+
+1. Vercel → Project → Settings → **Environment Variables**: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` for **Preview** (and **Production** too — v1 ignores them). Optional: Turnstile keys. Use the _rotated_ bot token.
+2. Settings → **Build & Deployment**: check that _Build Command_, _Output Directory_ and _Install Command_ have **no override toggled on**. If any is on, tell me before changing it (it would affect `main` too).
+3. Settings → **Git**: confirm Preview deployments are enabled for non-production branches.
+
+**After pushing `redesign`:** open the Preview URL from the GitHub commit / Vercel dashboard; I test redirects, posts, form → Telegram, OG images there.
+
+**Go-live** (only after explicit "ha"): merge `redesign` → `main` (`git merge --no-ff redesign`), push `main`. Vercel builds production as Next.js. Then verify faxriddinswe.uz, `www` → apex, a v1 URL like `/post.html?post=linux-1`.
+
+### Rollback
+
+- **Fastest:** Vercel → Deployments → previous production deployment (v1) → **Instant Rollback**.
+- **In git:** `git revert -m 1 <merge-commit>` on `main` and push — rebuilds v1. Tag `v1-legacy` always points at the last v1 commit.
+
 ## Vercel + domain
 
 Filled in during the Deploy phase: project import, `faxriddinswe.uz` apex + `www` → apex redirect, DNS records at the `.uz` registrar.

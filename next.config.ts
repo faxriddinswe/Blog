@@ -22,7 +22,8 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   pageExtensions: ["ts", "tsx", "mdx"],
-  // www → apex (brief §4). Runs before the i18n proxy.
+  // The www/apex choice is made by the Vercel domain settings (a redirect here
+  // looped against Vercel's apex → www redirect on launch day).
   async redirects() {
     return [
       // v1 (static site) URLs → v2. See docs/MIGRATION.md.
@@ -40,12 +41,6 @@ const nextConfig: NextConfig = {
       { source: "/cv.pdf", destination: "/cv/cv.pdf", permanent: true },
       // Temporary until the owner decides whether Lectures stays (docs/MIGRATION.md).
       { source: "/lectures.html", destination: "/uz", permanent: false },
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.faxriddinswe.uz" }],
-        destination: "https://faxriddinswe.uz/:path*",
-        permanent: true,
-      },
     ];
   },
   // Baseline security headers. A strict CSP is left out on purpose: the

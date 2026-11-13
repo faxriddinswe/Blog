@@ -6,6 +6,8 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ### Faster first load & v1 cleanup (owner request, 2026-11-13)
 
+- First visit always opens Uzbek: next-intl `localeDetection: false` (no Accept-Language / cookie redirect to `/en`).
+
 - Preloader removed (it held first visits for 1.5 s); hero intro shortened to quick fade-ups (0.6 s, near-zero delay). Owner priority: speed over the intro (deviation from brief §9.1).
 - Portrait `sizes` match the ring, so phones fetch a smaller image.
 - Mobile Speed Index 3.7 s → 1.7 s (simulated) / Perf 98, LCP 1.8 s (devtools throttling); desktop 99.

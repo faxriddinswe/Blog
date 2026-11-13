@@ -4,6 +4,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Hero portrait decor (owner request, 2026-11-13)
+
+- Breathing halftone aura (warm/cool tinted dots) behind the portrait ring.
+- "Yangi loyihalarga ochiq / Open to new projects" status pill with a pinging green dot.
+- Floating glass stat cards (2+ years, 20+ projects — owner-confirmed `stats`) on desktop ≥1024px; hidden on phones/tablets where they would cover the face (the same numbers are in "Men haqimda").
+
 ### Repo integration & content migration (Phase 07, 2026-11-12)
 
 - Connected to github.com/faxriddinswe/Blog: local branch renamed to `redesign`, tag `v1-legacy` on `origin/main`, v1 merged with `--allow-unrelated-histories` (redesign descends from main). v1 files excluded from lint/format until deleted.

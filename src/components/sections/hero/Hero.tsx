@@ -7,6 +7,7 @@ import { SplitRise } from "@/components/motion/SplitRise";
 import { GlowPillLink } from "@/components/ui/GlowPillLink";
 import { site, stats } from "@/content/site";
 import { HeroPortrait } from "./HeroPortrait";
+import { PortraitDecor } from "./PortraitDecor";
 
 const years = stats.find((s) => s.id === "years")?.value ?? 0;
 const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
@@ -21,7 +22,10 @@ export function Hero() {
       {/* Mobile: portrait on top, text centered below. ≥768px: text left, portrait right. */}
       <div className="hero__grid">
         <div className="hero__visual">
-          <HeroPortrait />
+          <div className="portrait-stage">
+            <PortraitDecor />
+            <HeroPortrait />
+          </div>
           <p className="portrait-badge glow-hover">
             <span aria-hidden="true" className="portrait-badge__dot" />
             <RotatingText items={site.portraitTitles} className="portrait-badge__text" />

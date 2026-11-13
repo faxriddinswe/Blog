@@ -33,7 +33,8 @@
     "ctaApply": "Ariza qoldirish",
     "scrollHint": "Pastga aylantiring",
     "rolesLabel": "Yoʻnalishlar",
-    "portraitAlt": "Faxriddin Baxtiyorov portreti"
+    "portraitAlt": "Faxriddin Baxtiyorov portreti",
+    "available": "Yangi loyihalarga ochiq"
   },
   "NotFound": {
     "title": "Sahifa topilmadi",

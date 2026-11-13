@@ -20,7 +20,8 @@ export function HeroPortrait() {
         <Image
           src={portrait}
           alt={t("portraitAlt")}
-          sizes="(min-width: 768px) 340px, 60vw"
+          // Matches --ring in hero.css, so phones fetch a small file.
+          sizes="(min-width: 768px) min(27vw, 352px), min(56vw, 224px)"
           // Largest image above the fold (often the mobile LCP): fetch it first.
           loading="eager"
           fetchPriority="high"

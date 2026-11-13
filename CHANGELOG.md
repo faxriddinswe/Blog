@@ -4,6 +4,22 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Faster first load & v1 cleanup (owner request, 2026-11-13)
+
+- First visit always opens Uzbek: next-intl `localeDetection: false` (no Accept-Language / cookie redirect to `/en`).
+
+- Preloader removed (it held first visits for 1.5 s); hero intro shortened to quick fade-ups (0.6 s, near-zero delay). Owner priority: speed over the intro (deviation from brief §9.1).
+- Portrait `sizes` match the ring, so phones fetch a smaller image.
+- Mobile Speed Index 3.7 s → 1.7 s (simulated) / Perf 98, LCP 1.8 s (devtools throttling); desktop 99.
+- v1 files deleted from the repo (`*.html`, `css/`, `js/`, `posts/`, `images/`) — all migrated; v1 remains in tag `v1-legacy`.
+
+### 🚀 Launch (2026-11-13)
+
+- `redesign` merged into `main`; faxriddinswe.uz now serves the v2 Next.js site (v1 kept in tag `v1-legacy`).
+- Launch incident (~10 min): the site looped between Vercel's apex → www domain redirect and our `www → apex` redirect in `next.config.ts`. Fixed by removing ours; the www/apex choice now lives only in Vercel domain settings.
+- Verified live: all pages 200, all v1 URLs redirect, `/lectures.html` temporarily → `/uz` (307), lead form → Telegram `{ ok: true }`.
+- Open: Vercel primary domain is `www`, while canonicals/sitemap use the apex — switch the primary domain to the apex in Vercel (see DEPLOYMENT.md).
+
 ### Contact order on phones & Uzbek copy polish (owner request, 2026-11-13)
 
 - Contact is now three grid items: phones show heading → form → clock & socials; desktop layout unchanged.

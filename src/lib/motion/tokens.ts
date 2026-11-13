@@ -44,15 +44,6 @@ export const rotation = {
   intervalMs: 2600,
 } as const;
 
-/**
- * Preloader timeline (seconds). Must equal --preloader-total in tokens.css,
- * because the CSS intro and JS listeners both key off it.
- */
-export const preloader = {
-  total: 1.5,
-  storageKey: "fx:preloaded",
-} as const;
-
 /** Tech marquee: base loop length and how hard scroll velocity pushes it. */
 export const marquee = {
   /** Seconds for one full loop at rest. */

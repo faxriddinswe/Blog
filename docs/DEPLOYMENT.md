@@ -86,6 +86,10 @@ Current state: the Vercel project builds `main` as a **static site** (v1) and se
 - **Fastest:** Vercel → Deployments → previous production deployment (v1) → **Instant Rollback**.
 - **In git:** `git revert -m 1 <merge-commit>` on `main` and push — rebuilds v1. Tag `v1-legacy` always points at the last v1 commit.
 
+## Domain (post-launch)
+
+Vercel currently redirects `faxriddinswe.uz → www.faxriddinswe.uz` (www is primary), but canonicals, hreflang and the sitemap use `https://faxriddinswe.uz`. To make them agree (brief §4: www → apex): Vercel → Project → Settings → **Domains** → on `faxriddinswe.uz` choose **Connect to an environment: Production** (no redirect), and on `www.faxriddinswe.uz` set **Redirect to `faxriddinswe.uz` (308)**. Do **not** add a redirect for this in `next.config.ts` — that is what looped on launch day.
+
 ## Vercel + domain
 
 Filled in during the Deploy phase: project import, `faxriddinswe.uz` apex + `www` → apex redirect, DNS records at the `.uz` registrar.

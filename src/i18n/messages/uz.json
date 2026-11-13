@@ -46,7 +46,10 @@
   "About": {
     "eyebrow": "Tanishuv",
     "title": "Men haqimda",
-    "bio": "Men Faxriddin — toshkentlik backend muhandisman. 2024-yildan beri 20 dan ortiq loyihani yakunladim: frilans buyurtmalarda, xorijiy kompaniyalarda masofaviy va startaplarda backend muhandis sifatida ishladim. Hozir asosiy yoʻnalishim — AI agentlar: LLM, RAG va MCP vositalari yordamida maʼlumotni tushunadigan, qaror qabul qiladigan va ishni oʻzi bajaradigan tizimlar. Ularni Python, FastAPI va PostgreSQL asosida mustahkam qilib quraman. Ish bilan bir qatorda PDP Universityda dasturiy injiniring yoʻnalishida tahsil olaman.",
+    "lead": "Salom! Men Faxriddin — Toshkentdan Backend va AI muhandisman.",
+    "body1": "2024-yildan beri frilans loyihalar, startaplar hamda xorijiy kompaniyalarda masofaviy tarzda ishlab, 20 dan ortiq real loyihalarni muvaffaqiyatli yakunladim. Asosiy texnologik stekim Python, FastAPI va PostgreSQL boʻlib, yuqori yuklamalarga chidamli va xavfsiz tizimlar arxitekturasini quraman.",
+    "body2": "Hozirda asosiy eʼtiborim AI Engineering va avtonom AI agentlar yoʻnalishiga qaratilgan. LLM, RAG va MCP (Model Context Protocol) texnologiyalari asosida maʼlumotlarni chuqur tahlil qiladigan, mustaqil qaror qabul qiladigan va biznes jarayonlarini avtomatlashtiradigan intellektual tizimlarni ishlab chiqaman.",
+    "body3": "Amaliy tajriba bilan bir qatorda, PDP Universityda Dasturiy injiniring (Software Engineering) yoʻnalishida tahsil olmoqdaman.",
     "statsLabel": "Raqamlarda"
   },
   "Skills": {

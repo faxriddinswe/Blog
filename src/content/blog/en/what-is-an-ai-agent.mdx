@@ -1,0 +1,71 @@
+export const metadata = {
+  title: "What is an AI agent, and how is it different from a chatbot?",
+  description:
+    "How an AI agent works, what it is made of, and when a business needs an agent rather than a chatbot — in plain words.",
+  date: "2026-11-10",
+  readingMinutes: 6,
+  tags: ["AI agents", "LLM", "MCP"],
+  demo: true,
+};
+
+“AI agent” is everywhere lately, and it is often confused with a chatbot. The difference is big: **a chatbot talks, an agent gets things done.**
+
+## Chatbot vs. agent
+
+A chatbot answers a question and stops. You ask “Where is my order?” and get a generic paragraph back.
+
+An AI agent takes the same question and, **on its own**:
+
+1. Extracts the order number from the message.
+2. Checks the order status in the database.
+3. Asks the delivery provider’s API for the exact location.
+4. Replies in plain language — and pings a manager if something looks wrong.
+
+So an agent is a program that **plans toward a goal, uses tools, and keeps working until the result is reached.**
+
+## What an agent is made of
+
+Every AI agent rests on four parts:
+
+- **The model (LLM)** — the “brain”. It understands text, makes decisions and picks the next step.
+- **Tools** — the “hands”: databases, CRM, payments, Telegram, Google Sheets and other APIs.
+- **Memory and context** — conversation history, company documents (often via RAG), customer data.
+- **The control loop** — “think → act → check the result”, repeated until the task is done.
+
+Simplified, that loop looks like this:
+
+```python
+async def run_agent(task: str) -> str:
+    context = [task]
+    while True:
+        step = await llm.decide(context, tools=TOOLS)
+        if step.is_final:
+            return step.answer
+        result = await TOOLS[step.tool].call(**step.args)
+        context.append(result)
+```
+
+A production system adds error handling, limits, logging and safety checks — but the idea is exactly this.
+
+## Why MCP matters
+
+**Model Context Protocol (MCP)** is a standard way to connect an agent to tools. Instead of writing every integration from scratch, tools are exposed as MCP servers and the agent uses them through one interface. Adding a new tool gets faster, and the system stays tidy.
+
+## When you need an agent — and when you don’t
+
+An agent is not always the best answer. A simple rule of thumb:
+
+| Situation                         | Solution            |
+| --------------------------------- | ------------------- |
+| Same questions, same answers      | A simple bot or FAQ |
+| Precise answers from documents    | A RAG assistant     |
+| Multi-step actions across systems | **An AI agent**     |
+| A strict, never-changing process  | Classic automation  |
+
+Agents pay off when a task takes **several steps** and differs a little every time.
+
+## Takeaway
+
+An AI agent is not a “smart conversationalist” but a **digital teammate**: it understands, plans, uses tools and delivers. A well-built agent takes over your team’s most repetitive, time-consuming work.
+
+If your business has a process like that, [leave a request](/en#contact) and let’s look at it together.

@@ -1,0 +1,82 @@
+/* ---------- Scroll-scrubbed word reveal ---------- */
+.word-reveal__word {
+  /* Fallback: fully lit. */
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .word-reveal {
+      view-timeline: --reveal block;
+    }
+
+    .word-reveal__word {
+      /* 0.38 keeps unlit words ≥ 3:1 on --bg (WCAG large text); lit = 1. */
+      opacity: var(--reveal-dim);
+      animation: word-light linear both;
+      animation-timeline: --reveal;
+      /* Each word owns a short slice; together they sweep from 10% to 60% of "cover". */
+      animation-range: cover calc(10% + var(--p) * 45%) cover calc(15% + var(--p) * 45%);
+    }
+  }
+}
+
+@keyframes word-light {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- "Men haqimda" panel: wide, centred, living border ---------- */
+.about-panel {
+  --glow-fill:
+    radial-gradient(60% 80% at 0% 0%, rgb(249 115 22 / 0.08), transparent 60%),
+    radial-gradient(60% 80% at 100% 100%, rgb(59 130 246 / 0.1), transparent 60%),
+    var(--bg-elevated);
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding: clamp(1.75rem, 5vw, 4rem);
+  border-radius: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(60% 80% at 0% 0%, rgb(249 115 22 / 0.08), transparent 60%),
+    radial-gradient(60% 80% at 100% 100%, rgb(59 130 246 / 0.1), transparent 60%),
+    color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+}
+
+@media (min-width: 1024px) {
+  .about-panel {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    align-items: center;
+  }
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .about-stats__item {
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-stats__item:first-child {
+    border-top: 0;
+  }
+}
+
+.about-stats__item {
+  display: flex;
+  flex-direction: column;
+}

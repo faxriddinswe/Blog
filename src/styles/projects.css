@@ -1,0 +1,161 @@
+/* ---------- Projects: endless left-drifting loop ---------- */
+.projects {
+  --gap: clamp(1rem, 2.5vw, 2rem);
+  position: relative;
+  padding-block: clamp(5rem, 12vw, 9rem);
+}
+
+.projects__viewport {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  overflow: clip;
+  padding-block: 1.5rem;
+  /* Cards fade in/out at the edges instead of being cut. */
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.projects__track {
+  display: flex;
+  width: max-content;
+  /* ~12 s per card: a calm, readable pace. */
+  animation: projects-loop calc(var(--count) * 12s) linear infinite;
+}
+
+.projects__group {
+  display: flex;
+  gap: var(--gap);
+  /* Trailing gap so the second copy starts exactly one gap after the first. */
+  padding-right: var(--gap);
+}
+
+@keyframes projects-loop {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.project-card {
+  width: min(30rem, 80vw);
+  flex-shrink: 0;
+}
+
+.project-card .glow-frame {
+  height: 100%;
+}
+
+/* Warm cards flip the heated border's phase so neighbours don't glow in sync. */
+.project-card[data-accent="warm"] .glow-frame::before {
+  animation-delay: -7s;
+}
+
+/* Browser-like window with the tall screenshot drifting inside it. */
+.project-card__screen {
+  /* Keep both in sync: the drift distance below needs the ratio as a number. */
+  --screen-ratio: 0.625;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  /* aspect-ratio boxes otherwise grow to fit the tall screenshot. */
+  min-height: 0;
+  overflow: clip;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.project-card__shot {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: auto;
+  animation: shot-drift 18s ease-in-out infinite alternate;
+}
+
+.project-card:hover .project-card__shot {
+  animation-play-state: paused;
+}
+
+@keyframes shot-drift {
+  0%,
+  8% {
+    transform: translateY(0);
+  }
+  92%,
+  100% {
+    /* Screenshots are 1200×2100: travel exactly the part that overflows the window. */
+    transform: translateY(calc(-100% + 100% * var(--screen-ratio) * 1200 / 2100));
+  }
+}
+
+/* ---------- Pinned horizontal gallery (wide screens, motion OK) ---------- */
+
+/* Reduced motion: no drifting — a still row you can swipe/scroll. */
+@media (prefers-reduced-motion: reduce) {
+  .projects__viewport {
+    overflow-x: auto;
+    mask-image: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+  }
+
+  .projects__track {
+    animation: none;
+    padding-inline: var(--gutter);
+  }
+
+  .projects__group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .project-card {
+    scroll-snap-align: start;
+  }
+
+  .project-card__shot {
+    animation: none;
+  }
+}
+
+/* ---------- /projects: all projects in a still grid ---------- */
+.projects-grid {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+}
+
+.projects-grid .project-card {
+  width: auto;
+}
+
+/* Card visual when a project has no screenshot yet. */
+.project-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text);
+  background:
+    radial-gradient(circle, rgb(255 255 255 / 0.06) 1px, transparent 1.5px) 0 0 / 10px
+      10px,
+    radial-gradient(70% 90% at 15% 0%, rgb(249 115 22 / 0.35), transparent 65%),
+    radial-gradient(70% 90% at 85% 100%, rgb(59 130 246 / 0.4), transparent 65%),
+    var(--bg);
+}
+
+.project-card[data-accent="warm"] .project-card__placeholder {
+  background:
+    radial-gradient(circle, rgb(255 255 255 / 0.06) 1px, transparent 1.5px) 0 0 / 10px
+      10px,
+    radial-gradient(70% 90% at 85% 0%, rgb(34 211 238 / 0.3), transparent 65%),
+    radial-gradient(70% 90% at 15% 100%, rgb(249 115 22 / 0.4), transparent 65%),
+    var(--bg);
+}
+
+.project-card__placeholder-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+}

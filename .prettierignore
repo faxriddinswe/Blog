@@ -1,0 +1,9 @@
+node_modules
+.next
+pnpm-lock.yaml
+next-env.d.ts
+# v1 static site (until migration is verified)
+js/
+css/
+posts/
+*.html

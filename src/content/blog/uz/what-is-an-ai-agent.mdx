@@ -1,0 +1,71 @@
+export const metadata = {
+  title: "AI agent nima va u oddiy chatbotdan nimasi bilan farq qiladi?",
+  description:
+    "AI agentning ishlash prinsipi, uning tarkibiy qismlari va biznesda qachon chatbot emas, aynan agent kerak boʻlishi — sodda tilda.",
+  date: "2026-11-10",
+  readingMinutes: 6,
+  tags: ["AI agentlar", "LLM", "MCP"],
+  demo: true,
+};
+
+Soʻnggi bir-ikki yilda “AI agent” iborasi hamma joyda. Lekin koʻpchilik uni oddiy chatbot bilan adashtiradi. Farq esa juda katta: **chatbot gapiradi, agent esa ishni bajaradi.**
+
+## Chatbot va agent: asosiy farq
+
+Oddiy chatbot savolga javob beradi va shu bilan toʻxtaydi. Siz “Buyurtmam qayerda?” deb soʻraysiz — u umumiy matn bilan javob qaytaradi.
+
+AI agent esa shu savolni olib, quyidagilarni **oʻzi** qiladi:
+
+1. Savoldan buyurtma raqamini ajratib oladi.
+2. Maʼlumotlar bazasidan buyurtma holatini tekshiradi.
+3. Yetkazib berish xizmati API'sidan aniq joylashuvni soʻraydi.
+4. Natijani tushunarli tilda mijozga yozadi — kerak boʻlsa, menejerga ham xabar beradi.
+
+Yaʼni agent — bu **maqsadga qarab reja tuzadigan, vositalardan foydalanadigan va natijaga erishguncha ishlaydigan** dastur.
+
+## Agent nimalardan tashkil topadi?
+
+Har qanday AI agentning negizida toʻrtta qism bor:
+
+- **Model (LLM)** — “miya”. Matnni tushunadi, qaror qabul qiladi, keyingi qadamni tanlaydi.
+- **Vositalar (tools)** — agentning “qoʻllari”: maʼlumotlar bazasi, CRM, toʻlov tizimi, Telegram, Google Sheets va boshqa API'lar.
+- **Xotira va kontekst** — suhbat tarixi, kompaniya hujjatlari (koʻpincha RAG orqali), mijoz haqidagi maʼlumot.
+- **Boshqaruv sikli** — “oʻyla → harakat qil → natijani tekshir” halqasi, toki vazifa bajarilmaguncha.
+
+Soddalashtirilgan koʻrinishda bu sikl taxminan shunday:
+
+```python
+async def run_agent(task: str) -> str:
+    context = [task]
+    while True:
+        step = await llm.decide(context, tools=TOOLS)
+        if step.is_final:
+            return step.answer
+        result = await TOOLS[step.tool].call(**step.args)
+        context.append(result)
+```
+
+Haqiqiy tizimda bunga xatolarni ushlash, limitlar, loglash va xavfsizlik tekshiruvlari qoʻshiladi — lekin gʻoya aynan shu.
+
+## MCP nima uchun muhim?
+
+**Model Context Protocol (MCP)** — agentni turli vositalarga ulashning standart usuli. Har bir integratsiyani noldan yozish oʻrniga, vositalar MCP server sifatida taqdim etiladi va agent ularni bir xil interfeys orqali ishlatadi. Natijada yangi vosita qoʻshish tezlashadi, tizim esa tartibli boʻlib qoladi.
+
+## Qachon agent kerak, qachon yoʻq?
+
+Agent har doim ham eng yaxshi yechim emas. Oddiy qoida:
+
+| Vaziyat                              | Yechim                    |
+| ------------------------------------ | ------------------------- |
+| Bir xil savollarga bir xil javoblar  | Oddiy bot yoki FAQ        |
+| Hujjatlardan aniq javob topish       | RAG yordamchi             |
+| Bir nechta tizimda ketma-ket amallar | **AI agent**              |
+| Qatʼiy, oʻzgarmas jarayon            | Klassik avtomatlashtirish |
+
+Agent, ayniqsa, vazifa **bir nechta qadamdan** iborat boʻlsa va har safar biroz farq qilsa, oʻzini oqlaydi.
+
+## Xulosa
+
+AI agent — bu “aqlli suhbatdosh” emas, balki **raqamli xodim**: u tushunadi, rejalashtiradi, vositalardan foydalanadi va natija beradi. Toʻgʻri qurilgan agent jamoangizning eng koʻp vaqt oladigan, takroriy ishlarini oʻz zimmasiga oladi.
+
+Agar biznesingizda shunday jarayon boʻlsa — [ariza qoldiring](/uz#contact), birga koʻrib chiqamiz.

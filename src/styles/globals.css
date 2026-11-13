@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./hero-bg.css";
+@import "./intro.css";
+@import "./hero.css";
+@import "./cursor.css";
+@import "./marquee.css";
+@import "./about.css";
+@import "./skills.css";
+@import "./glow.css";
+@import "./technologies.css";
+@import "./experience.css";
+@import "./projects.css";
+@import "./services.css";
+@import "./contact.css";
+@import "./blog.css";
+@import "./footer.css";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-light: var(--bg-light);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-light: var(--text-on-light);
+  --color-text-muted-on-light: var(--text-muted-on-light);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-peach: var(--accent-peach);
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --text-display: var(--text-display);
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --tracking-display: var(--tracking-display);
+  --tracking-tight: var(--tracking-tight);
+
+  --ease-brand: var(--ease-out);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: rgb(249 115 22 / 0.35);
+    color: var(--text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Halftone dot field; mask it with a radial gradient so it only lives inside glows. */
+  .halftone {
+    background-image: radial-gradient(
+      circle at center,
+      rgb(255 255 255 / 0.55) var(--halftone-dot),
+      transparent calc(var(--halftone-dot) + 0.5px)
+    );
+    background-size: var(--halftone-size) var(--halftone-size);
+  }
+
+  .text-gradient-cool {
+    background: var(--accent-cool);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Reduced motion: collapse every CSS animation/transition to its end state. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .container-x {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--container);
+    padding-inline: var(--gutter);
+  }
+
+  .section {
+    position: relative;
+    padding-block: clamp(5rem, 12vw, 10rem);
+  }
+
+  /*
+   * Off-screen sections are not rendered at all, which also pauses their
+   * always-on animations (rings, scenes, loops) until they scroll into view.
+   * `auto` in the intrinsic size remembers the real height after first render.
+   */
+  .section,
+  .projects,
+  .footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}

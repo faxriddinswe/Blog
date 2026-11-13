@@ -1,0 +1,169 @@
+{
+  "Metadata": {
+    "title": "Faxriddin Baxtiyorov — Python muhandisi va AI agentlar yaratuvchisi",
+    "description": "Python, backend arxitektura va AI agentlar. Biznesingiz uchun aqlli tizimlar yarataman.",
+    "ogAlt": "Faxriddin Baxtiyorov — portfolio",
+    "ogEyebrow": "Python · AI agentlar · Backend"
+  },
+  "Common": {
+    "skipToContent": "Asosiy mazmunga oʻtish"
+  },
+  "Nav": {
+    "label": "Asosiy menyu",
+    "home": "Bosh sahifa",
+    "about": "Men haqimda",
+    "projects": "Loyihalar",
+    "services": "Xizmatlar",
+    "blog": "Blog",
+    "contact": "Aloqa",
+    "experience": "Tajriba",
+    "menu": "Menyu",
+    "closeMenu": "Menyuni yopish",
+    "technologies": "Texnologiyalar"
+  },
+  "LangSwitch": {
+    "label": "Tilni tanlash",
+    "uz": "Oʻzbek tili",
+    "en": "Ingliz tili",
+    "switchTo": "{language}ga oʻtish"
+  },
+  "Hero": {
+    "eyebrow": "Toshkent · {years}+ yillik tajriba",
+    "ctaProjects": "Loyihalarni koʻrish",
+    "ctaApply": "Ariza qoldirish",
+    "scrollHint": "Pastga suring",
+    "rolesLabel": "Yoʻnalishlar",
+    "portraitAlt": "Faxriddin Baxtiyorovning surati"
+  },
+  "NotFound": {
+    "title": "Sahifa topilmadi",
+    "body": "Bu sahifa mavjud emas yoki koʻchirilgan. Bosh sahifaga qaytaylik.",
+    "back": "Bosh sahifaga"
+  },
+  "Preloader": {
+    "label": "Yuklanmoqda"
+  },
+  "Marquee": {
+    "label": "Men ishlatadigan texnologiyalar"
+  },
+  "About": {
+    "eyebrow": "Tanishuv",
+    "title": "Men haqimda",
+    "bio": "Men Faxriddin — toshkentlik backend muhandisman. 2024-yildan beri 20 dan ortiq loyihani yakunladim: frilans buyurtmalarda, xorijiy kompaniyalarda masofaviy va startaplarda backend muhandis sifatida ishladim. Hozir asosiy yoʻnalishim — AI agentlar: LLM, RAG va MCP vositalari yordamida maʼlumotni tushunadigan, qaror qabul qiladigan va ishni oʻzi bajaradigan tizimlar. Ularni Python, FastAPI va PostgreSQL asosida mustahkam qilib quraman. Ish bilan bir qatorda PDP Universityda dasturiy injiniring yoʻnalishida tahsil olaman.",
+    "statsLabel": "Raqamlarda"
+  },
+  "Skills": {
+    "eyebrow": "Koʻnikmalar",
+    "title": "Gʻoyadan ishlaydigan tizimgacha.",
+    "lead": "Har kuni ishlatadigan vositalarim — foizlar emas, amaldagi natija."
+  },
+  "Experience": {
+    "eyebrow": "Tajriba",
+    "title": "2024-yildan beri — haqiqiy loyihalarda.",
+    "present": "hozir",
+    "kinds": {
+      "work": "Ish",
+      "freelance": "Frilans",
+      "project": "Loyiha",
+      "education": "Taʼlim"
+    }
+  },
+  "Projects": {
+    "eyebrow": "Loyihalar",
+    "title": "Qilgan loyihalarim.",
+    "lead": "Har biri — aniq muammoga ishlaydigan yechim.",
+    "live": "Saytga oʻtish",
+    "github": "GitHub",
+    "demoBadge": "Demo",
+    "demoNote": "Bu namuna loyiha — haqiqiylari tez orada qoʻshiladi.",
+    "linkSoon": "Havola tez orada",
+    "stackLabel": "Texnologiyalar",
+    "screenshotAlt": "{name} interfeysi",
+    "allProjects": "Barcha loyihalarim",
+    "allTitle": "Barcha loyihalarim.",
+    "allLead": "Qilgan ishlarim — har biri aniq muammoga ishlaydigan yechim.",
+    "metaTitle": "Loyihalar",
+    "backHome": "Bosh sahifaga"
+  },
+  "Services": {
+    "eyebrow": "AI yechimlar",
+    "title": "Biznesingizni tizimlashtiramiz.",
+    "lead": "Qoʻl mehnati, tartibsiz yozishmalar va unutilgan buyurtmalar oʻrniga — oʻzi ishlaydigan tizim.",
+    "processTitle": "Qanday ishlaymiz",
+    "cta": "Ariza qoldirish"
+  },
+  "Contact": {
+    "eyebrow": "Aloqa",
+    "title": "Savollaringiz bormi?",
+    "lead": "Ismingiz, telefon raqamingiz va savolingizni qoldiring — ariza darhol menga Telegram orqali yetib keladi.",
+    "clockLabel": "Toshkent vaqti",
+    "clockZone": "UTC+5",
+    "socialsLabel": "Ijtimoiy tarmoqlar",
+    "fields": {
+      "name": "Ism familiya",
+      "namePlaceholder": "Masalan, Aziz Karimov",
+      "phone": "Telefon raqam",
+      "phonePlaceholder": "+998 90 123 45 67",
+      "message": "Savol yoki taklif",
+      "messagePlaceholder": "Qaysi biznesingizga yordam kerak? Qisqacha yozing.",
+      "website": "Veb-sayt"
+    },
+    "submit": "Yuborish",
+    "sending": "Yuborilmoqda…",
+    "errors": {
+      "nameMin": "Ism familiyani kiriting (kamida 2 ta harf)",
+      "nameMax": "Ism juda uzun",
+      "phoneInvalid": "Telefon raqamini toʻgʻri kiriting, masalan +998 90 123 45 67",
+      "messageMin": "Biroz batafsilroq yozing (kamida 10 belgi)",
+      "messageMax": "Matn juda uzun (2000 belgigacha)",
+      "invalid": "Maʼlumotlarni tekshirib, qayta urinib koʻring.",
+      "rate_limited": "Urinishlar soni juda koʻp. Bir necha daqiqadan soʻng qayta yuboring.",
+      "captcha": "Tekshiruvdan oʻtilmadi. Sahifani yangilab, qayta urinib koʻring.",
+      "delivery": "Arizani yuborib boʻlmadi. Birozdan soʻng qayta urinib koʻring yoki Telegram orqali yozing.",
+      "not_configured": "Forma hozircha sozlanmoqda. Iltimos, Telegram orqali yozing.",
+      "network": "Internetga ulanishda xatolik. Maʼlumotlaringiz saqlandi — qayta yuboring."
+    },
+    "successTitle": "Ariza yuborildi!",
+    "successBody": "Rahmat, {name}. Tez orada siz bilan bogʻlanaman.",
+    "again": "Yana ariza yuborish"
+  },
+  "Blog": {
+    "eyebrow": "Blog",
+    "title": "Maqolalar va fikrlar.",
+    "lead": "AI agentlar, backend va avtomatlashtirish haqida — amaliy tajribadan.",
+    "metaTitle": "Blog",
+    "readingTime": "{minutes} daqiqalik oʻqish",
+    "readMore": "Oʻqish",
+    "allPosts": "Barcha maqolalar",
+    "back": "Blogga qaytish",
+    "demoBadge": "Demo",
+    "demoNote": "Bu namuna maqola — haqiqiy maqolalar tez orada qoʻshiladi.",
+    "missingTitle": "Bu maqola hali oʻzbek tilida yoʻq",
+    "missingBody": "Uni boshqa tilda oʻqishingiz mumkin.",
+    "readIn": "Ingliz tilida oʻqish",
+    "empty": "Hozircha maqolalar yoʻq.",
+    "teaserTitle": "Blogdagi soʻnggi maqolalar",
+    "onlyIn": "Faqat {language}",
+    "languages": {
+      "uz": "oʻzbekcha",
+      "en": "inglizcha"
+    }
+  },
+  "Footer": {
+    "tagline": "AI agentlar, backend tizimlar va avtomatlashtirish.",
+    "navLabel": "Sayt boʻlimlari",
+    "socialsLabel": "Ijtimoiy tarmoqlar",
+    "localTime": "Toshkent vaqti",
+    "backToTop": "Tepaga qaytish",
+    "rights": "Barcha huquqlar himoyalangan.",
+    "sectionsTitle": "Boʻlimlar",
+    "socialTitle": "Ijtimoiy tarmoqlar",
+    "contactTitle": "Aloqa",
+    "location": "Toshkent, Oʻzbekiston"
+  },
+  "Technologies": {
+    "eyebrow": "Texnologiyalar",
+    "title": "Ishlatadigan texnologiyalarim.",
+    "lead": "Har kuni ishlatadigan vositalarim — yoʻnalishlar boʻyicha."
+  }
+}

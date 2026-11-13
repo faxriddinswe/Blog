@@ -1,13 +1,12 @@
 import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
-import { LightBeamFallback } from "@/components/motion/LightBeamFallback";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { RotatingText } from "@/components/motion/RotatingText";
 import { SplitRise } from "@/components/motion/SplitRise";
 import { GlowPillLink } from "@/components/ui/GlowPillLink";
 import { site, stats } from "@/content/site";
 import { HeroPortrait } from "./HeroPortrait";
-import { PortraitDecor } from "./PortraitDecor";
+import { HeroBackdrop } from "./HeroBackdrop";
 
 const years = stats.find((s) => s.id === "years")?.value ?? 0;
 const delay = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
@@ -17,15 +16,12 @@ export function Hero() {
 
   return (
     <section aria-labelledby="hero-title" className="hero">
-      <LightBeamFallback />
+      <HeroBackdrop />
 
       {/* Mobile: portrait on top, text centered below. ≥768px: text left, portrait right. */}
       <div className="hero__grid">
         <div className="hero__visual">
-          <div className="portrait-stage">
-            <PortraitDecor />
-            <HeroPortrait />
-          </div>
+          <HeroPortrait />
           <p className="portrait-badge glow-hover">
             <span aria-hidden="true" className="portrait-badge__dot" />
             <RotatingText items={site.portraitTitles} className="portrait-badge__text" />

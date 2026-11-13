@@ -4,6 +4,12 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Hero background (owner correction, 2026-11-13)
+
+- Owner meant the hero **background**, not decorations around the portrait: removed the status pill, stat cards and portrait halftone.
+- New `HeroBackdrop`: drifting warm / cool / violet aurora, halftone dot field, perspective grid floor flowing toward the viewer (desktop), glowing warm→cool horizon, edge vignette. Compositor-only motion; static under reduced motion.
+- Removed the leftover CSS beam fallback (`LightBeamFallback`, `beam.css`) and the floor shade that hid the new floor.
+
 ### Hero portrait decor (owner request, 2026-11-13)
 
 - Breathing halftone aura (warm/cool tinted dots) behind the portrait ring.

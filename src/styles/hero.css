@@ -41,8 +41,6 @@
 @media (min-width: 768px) {
   .hero {
     --ring: clamp(15rem, 27vw, 22rem);
-    /* Floor glow sits under the portrait column. */
-    --beam-x: 71%;
   }
 
   .hero__grid {
@@ -71,14 +69,6 @@
   .hero__ctas {
     justify-content: flex-start;
   }
-}
-
-/* The ring brings its own waterfall; nothing pours on below it (owner request). */
-.hero .beam__core,
-.hero .beam__flow,
-.hero .beam__splash,
-.hero .beam__halftone {
-  display: none;
 }
 
 /* ---------- Portrait in a round frame with a turning, glowing ring ---------- */
@@ -178,23 +168,6 @@
   }
 }
 
-/* Floor shade between portrait and headline for AA contrast on any photo. */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  z-index: 2;
-  height: 48%;
-  background: linear-gradient(
-    to top,
-    var(--bg) 30%,
-    color-mix(in srgb, var(--bg) 70%, transparent) 65%,
-    transparent
-  );
-  pointer-events: none;
-}
-
 /* ---------- Scroll hint ---------- */
 .hero__hint {
   position: absolute;
@@ -251,177 +224,6 @@
   .hero__hint-line,
   .portrait-ring__glow,
   .portrait-ring__halo {
-    animation: none;
-  }
-}
-
-/* ---------- Portrait stage: halftone aura, status pill, floating stats ---------- */
-.portrait-stage {
-  position: relative;
-  isolation: isolate;
-}
-
-/* Dot field behind the ring, fading out toward the edges; slow breathing. */
-.portrait-halftone {
-  position: absolute;
-  inset: -38%;
-  z-index: -1;
-  background-image: radial-gradient(
-    circle,
-    rgb(255 255 255 / 0.5) 1.1px,
-    transparent 1.7px
-  );
-  background-size: 9px 9px;
-  -webkit-mask: radial-gradient(closest-side, #000 30%, transparent 100%);
-  mask: radial-gradient(closest-side, #000 30%, transparent 100%);
-  opacity: 0.35;
-  animation: halftone-breathe 6s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-/* Warm/cool tint over the dots, so the aura matches the ring. */
-.portrait-halftone::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(45% 45% at 25% 70%, rgb(249 115 22 / 0.9), transparent 70%),
-    radial-gradient(45% 45% at 75% 30%, rgb(34 211 238 / 0.9), transparent 70%);
-  mix-blend-mode: multiply;
-}
-
-@keyframes halftone-breathe {
-  from {
-    opacity: 0.22;
-    transform: scale(0.96) rotate(-4deg);
-  }
-  to {
-    opacity: 0.42;
-    transform: scale(1.04) rotate(4deg);
-  }
-}
-
-/* Two classes: must beat `.glow-hover { position: relative }` (loaded later). */
-.portrait-stage .portrait-status,
-.portrait-stage .portrait-stat {
-  position: absolute;
-  z-index: 4;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  --glow-fill: color-mix(in srgb, var(--bg-elevated) 85%, transparent);
-  backdrop-filter: blur(12px);
-  white-space: nowrap;
-}
-
-.portrait-status {
-  top: 2%;
-  right: -14%;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.85rem;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--text);
-  animation: stat-float 5s ease-in-out infinite alternate;
-}
-
-.portrait-status__dot {
-  position: relative;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: #22c55e;
-}
-
-/* Expanding ping ring around the live dot. */
-.portrait-status__dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: #22c55e;
-  animation: status-ping 1.8s var(--ease-out) infinite;
-}
-
-@keyframes status-ping {
-  to {
-    opacity: 0;
-    transform: scale(2.8);
-  }
-}
-
-.portrait-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0.6rem 1rem;
-  border-radius: var(--radius-md);
-  animation: stat-float 6s ease-in-out infinite alternate;
-}
-
-.portrait-stat--a {
-  top: 42%;
-  left: -26%;
-  animation-delay: -2s;
-}
-
-.portrait-stat--b {
-  bottom: 14%;
-  right: -22%;
-  animation-delay: -4s;
-}
-
-.portrait-stat__value {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: var(--tracking-display);
-  background: linear-gradient(90deg, var(--accent-peach), var(--accent-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.portrait-stat__label {
-  margin-top: 0.2rem;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-}
-
-@keyframes stat-float {
-  from {
-    translate: 0 -6px;
-  }
-  to {
-    translate: 0 6px;
-  }
-}
-
-/* Phones and tablets: the ring is too small for the stat cards — they would
-   cover the face (the same numbers are in "Men haqimda") — so they hide and
-   the status pill sits centred above the ring. */
-@media (max-width: 1023px) {
-  .portrait-stage .portrait-stat {
-    display: none;
-  }
-
-  .portrait-stage .portrait-status {
-    top: -13%;
-    right: 0;
-    left: 0;
-    width: max-content;
-    margin-inline: auto;
-    font-size: 0.72rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .portrait-halftone,
-  .portrait-status,
-  .portrait-stat,
-  .portrait-status__dot::after {
     animation: none;
   }
 }
@@ -522,16 +324,6 @@
       animation-timeline: --hero;
       animation-range: exit 0% exit 60%;
     }
-
-    .beam__splash {
-      animation:
-        beam-breathe 5s var(--ease-out) infinite alternate,
-        beam-splash-travel linear both;
-      animation-timeline: auto, --hero;
-      animation-range:
-        normal,
-        exit 0% exit 100%;
-    }
   }
 }
 
@@ -545,11 +337,5 @@
   to {
     translate: 0 -10svh;
     opacity: 0;
-  }
-}
-
-@keyframes beam-splash-travel {
-  to {
-    translate: -50% 30vh;
   }
 }

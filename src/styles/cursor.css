@@ -142,3 +142,9 @@ html.has-cursor :is(input, textarea, select, [contenteditable="true"]) {
 .lang-switch:focus-visible .lang-switch__code--next {
   translate: 0 0;
 }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

@@ -4,6 +4,11 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Contact order on phones & Uzbek copy polish (owner request, 2026-11-13)
+
+- Contact is now three grid items: phones show heading → form → clock & socials; desktop layout unchanged.
+- Uzbek copy reviewed for natural phrasing (meta title, bio, leads, errors, labels; "Frilans", "masofaviy"). No facts changed.
+
 ### Hero background (owner correction, 2026-11-13)
 
 - Owner meant the hero **background**, not decorations around the portrait: removed the status pill, stat cards and portrait halftone.

@@ -153,3 +153,33 @@
     stroke-dashoffset: 0;
   }
 }
+
+/* ---------- Layout: heading → form → extras on phones ---------- */
+.contact-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 34rem);
+    grid-template-rows: auto 1fr;
+    column-gap: 5rem;
+    row-gap: 2.5rem;
+  }
+
+  .contact-grid__head {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .contact-grid__extra {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .contact-grid__form {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}

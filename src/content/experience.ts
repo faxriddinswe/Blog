@@ -23,7 +23,7 @@ export const timeline: TimelineEntry[] = [
     kind: "work",
     title: { uz: "Backend muhandis", en: "Backend Engineer" },
     context: {
-      uz: "Freelance · Xorijiy kompaniyalar (remote) · Startaplar",
+      uz: "Frilans · Xorijiy kompaniyalar (masofaviy) · Startaplar",
       en: "Freelance · International companies (remote) · Startups",
     },
     start: 2024,

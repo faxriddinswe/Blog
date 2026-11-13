@@ -4,6 +4,13 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### 🚀 Launch (2026-11-13)
+
+- `redesign` merged into `main`; faxriddinswe.uz now serves the v2 Next.js site (v1 kept in tag `v1-legacy`).
+- Launch incident (~10 min): the site looped between Vercel's apex → www domain redirect and our `www → apex` redirect in `next.config.ts`. Fixed by removing ours; the www/apex choice now lives only in Vercel domain settings.
+- Verified live: all pages 200, all v1 URLs redirect, `/lectures.html` temporarily → `/uz` (307), lead form → Telegram `{ ok: true }`.
+- Open: Vercel primary domain is `www`, while canonicals/sitemap use the apex — switch the primary domain to the apex in Vercel (see DEPLOYMENT.md).
+
 ### Contact order on phones & Uzbek copy polish (owner request, 2026-11-13)
 
 - Contact is now three grid items: phones show heading → form → clock & socials; desktop layout unchanged.

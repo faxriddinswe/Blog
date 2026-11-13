@@ -75,6 +75,8 @@ Current state: the Vercel project builds `main` as a **static site** (v1) and se
 2. Settings → **Build & Deployment**: check that _Build Command_, _Output Directory_ and _Install Command_ have **no override toggled on**. If any is on, tell me before changing it (it would affect `main` too).
 3. Settings → **Git**: confirm Preview deployments are enabled for non-production branches.
 
+**Note (2026-11-13):** the Vercel project does not auto-build non-production branches, so the Preview was created with the CLI from the linked folder: `npx vercel deploy` (no `--prod`). `.vercelignore` keeps `.env*` out of the upload. Preview is behind Vercel Authentication; test it with `npx vercel curl <path> --deployment <url>`. Verified there: all pages 200, all v1 redirects 308, `/api/lead` → Telegram `{ ok: true }`.
+
 **After pushing `redesign`:** open the Preview URL from the GitHub commit / Vercel dashboard; I test redirects, posts, form → Telegram, OG images there.
 
 **Go-live** (only after explicit "ha"): merge `redesign` → `main` (`git merge --no-ff redesign`), push `main`. Vercel builds production as Next.js. Then verify faxriddinswe.uz, `www` → apex, a v1 URL like `/post.html?post=linux-1`.

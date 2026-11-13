@@ -38,6 +38,8 @@ const nextConfig: NextConfig = {
       { source: "/building.html", destination: "/uz#projects", permanent: true },
       { source: "/resume.html", destination: "/cv/cv.pdf", permanent: true },
       { source: "/cv.pdf", destination: "/cv/cv.pdf", permanent: true },
+      // Temporary until the owner decides whether Lectures stays (docs/MIGRATION.md).
+      { source: "/lectures.html", destination: "/uz", permanent: false },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.faxriddinswe.uz" }],

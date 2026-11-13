@@ -68,10 +68,4 @@
   --stagger-char: 0.03s;
   --stagger-word: 0.09s;
   --stagger-item: 0.12s;
-
-  /* Preloader length — must equal preloader.total in src/lib/motion/tokens.ts */
-  --preloader-total: 1.5s;
-  --curtain-duration: 0.55s;
-  /* Set to --preloader-total by the head script when the preloader plays. */
-  --intro-delay: 0s;
 }

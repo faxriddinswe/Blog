@@ -12,17 +12,7 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-explicit-any": "error",
     },
   },
-  globalIgnores([
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-    // v1 static site, kept only until content migration is verified (docs/MIGRATION.md).
-    "js/**",
-    "css/**",
-    "posts/**",
-    "*.html",
-  ]),
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
 ]);
 
 export default eslintConfig;

@@ -6,8 +6,6 @@ import { DesktopEnhancements } from "@/components/layout/DesktopEnhancements";
 import { Grain } from "@/components/layout/Grain";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/sections/footer/Footer";
-import { Preloader } from "@/components/layout/Preloader";
-import { PreloaderScript } from "@/components/layout/PreloaderScript";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { routing } from "@/i18n/routing";
 import { inter, jetbrainsMono, spaceGrotesk } from "@/lib/fonts";
@@ -62,15 +60,9 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
-      // The head script sets data-preloader before hydration.
-      suppressHydrationWarning
     >
-      <head>
-        <PreloaderScript />
-      </head>
       <body className="min-h-dvh">
         <NextIntlClientProvider>
-          <Preloader />
           <DesktopEnhancements />
           <SkipLink />
           <Navbar />

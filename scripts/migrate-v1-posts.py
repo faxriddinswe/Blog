@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""One-off v1 → v2 post migration (kept for reference; see docs/MIGRATION.md).
+"""One-off v1 → v2 post migration (already run; kept for reference).
+
+The v1 sources (posts/, js/posts.js) were removed after launch — to rerun,
+check them out from tag `v1-legacy` first. See docs/MIGRATION.md.
 
 Reads posts/<slug>.md + metadata from js/posts.js and writes
 src/content/blog/uz/<slug>.mdx. Post text is NOT rewritten — only MDX

@@ -4,6 +4,13 @@ All notable changes to this project. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### Faster first load & v1 cleanup (owner request, 2026-11-13)
+
+- Preloader removed (it held first visits for 1.5 s); hero intro shortened to quick fade-ups (0.6 s, near-zero delay). Owner priority: speed over the intro (deviation from brief §9.1).
+- Portrait `sizes` match the ring, so phones fetch a smaller image.
+- Mobile Speed Index 3.7 s → 1.7 s (simulated) / Perf 98, LCP 1.8 s (devtools throttling); desktop 99.
+- v1 files deleted from the repo (`*.html`, `css/`, `js/`, `posts/`, `images/`) — all migrated; v1 remains in tag `v1-legacy`.
+
 ### 🚀 Launch (2026-11-13)
 
 - `redesign` merged into `main`; faxriddinswe.uz now serves the v2 Next.js site (v1 kept in tag `v1-legacy`).

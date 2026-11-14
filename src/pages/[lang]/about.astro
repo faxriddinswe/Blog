@@ -166,9 +166,18 @@ const ext = t(lang, "external");
             latest ? (
               <a class="article" href={latest.url} target="_blank" rel="noopener noreferrer">
                 <div class="article__cover">
-                  {latest.cover && <Image src={latest.cover} alt="" width={640} height={400} />}
+                  {latest.cover ? (
+                    <Image src={latest.cover} alt="" width={640} height={400} />
+                  ) : (
+                    <span class="article__gen">
+                      <Icon name={latest.platform} size={36} />
+                    </span>
+                  )}
                 </div>
                 <h3 class="find__name">{latest.title[lang]}</h3>
+                <p class="muted small">
+                  {latest.platform === "medium" ? "Medium" : "LinkedIn"} · {formatDate(lang, latest.date)}
+                </p>
                 <span class="sr-only">({ext})</span>
               </a>
             ) : (
@@ -180,7 +189,6 @@ const ext = t(lang, "external");
               </div>
             )
           }
-          <p class="muted small">Medium · LinkedIn</p>
           <div class="find__actions">
             <a class="btn btn--accent" href={localePath(lang, "blog")}>
               {t(lang, "about.allArticles")}
@@ -604,6 +612,22 @@ const ext = t(lang, "external");
     border-radius: 12px;
     overflow: hidden;
     background: var(--surface-2);
+  }
+
+  .article__gen {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    color: var(--accent-text);
+    background:
+      radial-gradient(90% 80% at 100% 0%, var(--accent-soft), transparent 60%),
+      linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+      linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+      var(--surface-2);
+  }
+
+  .article:hover .find__name {
+    color: var(--accent-text);
   }
 
   .article__cover--empty {

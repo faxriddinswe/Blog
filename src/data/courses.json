@@ -1,0 +1,77 @@
+[
+  {
+    "id": "pdp-university",
+    "order": 1,
+    "name": "PDP University",
+    "url": "https://pdp.university",
+    "monogram": "PDP",
+    "color": "#2F6BFF"
+  },
+  {
+    "id": "42-uz",
+    "order": 2,
+    "name": "42.uz — Express Backend",
+    "url": "https://42.uz",
+    "monogram": "42",
+    "color": "#3DDC97"
+  },
+  {
+    "id": "anthropic-academy",
+    "order": 3,
+    "name": "Anthropic Academy",
+    "url": "https://anthropic.skilljar.com",
+    "icon": "anthropic",
+    "monogram": "A",
+    "color": "#D97757"
+  },
+  {
+    "id": "huawei-ict",
+    "order": 4,
+    "name": "Huawei ICT Academy",
+    "url": "https://e.huawei.com/en/talent/",
+    "icon": "huawei",
+    "monogram": "H",
+    "color": "#C7000B"
+  },
+  {
+    "id": "simplilearn",
+    "order": 5,
+    "name": "Simplilearn SkillUP",
+    "url": "https://www.simplilearn.com/skillup-free-online-courses",
+    "monogram": "S",
+    "color": "#1C9BD7"
+  },
+  {
+    "id": "hackerrank",
+    "order": 6,
+    "name": "HackerRank",
+    "url": "https://www.hackerrank.com/skills-verification",
+    "icon": "hackerrank",
+    "monogram": "H",
+    "color": "#00EA64"
+  },
+  {
+    "id": "debocha",
+    "order": 7,
+    "name": "Debocha — Startup School",
+    "url": "https://debocha.uz",
+    "monogram": "D",
+    "color": "#F25A1F"
+  },
+  {
+    "id": "ustoz-ai",
+    "order": 8,
+    "name": "Ustoz AI",
+    "url": "https://ustoz.ai",
+    "monogram": "U",
+    "color": "#7B5CFF"
+  },
+  {
+    "id": "ibrat",
+    "order": 9,
+    "name": "Ibrat Academy",
+    "url": "https://ibratfarzandlari.uz",
+    "monogram": "IA",
+    "color": "#F26B1D"
+  }
+]

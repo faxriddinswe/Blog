@@ -1,0 +1,157 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Icon, { type IconName } from "@/components/Icon.astro";
+import { t, type Locale } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+  project: CollectionEntry<"projects">["data"];
+}
+const { lang, project } = Astro.props;
+const glyphs: Record<typeof project.glyph, IconName> = {
+  bot: "bot",
+  agent: "sparkles",
+  web: "globe",
+  shop: "cart",
+  edu: "cap",
+  api: "server",
+};
+const coverHref = project.live ?? project.github;
+const coverLabel = project.live
+  ? t(lang, "projects.openSite", { name: project.name })
+  : t(lang, "projects.openRepo", { name: project.name });
+const ext = t(lang, "external");
+---
+
+<article class="pcard card">
+  <a class="cover" href={coverHref} target="_blank" rel="noopener noreferrer" aria-label={`${coverLabel} (${ext})`}>
+    {/* Generated cover — TODO(owner): real screenshots (see TODO-CONTENT.md). */}
+    <span class="cover__glyph" aria-hidden="true"><Icon name={glyphs[project.glyph]} size={30} /></span>
+    <span class="cover__name" aria-hidden="true">{project.name}</span>
+    <span class="cover__stack" aria-hidden="true">
+      {project.stack.slice(0, 3).map((s) => <span>{s}</span>)}
+    </span>
+  </a>
+  <div class="pcard__body">
+    <h3 class="pcard__title">{project.name}</h3>
+    <p class="pcard__desc muted">{project.description[lang]}</p>
+    <div class="pcard__actions">
+      {
+        project.live && (
+          <a class="btn btn--accent" href={project.live} target="_blank" rel="noopener noreferrer">
+            {t(lang, "projects.live")}
+            <Icon name="external" />
+            <span class="sr-only">({ext})</span>
+          </a>
+        )
+      }
+      <a class="btn" href={project.github} target="_blank" rel="noopener noreferrer">
+        GitHub
+        <Icon name="external" />
+        <span class="sr-only">({ext})</span>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .pcard {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .cover {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    aspect-ratio: 16 / 10;
+    padding: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    background:
+      radial-gradient(90% 80% at 100% 0%, var(--accent-soft), transparent 60%),
+      linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+      linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+      var(--surface-2);
+    transition: transform var(--t);
+  }
+
+  .cover:hover {
+    transform: scale(1.01);
+  }
+
+  .cover__glyph {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 46px;
+    height: 46px;
+    margin-bottom: auto;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent-text);
+  }
+
+  .cover__name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+  }
+
+  /* One row only; extra chips fade out instead of pushing into the title. */
+  .cover__stack {
+    display: flex;
+    gap: 6px;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+
+  .cover__stack span {
+    flex: none;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--accent-line);
+    background: var(--surface);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .pcard__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 14px 6px 6px;
+  }
+
+  .pcard__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .pcard__desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .pcard__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 14px;
+  }
+</style>

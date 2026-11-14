@@ -1,0 +1,147 @@
+[
+  {
+    "id": "nargiza-brend-bot",
+    "order": 1,
+    "name": "Nargiza Brend — Shop Assistant Bot",
+    "type": "freelance",
+    "glyph": "bot",
+    "description": {
+      "uz": "Oilaviy kiyim doʻkonining qogʻoz qarz daftarini almashtiruvchi Telegram bot: qarzlar hisobi, avtomatik eslatmalar va oʻzbekcha matn hamda ovozli xabarni tushunadigan AI agent.",
+      "en": "A Telegram bot that replaces a family clothing shop’s paper debt notebook: a debt ledger, automatic reminders and an AI agent that understands Uzbek text and voice messages."
+    },
+    "stack": [
+      "Python",
+      "Telegram Bot API",
+      "Gemini",
+      "SQLAlchemy",
+      "Docker"
+    ],
+    "github": "https://github.com/faxriddinswe/Nargiza-Brend-Shop-AI-agent-Bot"
+  },
+  {
+    "id": "qarzai",
+    "order": 2,
+    "name": "QarzAI (Depth-AI)",
+    "type": "personal",
+    "glyph": "agent",
+    "description": {
+      "uz": "Nasiyaga savdo qiluvchi bizneslar uchun qarz undirishni avtomatlashtiruvchi multi-tenant SaaS: oʻzbek va rus tillarida AI muloqot, toʻlov vaʼdalari va boʻlib toʻlashni qayta tuzish.",
+      "en": "A multi-tenant SaaS that automates debt collection for businesses selling on credit: AI outreach in Uzbek and Russian, payment-promise tracking and installment restructuring."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "Next.js"
+    ],
+    "github": "https://github.com/faxriddinswe/Depth-AI"
+  },
+  {
+    "id": "sherzod-english",
+    "order": 3,
+    "name": "Sherzod English",
+    "type": "freelance",
+    "glyph": "edu",
+    "description": {
+      "uz": "Ingliz tili ustozi uchun ochiq sayt, ustoz va oʻquvchi kabinetlari; Telegram bildirishnomalari PostgreSQL outbox worker orqali yuboriladi.",
+      "en": "A public website with teacher and student dashboards for an English teacher; Telegram notifications are sent through a PostgreSQL outbox worker."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "TypeScript"
+    ],
+    "github": "https://github.com/faxriddinswe/English_project"
+  },
+  {
+    "id": "yuksalish-edu",
+    "order": 4,
+    "name": "Yuksalish Edu",
+    "type": "freelance",
+    "glyph": "edu",
+    "description": {
+      "uz": "Oʻquv markazi uchun ommaviy sayt, CRM hamda oʻquvchi, ota-ona va xodim kabinetlari.",
+      "en": "A public website, CRM and student, parent and staff dashboards for a learning centre."
+    },
+    "stack": [
+      "Django REST",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Next.js"
+    ],
+    "github": "https://github.com/faxriddinswe/Yuksalish-Edu"
+  },
+  {
+    "id": "bozor",
+    "order": 5,
+    "name": "Bozor — E-commerce",
+    "type": "personal",
+    "glyph": "shop",
+    "description": {
+      "uz": "Fullstack internet-doʻkon: JWT bilan roʻyxatdan oʻtish, mahsulotlarni qidirish va saralash, savat va buyurtmalar.",
+      "en": "A full-stack online store: JWT sign-up and login, product search and sorting, a cart and orders."
+    },
+    "stack": [
+      "FastAPI",
+      "SQLite",
+      "JWT",
+      "JavaScript"
+    ],
+    "github": "https://github.com/faxriddinswe/E-Commerce_Bozor"
+  },
+  {
+    "id": "postflow",
+    "order": 6,
+    "name": "PostFlow",
+    "type": "personal",
+    "glyph": "api",
+    "description": {
+      "uz": "Postlarni Telegram kanalingizga tez joylash uchun platforma: hisob, postlar tahriri va Bot API orqali nashr.",
+      "en": "A platform for publishing posts to your Telegram channel fast: accounts, post editing and publishing through the Bot API."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Telegram Bot API",
+      "JWT"
+    ],
+    "github": "https://github.com/faxriddinswe/PostFlow"
+  },
+  {
+    "id": "namoz-bot",
+    "order": 7,
+    "name": "Namoz Userbot",
+    "type": "personal",
+    "glyph": "bot",
+    "description": {
+      "uz": "Telegram kanallarini real vaqtda kuzatib, namoz vaqtlari haqidagi postlarni kalit soʻzlar boʻyicha topadi va kerakli joyga darhol yuboradi.",
+      "en": "Watches Telegram channels in real time, finds prayer-time posts by keyword and forwards them instantly."
+    },
+    "stack": [
+      "Python",
+      "Telethon",
+      "asyncio"
+    ],
+    "github": "https://github.com/faxriddinswe/namoz_bot"
+  },
+  {
+    "id": "techhouse",
+    "order": 8,
+    "name": "TechHouse",
+    "type": "personal",
+    "glyph": "web",
+    "description": {
+      "uz": "Maishiy texnika sotuvchi doʻkon uchun sayt va uning backend qismi.",
+      "en": "A website for a household-appliance store, with its own backend."
+    },
+    "stack": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "github": "https://github.com/faxriddinswe/Techhouse-backend"
+  }
+]

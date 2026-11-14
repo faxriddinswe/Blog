@@ -1,0 +1,570 @@
+---
+import Icon from "@/components/Icon.astro";
+import { site } from "@/data/site";
+import { localePath, locales, t, type Locale, type PageId } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+  page: PageId | "404";
+}
+
+const { lang, page } = Astro.props;
+
+const main: { id: PageId; key: Parameters<typeof t>[1] }[] = [
+  { id: "about", key: "nav.about" },
+  { id: "projects", key: "nav.projects" },
+  { id: "blog", key: "nav.blog" },
+  { id: "lectures", key: "nav.lectures" },
+];
+const learning: { id: PageId; key: Parameters<typeof t>[1] }[] = [
+  { id: "courses", key: "nav.courses" },
+  { id: "certificates", key: "nav.certificates" },
+  { id: "offers", key: "nav.offers" },
+];
+const learningActive = learning.some((l) => l.id === page);
+/** The language switch keeps the current page; the 404 page falls back to home. */
+const target: PageId = page === "404" ? "home" : page;
+const current = (id: PageId) => (id === page ? "page" : undefined);
+---
+
+<header class="header">
+  <div class="container header__row">
+    <a class="brand" href={localePath(lang)} aria-label={`${site.name} — ${t(lang, "nav.home")}`}>
+      <span class="brand__mark" aria-hidden="true">{site.monogram}</span>
+      <span class="brand__name">{site.name}</span>
+    </a>
+
+    <nav class="nav" aria-label={t(lang, "nav.label")}>
+      <ul class="nav__list">
+        {
+          main.map((item) => (
+            <li>
+              <a class="nav__link" href={localePath(lang, item.id)} aria-current={current(item.id)}>
+                {t(lang, item.key)}
+              </a>
+            </li>
+          ))
+        }
+        <li class="dropdown" data-dropdown>
+          <button
+            class:list={["nav__link", "dropdown__btn", { "is-active": learningActive }]}
+            type="button"
+            aria-expanded="false"
+            aria-controls="learning-menu"
+          >
+            {t(lang, "nav.learning")}
+            <Icon name="chevron" size={16} class="dropdown__chev" />
+          </button>
+          <ul class="dropdown__menu surface" id="learning-menu" hidden>
+            {
+              learning.map((item) => (
+                <li>
+                  <a class="dropdown__item" href={localePath(lang, item.id)} aria-current={current(item.id)}>
+                    {t(lang, item.key)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header__tools">
+      <div class="lang" role="group" aria-label={t(lang, "lang.label")}>
+        {
+          locales.map((l) => (
+            <a
+              class="lang__seg"
+              href={localePath(l, target)}
+              hreflang={l}
+              lang={l}
+              aria-current={l === lang ? "true" : undefined}
+              data-set-lang={l}
+            >
+              {l.toUpperCase()}
+            </a>
+          ))
+        }
+      </div>
+      <button
+        class="icon-btn theme-btn"
+        type="button"
+        data-theme-toggle
+        data-label-light={t(lang, "theme.toLight")}
+        data-label-dark={t(lang, "theme.toDark")}
+        aria-label={t(lang, "theme.toLight")}
+      >
+        <Icon name="sun" class="i-sun" />
+        <Icon name="moon" class="i-moon" />
+      </button>
+      <button
+        class="icon-btn menu-btn"
+        type="button"
+        aria-label={t(lang, "nav.openMenu")}
+        aria-haspopup="dialog"
+        aria-controls="mobile-menu"
+        data-menu-open
+      >
+        <Icon name="menu" />
+      </button>
+    </div>
+  </div>
+
+  <dialog class="sheet" id="mobile-menu" aria-label={t(lang, "nav.menu")}>
+    <div class="sheet__inner">
+      <div class="sheet__head">
+        <span class="brand">
+          <span class="brand__mark" aria-hidden="true">{site.monogram}</span>
+          <span class="brand__name">{site.name}</span>
+        </span>
+        <button class="icon-btn" type="button" aria-label={t(lang, "nav.closeMenu")} data-menu-close>
+          <Icon name="close" />
+        </button>
+      </div>
+      <nav aria-label={t(lang, "nav.label")}>
+        <ul class="sheet__list">
+          {
+            [{ id: "home" as PageId, key: "nav.home" as const }, ...main].map((item) => (
+              <li>
+                <a class="sheet__link" href={localePath(lang, item.id)} aria-current={current(item.id)}>
+                  {t(lang, item.key)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="sheet__group eyebrow">{t(lang, "nav.learning")}</p>
+        <ul class="sheet__list">
+          {
+            learning.map((item) => (
+              <li>
+                <a class="sheet__link" href={localePath(lang, item.id)} aria-current={current(item.id)}>
+                  {t(lang, item.key)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div class="lang lang--sheet" role="group" aria-label={t(lang, "lang.label")}>
+        {
+          locales.map((l) => (
+            <a
+              class="lang__seg"
+              href={localePath(l, target)}
+              hreflang={l}
+              lang={l}
+              aria-current={l === lang ? "true" : undefined}
+              data-set-lang={l}
+            >
+              {l === "uz" ? "Oʻzbekcha" : "English"}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </dialog>
+</header>
+
+<script>
+  const root = document.documentElement;
+
+  // Theme toggle — the pre-paint script in <head> already applied the saved theme.
+  const themeBtn = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+  const syncThemeLabel = () => {
+    if (!themeBtn) return;
+    const light = root.dataset.theme === "light";
+    themeBtn.setAttribute("aria-label", (light ? themeBtn.dataset.labelDark : themeBtn.dataset.labelLight) ?? "");
+  };
+  syncThemeLabel();
+  themeBtn?.addEventListener("click", () => {
+    const next = root.dataset.theme === "light" ? "dark" : "light";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+    syncThemeLabel();
+  });
+
+  // Remember the language the visitor picks; "/" uses it on the next visit.
+  document.querySelectorAll<HTMLAnchorElement>("[data-set-lang]").forEach((a) =>
+    a.addEventListener("click", () => {
+      try {
+        localStorage.setItem("lang", a.dataset.setLang ?? "");
+      } catch {}
+    }),
+  );
+
+  // Learning dropdown: click, keyboard (arrows / Esc), closes on outside click and focus loss.
+  const dropdown = document.querySelector<HTMLElement>("[data-dropdown]");
+  const ddBtn = dropdown?.querySelector<HTMLButtonElement>("button");
+  const ddMenu = dropdown?.querySelector<HTMLElement>("ul");
+  if (dropdown && ddBtn && ddMenu) {
+    const items = () => [...ddMenu.querySelectorAll<HTMLAnchorElement>("a")];
+    const setOpen = (open: boolean, focus?: "first" | "last" | "button") => {
+      ddBtn.setAttribute("aria-expanded", String(open));
+      ddMenu.hidden = !open;
+      if (focus === "first") items()[0]?.focus();
+      if (focus === "last") items().at(-1)?.focus();
+      if (focus === "button") ddBtn.focus();
+    };
+    ddBtn.addEventListener("click", () => setOpen(ddBtn.getAttribute("aria-expanded") !== "true"));
+    ddBtn.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setOpen(true, "first");
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setOpen(true, "last");
+      }
+    });
+    ddMenu.addEventListener("keydown", (e) => {
+      const list = items();
+      const i = list.indexOf(document.activeElement as HTMLAnchorElement);
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        list[(i + 1) % list.length]?.focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        list[(i - 1 + list.length) % list.length]?.focus();
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        list[0]?.focus();
+      } else if (e.key === "End") {
+        e.preventDefault();
+        list.at(-1)?.focus();
+      }
+    });
+    dropdown.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !ddMenu.hidden) {
+        e.stopPropagation();
+        setOpen(false, "button");
+      }
+    });
+    dropdown.addEventListener("focusout", (e) => {
+      if (!dropdown.contains(e.relatedTarget as Node | null)) setOpen(false);
+    });
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target as Node)) setOpen(false);
+    });
+  }
+
+  // Mobile sheet: a modal <dialog> gives focus trapping and Esc for free.
+  const sheet = document.querySelector<HTMLDialogElement>("#mobile-menu");
+  const openBtn = document.querySelector<HTMLButtonElement>("[data-menu-open]");
+  if (sheet && openBtn) {
+    openBtn.addEventListener("click", () => {
+      sheet.showModal();
+      root.classList.add("sheet-open");
+    });
+    sheet.addEventListener("close", () => {
+      root.classList.remove("sheet-open");
+      openBtn.focus();
+    });
+    sheet.querySelector("[data-menu-close]")?.addEventListener("click", () => sheet.close());
+    // A tap on the backdrop lands on the <dialog> itself, outside its inner panel.
+    sheet.addEventListener("click", (e) => {
+      if (e.target === sheet) sheet.close();
+    });
+    sheet.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => sheet.close()));
+    // Rotating to desktop width closes the sheet.
+    matchMedia("(min-width: 960px)").addEventListener("change", (e) => {
+      if (e.matches && sheet.open) sheet.close();
+    });
+  }
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding-top: env(safe-area-inset-top);
+    transition: background-color var(--t), border-color var(--t);
+  }
+
+  .header__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: var(--header-h);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  .brand__mark {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+  }
+
+  .brand__name {
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 36px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color var(--t), color var(--t);
+  }
+
+  .nav__link:hover {
+    color: var(--text);
+  }
+
+  .nav__link[aria-current="page"],
+  .nav__link.is-active {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+
+  .dropdown {
+    position: relative;
+  }
+
+  :global(.dropdown__chev) {
+    transition: transform var(--t);
+  }
+
+  .dropdown__btn[aria-expanded="true"] :global(.dropdown__chev) {
+    transform: rotate(180deg);
+  }
+
+  .dropdown__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    translate: -50% 0;
+    min-width: 200px;
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.25);
+  }
+
+  .dropdown__item {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 12px;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .dropdown__item:hover,
+  .dropdown__item:focus-visible {
+    background: var(--surface-2);
+    color: var(--text);
+  }
+
+  .dropdown__item[aria-current="page"] {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+
+  .header__tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .lang {
+    display: inline-flex;
+    padding: 3px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: background-color var(--t), border-color var(--t);
+  }
+
+  .lang__seg {
+    display: grid;
+    place-items: center;
+    min-width: 40px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 9px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    transition: background-color var(--t), color var(--t);
+  }
+
+  .lang__seg:hover {
+    color: var(--text);
+  }
+
+  .lang__seg[aria-current="true"] {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .theme-btn {
+    border-radius: 50%;
+  }
+
+  :global([data-theme="light"]) .theme-btn :global(.i-sun),
+  :global([data-theme="dark"]) .theme-btn :global(.i-moon) {
+    display: none;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  /* ---------- Mobile sheet ---------- */
+  .sheet {
+    width: 100%;
+    max-width: none;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 0 24px 24px;
+    background: var(--bg);
+    color: var(--text);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .sheet::backdrop {
+    background: rgb(0 0 0 / 0.55);
+    backdrop-filter: blur(2px);
+  }
+
+  .sheet__inner {
+    padding: calc(env(safe-area-inset-top) + 14px) max(16px, env(safe-area-inset-right)) 24px
+      max(16px, env(safe-area-inset-left));
+  }
+
+  .sheet__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .sheet__list {
+    display: grid;
+    gap: 4px;
+  }
+
+  .sheet__link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .sheet__link:hover {
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  .sheet__link[aria-current="page"] {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+
+  .sheet__group {
+    margin: 16px 14px 8px;
+  }
+
+  .lang--sheet {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .lang--sheet .lang__seg {
+    flex: 1;
+    height: 44px;
+    font-size: 14px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .sheet[open] {
+      animation: sheet-in 0.25s var(--ease);
+    }
+  }
+
+  @keyframes sheet-in {
+    from {
+      transform: translateY(-12px);
+      opacity: 0;
+    }
+  }
+
+  :global(.sheet-open) {
+    overflow: hidden;
+  }
+
+  /* Desktop nav needs ~960px; below that the sheet takes over. */
+  @media (max-width: 959px) {
+    .nav {
+      display: none;
+    }
+
+    .menu-btn {
+      display: inline-grid;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .header__tools > .lang {
+      display: none;
+    }
+  }
+
+  @media (max-width: 359px) {
+    .brand__name {
+      font-size: 15px;
+    }
+  }
+</style>

@@ -1,45 +1,23 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+node_modules/
+dist/
+.astro/
+.vercel/
 .DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
+*.log
 .env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
 !.env.example
 
-# visual QA output
-/.shots/
+# QA output
+/qa/screenshots/
+/test-results/
+/playwright-report/
+
+# Raw content that must never be published (personal data / not an issued certificate)
+/content/certificates/IELTS.jpg
+/content/certificates/cr1.jpg
+# Corrupted upload; the site uses public/cv/resume.pdf
+/content/profile/*.pdf
+
+# Offer letters show signatures / ID numbers — kept out of git until the owner approves publishing
+/content/offer-letters/*.jpg
+/src/assets/offers/

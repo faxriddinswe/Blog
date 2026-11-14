@@ -1,0 +1,2 @@
+# Format: nom | sayt havolasi | logo fayl nomi (shu papkada, kvadrat)
+PDP University | https://pdp.uz | pdp.png

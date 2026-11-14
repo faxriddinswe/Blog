@@ -1,0 +1,154 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import PageIntro from "@/components/PageIntro.astro";
+import { langPaths, t, type Locale } from "@/i18n/ui";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Locale;
+
+const lectures = (await getCollection("lectures")).sort((a, b) => a.data.order - b.data.order);
+const ext = t(lang, "external");
+/** "20:52" → "PT20M52S" for <time datetime>. */
+const isoDuration = (d: string) => {
+  const parts = d.split(":").map(Number);
+  const [h, m, s] = parts.length === 3 ? parts : [0, ...parts];
+  return `PT${h ? `${h}H` : ""}${m}M${s}S`;
+};
+---
+
+<Base lang={lang} page="lectures" title={t(lang, "lectures.meta.title")} description={t(lang, "lectures.meta.description")}>
+  <div class="container page">
+    <PageIntro title={t(lang, "lectures.h1")} lead={t(lang, "lectures.lead")} />
+
+    <div class="grid videos section">
+      {
+        lectures.map(({ data }) => {
+          const url = `https://www.youtube.com/watch?v=${data.youtubeId}`;
+          return (
+            <article class="video card">
+              <a class="thumb" href={url} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                {/* Linking out instead of an iframe keeps the page light. */}
+                <img
+                  src={`https://i.ytimg.com/vi/${data.youtubeId}/hqdefault.jpg`}
+                  srcset={`https://i.ytimg.com/vi/${data.youtubeId}/mqdefault.jpg 320w, https://i.ytimg.com/vi/${data.youtubeId}/hqdefault.jpg 480w, https://i.ytimg.com/vi/${data.youtubeId}/sddefault.jpg 640w`}
+                  sizes="(min-width: 960px) 580px, 92vw"
+                  width="480"
+                  height="360"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="play">
+                  <Icon name="play" size={28} />
+                </span>
+                <span class="duration">
+                  <span class="sr-only">{t(lang, "lectures.duration")}: </span>
+                  <time datetime={isoDuration(data.duration)}>{data.duration}</time>
+                </span>
+              </a>
+              <div class="video__body">
+                <h2 class="video__title">{data.title[lang]}</h2>
+                <p class="muted">{data.description[lang]}</p>
+                <a class="btn btn--accent video__btn" href={url} target="_blank" rel="noopener noreferrer">
+                  <Icon name="youtube" />
+                  {t(lang, "lectures.watch")}
+                  <Icon name="external" />
+                  <span class="sr-only">({ext})</span>
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .videos {
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    margin-top: 40px;
+  }
+
+  .video {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .thumb {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+
+  /* hqdefault is 4:3 with letterbox bars; cover-crop to 16:9. */
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--t);
+  }
+
+  .thumb:hover img {
+    transform: scale(1.03);
+  }
+
+  .play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--on-accent);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+    padding-left: 3px;
+  }
+
+  .duration {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: rgb(0 0 0 / 0.78);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .video__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 8px 8px;
+  }
+
+  .video__title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .video__btn {
+    align-self: flex-start;
+    margin-top: auto;
+    margin-block-start: 12px;
+  }
+
+  @media (max-width: 767px) {
+    .videos {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

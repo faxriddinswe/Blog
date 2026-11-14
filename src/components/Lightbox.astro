@@ -1,0 +1,85 @@
+---
+import Icon from "@/components/Icon.astro";
+import { t, type Locale } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+---
+
+{/* One shared modal per page. Triggers: <button data-lightbox data-src data-alt data-w data-h>. */}
+<dialog class="lightbox" aria-label={t(lang, "lightbox.close")} data-lightbox-dialog>
+  <button class="icon-btn lightbox__close" type="button" aria-label={t(lang, "lightbox.close")} data-lightbox-close>
+    <Icon name="close" />
+  </button>
+  <img class="lightbox__img" alt="" />
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("[data-lightbox-dialog]");
+  const img = dialog?.querySelector<HTMLImageElement>("img");
+  if (dialog && img) {
+    let opener: HTMLElement | null = null;
+    document.querySelectorAll<HTMLButtonElement>("[data-lightbox]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        opener = btn;
+        img.src = btn.dataset.src ?? "";
+        img.alt = btn.dataset.alt ?? "";
+        img.width = Number(btn.dataset.w);
+        img.height = Number(btn.dataset.h);
+        dialog.setAttribute("aria-label", btn.dataset.alt ?? "");
+        dialog.showModal();
+        document.documentElement.classList.add("sheet-open");
+      }),
+    );
+    dialog.querySelector("[data-lightbox-close]")?.addEventListener("click", () => dialog.close());
+    // Clicking anywhere outside the image (the backdrop) closes it.
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      document.documentElement.classList.remove("sheet-open");
+      opener?.focus();
+    });
+  }
+</script>
+
+<style>
+  .lightbox {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: max(56px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+    border: 0;
+    background: transparent;
+  }
+
+  .lightbox[open] {
+    display: grid;
+    place-items: center;
+  }
+
+  .lightbox::backdrop {
+    background: rgb(5 8 12 / 0.88);
+  }
+
+  .lightbox__img {
+    max-width: min(100%, 1400px);
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgb(0 0 0 / 0.5);
+  }
+
+  .lightbox__close {
+    position: fixed;
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+    z-index: 1;
+  }
+</style>

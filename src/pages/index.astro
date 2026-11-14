@@ -1,0 +1,44 @@
+---
+/**
+ * "/" — static site, so language choice happens in the browser:
+ * saved choice (localStorage "lang") → browser language → Uzbek.
+ * Without JS, the meta refresh takes visitors to /uz.
+ */
+---
+
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Faxriddin Baxtiyorov</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://faxriddinswe.uz/uz" />
+    <link rel="alternate" hreflang="uz" href="https://faxriddinswe.uz/uz" />
+    <link rel="alternate" hreflang="en" href="https://faxriddinswe.uz/en" />
+    <link rel="alternate" hreflang="x-default" href="https://faxriddinswe.uz/uz" />
+    <script is:inline>
+      (function () {
+        var lang;
+        try { lang = localStorage.getItem("lang"); } catch (e) {}
+        if (lang !== "uz" && lang !== "en") {
+          var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+          lang = "uz";
+          for (var i = 0; i < prefs.length; i++) {
+            var p = String(prefs[i]).toLowerCase();
+            if (p.indexOf("uz") === 0) { lang = "uz"; break; }
+            if (p.indexOf("en") === 0) { lang = "en"; break; }
+          }
+        }
+        location.replace("/" + lang + location.search + location.hash);
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=/uz" /></noscript>
+    <style>
+      body { margin: 0; background: #0a0e14; }
+    </style>
+  </head>
+  <body>
+    <noscript><a href="/uz">Oʻzbekcha</a> · <a href="/en">English</a></noscript>
+  </body>
+</html>

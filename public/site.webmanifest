@@ -1,0 +1,8 @@
+{
+  "name": "Faxriddin Baxtiyorov",
+  "short_name": "Faxriddin",
+  "icons": [{ "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }],
+  "theme_color": "#0A0E14",
+  "background_color": "#0A0E14",
+  "display": "browser"
+}

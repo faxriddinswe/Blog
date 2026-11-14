@@ -1,0 +1,30 @@
+[
+  {
+    "id": "negativ-bilimlar",
+    "order": 1,
+    "youtubeId": "AUWfSrafHiY",
+    "duration": "20:52",
+    "title": {
+      "uz": "Negativ bilimlar",
+      "en": "Negative knowledge"
+    },
+    "description": {
+      "uz": "“Tengdosh Ustoz” YouTube kanalidagi maʼruza.",
+      "en": "A talk on the “Tengdosh Ustoz” YouTube channel (in Uzbek)."
+    }
+  },
+  {
+    "id": "miya-bloklari",
+    "order": 2,
+    "youtubeId": "FBuJ0mJIgeg",
+    "duration": "22:56",
+    "title": {
+      "uz": "Miyya bloklari",
+      "en": "Mental blocks"
+    },
+    "description": {
+      "uz": "“Tengdosh Ustoz” YouTube kanalidagi maʼruza.",
+      "en": "A talk on the “Tengdosh Ustoz” YouTube channel (in Uzbek)."
+    }
+  }
+]

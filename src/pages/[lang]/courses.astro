@@ -1,0 +1,105 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Icon, { type IconName } from "@/components/Icon.astro";
+import PageIntro from "@/components/PageIntro.astro";
+import { langPaths, t, type Locale } from "@/i18n/ui";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Locale;
+
+const courses = (await getCollection("courses")).sort((a, b) => a.data.order - b.data.order);
+const ext = t(lang, "external");
+---
+
+<Base lang={lang} page="courses" title={t(lang, "courses.meta.title")} description={t(lang, "courses.meta.description")}>
+  <div class="container page">
+    <PageIntro title={t(lang, "courses.h1")} lead={t(lang, "courses.lead")} />
+    <ul class="grid list section">
+      {
+        courses.map(({ data }) => (
+          <li>
+            <a class="course card" href={data.url} target="_blank" rel="noopener noreferrer">
+              {/* TODO(owner): official logos — official mark when Simple Icons has one, monogram otherwise. */}
+              <span class="logo" style={`--c:${data.color}`} aria-hidden="true">
+                {data.icon ? <Icon name={data.icon as IconName} size={28} /> : data.monogram}
+              </span>
+              <span class="course__text">
+                <span class="course__name">{data.name}</span>
+                <span class="course__domain muted">{new URL(data.url).hostname.replace(/^www\./, "")}</span>
+              </span>
+              <Icon name="external" size={18} class="course__ext" />
+              <span class="sr-only">({ext})</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .course {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 100%;
+    padding: 16px;
+  }
+
+  .course:hover {
+    border-color: var(--accent-line);
+  }
+
+  .logo {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--c) 16%, var(--surface-2));
+    color: var(--c);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+
+  :global([data-theme="light"]) .logo {
+    color: color-mix(in srgb, var(--c) 70%, #000);
+  }
+
+  .course__text {
+    display: grid;
+    min-width: 0;
+  }
+
+  .course__name {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .course__domain {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  .course :global(.course__ext) {
+    flex: none;
+    margin-left: auto;
+    color: var(--muted);
+  }
+
+  @media (max-width: 767px) {
+    .list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

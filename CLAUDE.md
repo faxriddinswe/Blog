@@ -1,3 +1,7 @@
+> **Branch `portfolio-v2` (2026-11-14+):** the site is being rebuilt as a static Astro 7 site from a new
+> owner brief. Read `PROGRESS.md` first — it holds the current state, owner decisions and open questions.
+> Sections below that describe the Next.js stack apply to `main` only.
+
 # faxriddinswe.uz — Project Brief (source of truth)
 
 > Also follow `AGENTS.md`: this Next.js version differs from training data — read `node_modules/next/dist/docs/` before using Next APIs.

@@ -18,7 +18,7 @@ Browser: Google Chrome via Playwright 1.65.
 | Internal links | ✅ all resolve (18 pages) |
 | External links | ⚠️ 45 unique, 41 OK; see below |
 | Lighthouse, mobile | ✅ Performance min **95**, Accessibility min **100**, Best Practices min **100**, SEO min **100** |
-| Employer name in build output | ✅ no `worksFor` / employer field anywhere; the owner hasn't named the employer for a text grep (see TODO-CONTENT.md) |
+| Employer name in site pages | ✅ not in any HTML page or metadata; it appears only inside `resume.pdf` (owner-approved) |
 | Unique `<title>` / description per page and language | ✅ no duplicates |
 
 ### Screenshot widths
@@ -104,4 +104,3 @@ All four are bot protection; the pages open fine in a browser.
 
 See TODO-CONTENT.md.
 
-- **Resume:** `public/resume.pdf` is the old CV. The new upload is corrupted.

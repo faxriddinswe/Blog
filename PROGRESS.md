@@ -27,7 +27,7 @@ Eski Next.js versiya `v1-legacy` tegida va `main` tarixida (rollback: Vercel Ins
 ## Egasidan javob kutilmoqda ❓
 
 1. ✅ **IELTS, HarvardX, offer letter'lar:** egasi ruxsat berdi, saytga qoʻyildi (2026-11-15). HarvardX rasmi "PREVIEW" namunasi, haqiqiysi kelganda almashtiriladi.
-4. **CV:** yangi fayl buzilgan, bosh sahifa boʻlib ochiladi. Hozir saytda eski CV (`public/resume.pdf`) turibdi, unda "Junior" deb yozilgan.
+4. ✅ **CV:** yangi CV qoʻyildi (2026-11-15), lavozim "Software Engineer". Ish joyi nomi CV ichida bor (egasi ruxsat bergan).
 5. **Loyiha turlari:** TechHouse va Yuksalish Edu shaxsiymi yoki frilansmi?
 6. **Kurslar roʻyxati va logolar:** toʻgʻrimi? Hozir logolar oʻrnida monogram yoki ikonka turibdi.
 7. **Qiziqishlar (hobbilar):** roʻyxat boʻsh boʻlgani uchun bu boʻlim yashirilgan.

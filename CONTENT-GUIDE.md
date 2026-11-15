@@ -82,7 +82,7 @@ Rasmni `src/assets/offers/` ga qoʻying. Blok qoʻshish tartibi sertifikatdagide
 - `date`;
 - `image`.
 
-⚠️ Rasmda maosh, manzil, telefon, ID yoki imzo boʻlsa, avval oʻylab koʻring: repo ochiq.
+⚠️ Repo ochiq: rasmdagi maosh, manzil, telefon, ID yoki imzo hamma uchun koʻrinadi.
 
 ## Yangi maʼruza → `src/data/lectures.json`
 

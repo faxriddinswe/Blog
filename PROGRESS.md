@@ -26,9 +26,7 @@ Jonli sayt (`main`, eski Next.js versiya) avvalgidek ishlab turibdi.
 
 ## Egasidan javob kutilmoqda ❓
 
-1. **IELTS rasmi:** saytga qoʻyilmagan va git'ga kiritilmagan, chunki unda tugʻilgan sana, Candidate ID va surat bor. Variantlar: natijani (5.5 / B2) rasmsiz yozish yoki umuman qoʻymaslik.
-2. **HarvardX CS50 (`cr1.jpg`):** rasmda "PREVIEW" yozuvi bor, yaʼni bu hali berilmagan sertifikatning namunasi. Saytga qoʻyilmagan.
-3. **Offer letter'lar:** ularda imzo va ID raqamlar bor. Rasmlar git'ga kiritilmagan (`src/assets/offers/` ignore qilingan). ⚠️ Shu hal boʻlmaguncha Vercel'da build oʻtmaydi.
+1. ✅ **IELTS, HarvardX, offer letter'lar:** egasi ruxsat berdi, saytga qoʻyildi (2026-11-15). HarvardX rasmi "PREVIEW" namunasi, haqiqiysi kelganda almashtiriladi.
 4. **CV:** yangi fayl buzilgan, bosh sahifa boʻlib ochiladi. Hozir saytda eski CV (`public/resume.pdf`) turibdi, unda "Junior" deb yozilgan.
 5. **Loyiha turlari:** TechHouse va Yuksalish Edu shaxsiymi yoki frilansmi?
 6. **Kurslar roʻyxati va logolar:** toʻgʻrimi? Hozir logolar oʻrnida monogram yoki ikonka turibdi.

@@ -104,5 +104,4 @@ All four are bot protection; the pages open fine in a browser.
 
 See TODO-CONTENT.md.
 
-- **Offer-letter images:** they are not in git, so a clean checkout, including the one on Vercel, fails to build until the owner decides.
 - **Resume:** `public/resume.pdf` is the old CV. The new upload is corrupted.

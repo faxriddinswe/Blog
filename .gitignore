@@ -11,13 +11,5 @@ dist/
 /qa/screenshots/
 /test-results/
 /playwright-report/
-
-# Raw content that must never be published (personal data / not an issued certificate)
-/content/certificates/IELTS.jpg
-/content/certificates/cr1.jpg
 # Corrupted upload; the site uses public/cv/resume.pdf
 /content/profile/*.pdf
-
-# Offer letters show signatures / ID numbers — kept out of git until the owner approves publishing
-/content/offer-letters/*.jpg
-/src/assets/offers/

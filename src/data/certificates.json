@@ -107,5 +107,28 @@
       "uz": "Ibrat Academy’da ingliz tili grammatikasi kursini tamomladim.",
       "en": "Completed the English grammar course at Ibrat Academy."
     }
+  },
+  {
+    "id": "ielts",
+    "order": 10,
+    "name": "IELTS Academic",
+    "issuer": "British Council · IDP · Cambridge English",
+    "date": "2024-12-07",
+    "image": "../assets/certificates/ielts.jpg",
+    "description": {
+      "uz": "IELTS Academic test natijasi: umumiy ball 5.5, CEFR darajasi B2.",
+      "en": "IELTS Academic test report: overall band 5.5, CEFR level B2."
+    }
+  },
+  {
+    "id": "harvardx-cs50",
+    "order": 11,
+    "name": "CS50's Introduction to Computer Science",
+    "issuer": "HarvardX · edX",
+    "image": "../assets/certificates/harvardx-cs50.jpg",
+    "description": {
+      "uz": "Harvard universitetining CS50 kompyuter fanlari asoslari kursi (HarvardX, edX).",
+      "en": "Harvard University's CS50 introduction to computer science course (HarvardX on edX)."
+    }
   }
 ]

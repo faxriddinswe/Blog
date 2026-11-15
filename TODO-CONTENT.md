@@ -3,15 +3,11 @@
 Har bir qatorda nima yetishmasligi va uni qaysi faylga qoʻyish kerakligi yozilgan.
 Shu roʻyxatdagi narsalar hal boʻlmaguncha saytda placeholder turadi.
 
-## Egasi qaror qilishi kerak (maxfiylik)
+## Maxfiylik (egasi qaror qilgan, 2026-11-15)
 
-- [ ] **Offer letter rasmlari** — rasmlarda imzo va ID raqamlar bor. Saytga chiqaramizmi?
-  - Rasmlar: `content/offer-letters/offer1.jpg` va `offer2.jpg` → `src/assets/offers/`.
-  - ⚠️ Hal boʻlmaguncha Vercel'da build oʻtmaydi, chunki bu rasmlar git'ga kiritilmagan.
-- [ ] **IELTS** — rasmda tugʻilgan sana, Candidate ID va surat bor. Natijani (5.5 / B2) rasmsiz yozamizmi?
-  - Yozilsa, `src/data/certificates.json` ga matnli karta qoʻshiladi.
-- [ ] **HarvardX CS50 (`cr1.jpg`)** — "PREVIEW" namunasi, haqiqiy sertifikat emas.
-  - Haqiqiysini `content/certificates/` ga qoʻying.
+- [x] **IELTS, HarvardX va offer letter rasmlari** saytga qoʻyildi (egasining ruxsati bilan).
+  - Repo ochiq, shuning uchun IELTS'dagi tugʻilgan sana, Candidate ID va surat, offer letter'lardagi imzo va ID raqamlar hamma uchun koʻrinadi.
+  - ⚠️ HarvardX rasmida "PREVIEW" yozuvi va namunaviy ID bor. Haqiqiy sertifikatni olganda `src/assets/certificates/harvardx-cs50.jpg` ni almashtiring.
 
 ## Fayllar
 

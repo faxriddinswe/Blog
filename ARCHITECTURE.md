@@ -36,7 +36,6 @@ qa/                      shoot.mjs (screenshots), links.mjs, lighthouse.mjs
 tests/site.spec.ts       e2e + axe
 ```
 
-`src/assets/offers/` and its source images are git-ignored until the owner approves publishing them. While they are missing the build fails.
 
 ## i18n
 
@@ -74,4 +73,4 @@ Only the Header script (theme, language memory, Learning dropdown, mobile `<dial
 - **The resume button opens the PDF in a new tab** ("View Resume") instead of downloading it. On phones the button order is "Learn more about me", then "View Resume".
 - **The portrait is the owner's original photo with its background.** It was upscaled 2× with the EDSR super-resolution model and sharpened slightly.
 - **The hobbies section is hidden** while the list is empty.
-- **The IELTS report and the HarvardX "PREVIEW" image are excluded** because of personal data and because it is not an issued certificate. See PROGRESS.md.
+- **IELTS, HarvardX and offer-letter images are published as-is** (owner decision, 2026-11-15). The repo is public, so their personal data is public too. The HarvardX image is a "PREVIEW" sample.

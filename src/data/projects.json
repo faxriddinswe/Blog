@@ -1,7 +1,45 @@
 [
   {
-    "id": "nargiza-brend-bot",
+    "id": "docly",
     "order": 1,
+    "name": "Docly",
+    "type": "personal",
+    "glyph": "api",
+    "description": {
+      "uz": "Xususiy klinikalar uchun multi-tenant navbat SaaS: telefon OTP orqali onlayn yozilish, shifokorlar jadvali va Telegram eslatmalari.",
+      "en": "A multi-tenant appointment SaaS for private clinics: online booking with phone OTP, doctor schedules and Telegram reminders."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "Redis"
+    ],
+    "github": "https://github.com/faxriddinswe/docly",
+    "banner": "../assets/banners/docly.jpg"
+  },
+  {
+    "id": "rento",
+    "order": 2,
+    "name": "Rento",
+    "type": "personal",
+    "glyph": "web",
+    "description": {
+      "uz": "Ijaraga berilgan uy-joy va kommunal hisob-kitob tizimi: shartnomalar, hisoblagich koʻrsatkichlari rasm bilan, oylik hisob-fakturalar va PDF.",
+      "en": "A rental-property and utility billing manager: leases, photo meter readings, automatic monthly invoices and PDFs."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "Redis"
+    ],
+    "github": "https://github.com/faxriddinswe/rento",
+    "banner": "../assets/banners/rento.jpg"
+  },
+  {
+    "id": "nargiza-brend-bot",
+    "order": 3,
     "name": "Nargiza Brend — Shop Assistant Bot",
     "type": "freelance",
     "glyph": "bot",
@@ -21,7 +59,7 @@
   },
   {
     "id": "qarzai",
-    "order": 2,
+    "order": 4,
     "name": "QarzAI (Depth-AI)",
     "type": "personal",
     "glyph": "agent",
@@ -41,7 +79,7 @@
   },
   {
     "id": "sherzod-english",
-    "order": 3,
+    "order": 5,
     "name": "Sherzod English",
     "type": "freelance",
     "glyph": "edu",
@@ -60,7 +98,7 @@
   },
   {
     "id": "yuksalish-edu",
-    "order": 4,
+    "order": 6,
     "name": "Yuksalish Edu",
     "type": "freelance",
     "glyph": "edu",
@@ -80,7 +118,7 @@
   },
   {
     "id": "bozor",
-    "order": 5,
+    "order": 7,
     "name": "Bozor — E-commerce",
     "type": "personal",
     "glyph": "shop",
@@ -99,7 +137,7 @@
   },
   {
     "id": "postflow",
-    "order": 6,
+    "order": 8,
     "name": "PostFlow",
     "type": "personal",
     "glyph": "api",
@@ -118,7 +156,7 @@
   },
   {
     "id": "namoz-bot",
-    "order": 7,
+    "order": 9,
     "name": "Namoz Userbot",
     "type": "personal",
     "glyph": "bot",
@@ -136,7 +174,7 @@
   },
   {
     "id": "techhouse",
-    "order": 8,
+    "order": 10,
     "name": "TechHouse",
     "type": "personal",
     "glyph": "web",

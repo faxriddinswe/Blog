@@ -1,7 +1,7 @@
 # Ish holati — portfolio-v2
 
-Oxirgi yangilanish: 2026-11-15 (2-sessiya). Branch: `portfolio-v2`. Hech narsa push yoki deploy qilinmagan.
-Jonli sayt (`main`, eski Next.js versiya) avvalgidek ishlab turibdi.
+Oxirgi yangilanish: 2026-11-15. **Sayt production'da: https://www.faxriddinswe.uz** (`main` = Astro versiya, merge 5515405).
+Eski Next.js versiya `v1-legacy` tegida va `main` tarixida (rollback: Vercel Instant Rollback yoki merge'ni `git revert`).
 
 ## Nima qilindi ✅
 
@@ -58,3 +58,9 @@ pnpm build && pnpm preview --port 4321   # http://localhost:4321
 
 Talab: Node ≥ 22.23.4 (`~/.local/opt/node` da Node 26 LTS oʻrnatilgan).
 TypeScript 6 ishlatiladi, chunki `astro check` TypeScript 7 ni hali qoʻllamaydi.
+
+## Deploy (2026-11-15)
+
+- `portfolio-v2` → preview ✓ → `main` ga merge va push → production ✓. Barcha sahifalar 200, `/cv.pdf` va eski blog havolalari yoʻnaltiriladi.
+- ⚠️ **Domen:** Vercel `faxriddinswe.uz` ni `www.faxriddinswe.uz` ga yoʻnaltiryapti, saytdagi canonical va sitemap esa `faxriddinswe.uz` deydi. Vercel → Settings → Domains da `faxriddinswe.uz` ni asosiy qilib, `www` ni unga yoʻnaltirish kerak (yoki canonical'ni www ga oʻzgartirish).
+- Telegram ariza formasi yangi saytda yoʻq (static sayt). Vercel'dagi `TELEGRAM_*` oʻzgaruvchilari endi ishlatilmaydi.

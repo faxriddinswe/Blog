@@ -16,7 +16,8 @@
       "SQLAlchemy",
       "Docker"
     ],
-    "github": "https://github.com/faxriddinswe/Nargiza-Brend-Shop-AI-agent-Bot"
+    "github": "https://github.com/faxriddinswe/Nargiza-Brend-Shop-AI-agent-Bot",
+    "banner": "../assets/banners/nargiza-brend-bot.jpg"
   },
   {
     "id": "qarzai",
@@ -35,7 +36,8 @@
       "Redis",
       "Next.js"
     ],
-    "github": "https://github.com/faxriddinswe/Depth-AI"
+    "github": "https://github.com/faxriddinswe/Depth-AI",
+    "banner": "../assets/banners/qarzai.jpg"
   },
   {
     "id": "sherzod-english",
@@ -53,7 +55,8 @@
       "Next.js",
       "TypeScript"
     ],
-    "github": "https://github.com/faxriddinswe/English_project"
+    "github": "https://github.com/faxriddinswe/English_project",
+    "banner": "../assets/banners/sherzod-english.jpg"
   },
   {
     "id": "yuksalish-edu",
@@ -72,7 +75,8 @@
       "Celery",
       "Next.js"
     ],
-    "github": "https://github.com/faxriddinswe/Yuksalish-Edu"
+    "github": "https://github.com/faxriddinswe/Yuksalish-Edu",
+    "banner": "../assets/banners/yuksalish-edu.jpg"
   },
   {
     "id": "bozor",
@@ -90,7 +94,8 @@
       "JWT",
       "JavaScript"
     ],
-    "github": "https://github.com/faxriddinswe/E-Commerce_Bozor"
+    "github": "https://github.com/faxriddinswe/E-Commerce_Bozor",
+    "banner": "../assets/banners/bozor.jpg"
   },
   {
     "id": "postflow",
@@ -108,7 +113,8 @@
       "Telegram Bot API",
       "JWT"
     ],
-    "github": "https://github.com/faxriddinswe/PostFlow"
+    "github": "https://github.com/faxriddinswe/PostFlow",
+    "banner": "../assets/banners/postflow.jpg"
   },
   {
     "id": "namoz-bot",
@@ -125,7 +131,8 @@
       "Telethon",
       "asyncio"
     ],
-    "github": "https://github.com/faxriddinswe/namoz_bot"
+    "github": "https://github.com/faxriddinswe/namoz_bot",
+    "banner": "../assets/banners/namoz-bot.jpg"
   },
   {
     "id": "techhouse",
@@ -142,6 +149,7 @@
       "HTML",
       "CSS"
     ],
-    "github": "https://github.com/faxriddinswe/Techhouse-backend"
+    "github": "https://github.com/faxriddinswe/Techhouse-backend",
+    "banner": "../assets/banners/techhouse.jpg"
   }
 ]

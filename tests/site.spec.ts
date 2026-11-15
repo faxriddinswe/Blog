@@ -179,7 +179,7 @@ test("lightbox opens and closes with Esc", async ({ page }) => {
 
 test("resume opens in a new tab instead of downloading", async ({ page, context }) => {
   await page.goto("/en");
-  const link = page.getByRole("link", { name: /Download Resume/ });
+  const link = page.getByRole("link", { name: /View Resume/ });
   await expect(link).toHaveAttribute("target", "_blank");
   expect(await link.getAttribute("download")).toBeNull();
   const [tab] = await Promise.all([context.waitForEvent("page"), link.click()]);

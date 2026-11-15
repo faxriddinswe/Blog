@@ -19,8 +19,8 @@ Runtime requirements: Node ≥ 22.23.4 (Astro 7) and pnpm 12. Use TypeScript 6, 
 ```
 content/                 raw owner uploads (txt templates, images) — source, not served
 src/
-  assets/                images processed by astro:assets (portrait, certificates, offers*)
-  components/            Header, Footer, Icon, PageIntro, CategoryTiles, SocialButtons,
+  assets/                images processed by astro:assets (portrait, banners, certificates, offers*)
+  components/            Header, Footer, Icon, PageIntro, SocialButtons,
                          ProjectCard, ContactBand, Lightbox, ZoomImage
   content.config.ts      typed collections (zod): projects, certificates, offers, courses, lectures
   data/                  *.json for the collections + site.ts (profile) + articles.ts
@@ -69,7 +69,9 @@ Only the Header script (theme, language memory, Learning dropdown, mobile `<dial
 ## Decisions that differ from the brief
 
 - **Experience is "2+ years"**, not "3+". The owner made this correction twice.
-- **Project screenshots are generated covers** (name, icon, stack), because real screenshots are not provided yet.
-- **Article covers are generated.** Medium posts have none, and the LinkedIn post images belong to third parties.
+- **Project and article banners are CC0 / public-domain photos** from Openverse, picked to match each title (owner request, 2026-11-15). Google Images results are copyrighted, so they were not used. Credits are in `src/data/banner-credits.json`. Real project screenshots should replace them later.
+- **Projects and Blog are one list each.** The owner removed the Personal/Freelance and Medium/LinkedIn tiles, so the type or platform now shows on each card.
+- **The resume button opens the PDF in a new tab** ("View Resume") instead of downloading it. On phones the button order is "Learn more about me", then "View Resume".
+- **The portrait is the owner's original photo with its background.** It was upscaled 2× with the EDSR super-resolution model and sharpened slightly.
 - **The hobbies section is hidden** while the list is empty.
 - **The IELTS report and the HarvardX "PREVIEW" image are excluded** because of personal data and because it is not an issued certificate. See PROGRESS.md.

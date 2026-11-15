@@ -11,7 +11,7 @@ import sharp from "sharp";
 const font = async (w) =>
   (await readFile(`node_modules/@fontsource/inter/files/inter-latin-${w}-normal.woff2`)).toString("base64");
 const [f500, f800] = await Promise.all([font(500), font(800)]);
-const portrait = (await sharp("src/assets/portrait.png").resize(560, 560).png().toBuffer()).toString("base64");
+const portrait = (await sharp("src/assets/portrait.jpg").resize(560, 560).png().toBuffer()).toString("base64");
 
 const base = `
 <style>

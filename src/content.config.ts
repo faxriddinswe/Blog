@@ -8,7 +8,8 @@ const url = z.url();
 
 const projects = defineCollection({
   loader: file("src/data/projects.json"),
-  schema: z.object({
+  schema: ({ image }) =>
+    z.object({
     order: z.number(),
     name: z.string(),
     type: z.enum(["personal", "freelance"]),
@@ -16,8 +17,10 @@ const projects = defineCollection({
     stack: z.array(z.string()).min(1),
     github: url,
     live: url.optional(),
-    /** Visual for the generated cover (no real screenshots yet). */
+    /** Small icon shown on the banner. */
     glyph: z.enum(["bot", "agent", "web", "shop", "edu", "api"]),
+    /** CC0 banner matching the project (credits: src/data/banner-credits.json) until real screenshots exist. */
+    banner: image(),
   }),
 });
 

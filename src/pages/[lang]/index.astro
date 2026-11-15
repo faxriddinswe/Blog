@@ -3,7 +3,7 @@ import { Picture } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import SocialButtons from "@/components/SocialButtons.astro";
-import portrait from "@/assets/portrait.png";
+import portrait from "@/assets/portrait.jpg";
 import { site } from "@/data/site";
 import { langPaths, localePath, t, type Locale } from "@/i18n/ui";
 
@@ -41,8 +41,8 @@ const lang = Astro.params.lang as Locale;
     <SocialButtons lang={lang} size="lg" />
 
     <div class="cta">
-      <a class="btn btn--accent btn--lg" href={site.resume} target="_blank" rel="noopener noreferrer">
-        <Icon name="download" />
+      <a class="btn btn--accent btn--lg cta__resume" href={site.resume} target="_blank" rel="noopener noreferrer">
+        <Icon name="file" />
         {t(lang, "home.resume")}
         <span class="sr-only">({t(lang, "external")})</span>
       </a>
@@ -130,6 +130,11 @@ const lang = Astro.params.lang as Locale;
   }
 
   @media (max-width: 767px) {
+    /* Phones: "Learn more about me" first, resume second (owner request). */
+    .cta__resume {
+      order: 2;
+    }
+
     .name {
       font-size: 36px;
       letter-spacing: -1px;

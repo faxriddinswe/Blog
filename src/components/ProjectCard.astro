@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Picture } from "astro:assets";
 import Icon, { type IconName } from "@/components/Icon.astro";
 import { t, type Locale } from "@/i18n/ui";
 
@@ -24,17 +25,26 @@ const ext = t(lang, "external");
 ---
 
 <article class="pcard card">
+  {/* Mouse shortcut to the same link as the buttons below; hidden from AT and Tab to avoid duplicates.
+      Banner: CC0 photo matching the project — TODO(owner): real screenshots (see TODO-CONTENT.md). */}
   <a class="cover" href={coverHref} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true" title={coverLabel}>
-    {/* Mouse shortcut to the same link as the buttons below; hidden from AT and Tab to avoid duplicates.
-        Generated cover — TODO(owner): real screenshots (see TODO-CONTENT.md). */}
-    <span class="cover__glyph"><Icon name={glyphs[project.glyph]} size={30} /></span>
-    <span class="cover__name">{project.name}</span>
+    <Picture
+      src={project.banner}
+      alt=""
+      widths={[400, 640, 960]}
+      sizes="(min-width: 1024px) 290px, (min-width: 560px) 45vw, 92vw"
+      formats={["avif", "webp"]}
+      loading="lazy"
+    />
+    <span class="cover__shade"></span>
+    <span class="cover__glyph"><Icon name={glyphs[project.glyph]} size={22} /></span>
     <span class="cover__stack">
       {project.stack.slice(0, 3).map((s) => <span>{s}</span>)}
     </span>
   </a>
   <div class="pcard__body">
-    <h3 class="pcard__title">{project.name}</h3>
+    <p class="pcard__type">{t(lang, `projects.${project.type}`)}</p>
+    <h2 class="pcard__title">{project.name}</h2>
     <p class="pcard__desc muted">{project.description[lang]}</p>
     <div class="pcard__actions">
       {
@@ -64,63 +74,61 @@ const ext = t(lang, "external");
 
   .cover {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: block;
     aspect-ratio: 16 / 10;
-    padding: 14px;
     border-radius: 12px;
     overflow: hidden;
-    background:
-      radial-gradient(90% 80% at 100% 0%, var(--accent-soft), transparent 60%),
-      linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
-      linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
-      var(--surface-2);
-    transition: transform var(--t);
+    background: var(--surface-2);
   }
 
-  .cover:hover {
-    transform: scale(1.01);
+  .cover :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease);
+  }
+
+  .cover:hover :global(img) {
+    transform: scale(1.04);
+  }
+
+  /* Darkens the bottom so the stack chips stay readable on any photo. */
+  .cover__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(10 14 20 / 0.75), transparent 55%);
   }
 
   .cover__glyph {
+    position: absolute;
+    top: 10px;
+    left: 10px;
     display: grid;
     place-items: center;
-    flex: none;
-    width: 46px;
-    height: 46px;
-    margin-bottom: auto;
-    border-radius: 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--accent-text);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgb(10 14 20 / 0.72);
+    backdrop-filter: blur(6px);
+    color: #3ddc97;
   }
 
-  .cover__name {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-size: 17px;
-    font-weight: 800;
-    line-height: 1.25;
-    letter-spacing: -0.3px;
-  }
-
-  /* One row only; extra chips fade out instead of pushing into the title. */
   .cover__stack {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
     display: flex;
     gap: 6px;
     overflow: hidden;
-    mask-image: linear-gradient(90deg, #000 85%, transparent);
   }
 
   .cover__stack span {
     flex: none;
     padding: 2px 8px;
     border-radius: 999px;
-    border: 1px solid var(--accent-line);
-    background: var(--surface);
+    background: rgb(10 14 20 / 0.72);
+    color: #e8edf2;
     font-size: 11px;
     font-weight: 600;
   }
@@ -132,7 +140,16 @@ const ext = t(lang, "external");
     padding: 14px 6px 6px;
   }
 
+  .pcard__type {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
   .pcard__title {
+    margin-top: 2px;
     font-size: 16px;
     font-weight: 700;
     line-height: 1.4;

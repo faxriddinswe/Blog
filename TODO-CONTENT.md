@@ -18,9 +18,8 @@ Shu roʻyxatdagi narsalar hal boʻlmaguncha saytda placeholder turadi.
 - [ ] **CV** — `Faxriddin_Baxtiyorov_org_CV.pdf` buzilgan, boʻsh sahifa boʻlib ochiladi.
   - Qayta eksport qilib `public/resume.pdf` ga qoʻying.
   - Hozir u yerda eski CV turibdi, unda "Junior" va "Self-directed study" deb yozilgan.
-- [ ] **Loyiha skrinshotlari** — hozir generatsiya qilingan muqova turibdi.
-  - Har bir loyiha uchun 16:10 rasm kerak → `src/assets/projects/<id>.png`.
-  - `ProjectCard` ga ulash kerak boʻladi.
+- [ ] **Loyiha skrinshotlari** — hozir nomiga mos CC0 banner rasm turibdi.
+  - Haqiqiy skrinshot boʻlsa → `src/assets/banners/<id>.jpg` ni almashtiring (16:10).
 - [ ] **Kurs logolari** — hozir monogram turibdi, Anthropic, Huawei va HackerRank uchun rasmiy ikonka bor.
   - Kvadrat logolar → `content/courses/`.
 - [ ] **Telegram kanal postlari** — `src/data/site.ts` dagi `channel.posts`.

@@ -42,7 +42,7 @@ export const ui = {
     "home.meta.description":
       "Faxriddin Baxtiyorov — Toshkentdagi Python Backend Engineer. Backend tizimlar, Telegram botlar va AI agentlar.",
     "home.experience": "{n}+ yil tajriba",
-    "home.resume": "Rezyumeni yuklab olish",
+    "home.resume": "Rezyumeni koʻrish",
     "home.more": "Men haqimda batafsil",
     "home.photoAlt": "Faxriddin Baxtiyorovning surati",
     "home.socials": "Ijtimoiy tarmoqlar",
@@ -169,7 +169,7 @@ export const ui = {
     "home.meta.description":
       "Faxriddin Baxtiyorov — a Python Backend Engineer in Tashkent. Backend systems, Telegram bots and AI agents.",
     "home.experience": "{n}+ years experience",
-    "home.resume": "Download Resume",
+    "home.resume": "View Resume",
     "home.more": "Learn more about me",
     "home.photoAlt": "Photo of Faxriddin Baxtiyorov",
     "home.socials": "Social profiles",

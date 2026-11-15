@@ -25,7 +25,8 @@ pnpm preview    # http://localhost:4321 da koʻrish
   "description": { "uz": "Bir-ikki gap.", "en": "One or two sentences." },
   "stack": ["FastAPI", "PostgreSQL"],
   "github": "https://github.com/faxriddinswe/...",
-  "live": "https://..."
+  "live": "https://...",
+  "banner": "../assets/banners/yangi-loyiha.jpg"
 }
 ```
 
@@ -33,6 +34,7 @@ pnpm preview    # http://localhost:4321 da koʻrish
 - `glyph` — muqovadagi ikonka: `bot`, `agent`, `web`, `shop`, `edu`, `api`.
 - `live` — sayt boʻlmasa, bu qatorni oʻchiring.
 - `order` — kichik raqamli loyiha birinchi chiqadi.
+- `banner` — 16:10 rasm, `src/assets/banners/` ga qoʻying (skrinshot yoki bepul litsenziyali rasm).
 
 ## Yangi maqola (Medium / LinkedIn) → `src/data/articles.ts`
 
@@ -44,6 +46,7 @@ Roʻyxatga yangi blok qoʻshing:
   title: { uz: "Sarlavha", en: "Title" },
   url: "https://medium.com/@faxriddinswe/...",
   date: "2026-12-01",
+  cover: rasm,                   // ixtiyoriy: faylning tepasida `import rasm from "@/assets/banners/nom.jpg";`
 },
 ```
 

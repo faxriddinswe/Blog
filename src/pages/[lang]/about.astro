@@ -6,7 +6,7 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import SocialButtons from "@/components/SocialButtons.astro";
 import ContactBand from "@/components/ContactBand.astro";
-import portrait from "@/assets/portrait.png";
+import portrait from "@/assets/portrait.jpg";
 import { channel, communities, hobbies, journey, medium, site, techStack } from "@/data/site";
 import { formatDate, langPaths, localePath, t, type Locale } from "@/i18n/ui";
 
@@ -42,7 +42,7 @@ const ext = t(lang, "external");
         </div>
         <div class="hero__actions">
           <a class="btn btn--accent" href={site.resume} target="_blank" rel="noopener noreferrer">
-            <Icon name="download" />
+            <Icon name="file" />
             {t(lang, "home.resume")}
         <span class="sr-only">({t(lang, "external")})</span>
           </a>
@@ -168,7 +168,7 @@ const ext = t(lang, "external");
               <a class="article" href={latest.url} target="_blank" rel="noopener noreferrer">
                 <div class="article__cover">
                   {latest.cover ? (
-                    <Image src={latest.cover} alt="" width={640} height={400} />
+                    <Image src={latest.cover} alt="" width={640} height={400} loading="lazy" />
                   ) : (
                     <span class="article__gen">
                       <Icon name={latest.platform} size={36} />
@@ -613,6 +613,12 @@ const ext = t(lang, "external");
     border-radius: 12px;
     overflow: hidden;
     background: var(--surface-2);
+  }
+
+  .article__cover :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .article__gen {

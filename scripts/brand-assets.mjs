@@ -34,7 +34,7 @@ const og = `${base}
   <div style="display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;border:1px solid rgba(61,220,151,.33);background:rgba(61,220,151,.15);font-weight:500;font-size:22px">
     <span style="width:10px;height:10px;border-radius:50%;background:#3DDC97"></span>Tashkent, Uzbekistan</div>
   <div style="margin-top:26px;font-weight:800;font-size:76px;line-height:1.02;letter-spacing:-2.4px">Faxriddin<br>Baxtiyorov</div>
-  <div style="margin-top:20px;font-weight:500;font-size:34px;color:#93A1B0">Python Backend Engineer</div>
+  <div style="margin-top:20px;font-weight:500;font-size:34px;color:#93A1B0">Software Engineer</div>
 </div>
 <div style="position:absolute;right:90px;top:95px;width:440px;height:440px;border-radius:50%;border:3px solid #3DDC97;padding:10px">
   <div style="width:100%;height:100%;border-radius:50%;overflow:hidden;background:#18212D">

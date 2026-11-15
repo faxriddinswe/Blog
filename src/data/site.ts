@@ -6,7 +6,7 @@ type L10n = Record<Locale, string>;
 export const site = {
   name: "Faxriddin Baxtiyorov",
   monogram: "FB",
-  title: "Python Backend Engineer",
+  title: "Software Engineer",
   url: "https://faxriddinswe.uz",
   email: "faxriddinbaxtiyorov077@gmail.com",
   resume: "/resume.pdf",
@@ -68,7 +68,7 @@ export const techStack: { label: L10n; items: string[] }[] = [
 
 export const journey: { title: L10n; place?: L10n; date: L10n }[] = [
   {
-    title: { uz: "Python Backend Engineer", en: "Python Backend Engineer" },
+    title: { uz: "Software Engineer", en: "Software Engineer" },
     date: { uz: "2026-yil oktabr — hozir", en: "Oct 2026 — Present" },
   },
   {

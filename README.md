@@ -1,6 +1,6 @@
 # faxriddinswe.uz
 
-Personal portfolio of Faxriddin Baxtiyorov, a Python Backend Engineer. It is a static, bilingual (uz/en) Astro site with dark and light themes.
+Personal portfolio of Faxriddin Baxtiyorov, a Software Engineer. It is a static, bilingual (uz/en) Astro site with dark and light themes.
 
 ## Requirements
 

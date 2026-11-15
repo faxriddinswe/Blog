@@ -38,9 +38,9 @@ export const ui = {
     "theme.toDark": "Qorongʻi mavzuga oʻtish",
     "external": "yangi oynada ochiladi",
 
-    "home.meta.title": "Faxriddin Baxtiyorov — Python Backend Engineer",
+    "home.meta.title": "Faxriddin Baxtiyorov — Software Engineer",
     "home.meta.description":
-      "Faxriddin Baxtiyorov — Toshkentdagi Python Backend Engineer. Backend tizimlar, Telegram botlar va AI agentlar.",
+      "Faxriddin Baxtiyorov — Toshkentdagi Software Engineer. Backend tizimlar, Telegram botlar va AI agentlar.",
     "home.experience": "{n}+ yil tajriba",
     "home.resume": "Rezyumeni koʻrish",
     "home.more": "Men haqimda batafsil",
@@ -54,7 +54,7 @@ export const ui = {
     "about.h1": "Salom, men Faxriddin.",
     "about.h1b": "Backend va AI agentlar quraman.",
     "about.p1":
-      "Men Toshkentda yashovchi Python Backend Engineerman. Backend tizimlar va avtomatlashtirish vositalarini yaratishda 2 yildan ortiq tajribam bor.",
+      "Men Toshkentda yashovchi Software Engineerman. Backend tizimlar va avtomatlashtirish vositalarini yaratishda 2 yildan ortiq tajribam bor.",
     "about.p2":
       "Hozirda PDP Universityda Software Engineering (bakalavr) yoʻnalishida oʻqiyapman (2025–2029).",
     "about.p3":
@@ -165,9 +165,9 @@ export const ui = {
     "theme.toDark": "Switch to dark theme",
     "external": "opens in a new tab",
 
-    "home.meta.title": "Faxriddin Baxtiyorov — Python Backend Engineer",
+    "home.meta.title": "Faxriddin Baxtiyorov — Software Engineer",
     "home.meta.description":
-      "Faxriddin Baxtiyorov — a Python Backend Engineer in Tashkent. Backend systems, Telegram bots and AI agents.",
+      "Faxriddin Baxtiyorov — a Software Engineer in Tashkent. Backend systems, Telegram bots and AI agents.",
     "home.experience": "{n}+ years experience",
     "home.resume": "View Resume",
     "home.more": "Learn more about me",
@@ -181,7 +181,7 @@ export const ui = {
     "about.h1": "Hi, I'm Faxriddin.",
     "about.h1b": "I build backends and AI agents.",
     "about.p1":
-      "I am a Python Backend Engineer based in Tashkent, Uzbekistan, with 2+ years of experience building backend systems and automation tools.",
+      "I am a Software Engineer based in Tashkent, Uzbekistan, with 2+ years of experience building backend systems and automation tools.",
     "about.p2":
       "I am currently studying Software Engineering (BSc) at PDP University in Tashkent (2025–2029).",
     "about.p3":

@@ -15,7 +15,7 @@ post: <sarlavha> | <https://t.me/...>
 post: <sarlavha> | <https://t.me/...>
 
 # Journey (ish joyi nomi YOZILMAYDI). Format: sarlavha | izoh | boshlanish — tugash
-journey: Python Backend Engineer | | 2024 — Present
+journey: Software Engineer | | 2024 — Present
 journey: Software Engineering, BSc | PDP University, Tashkent | 2025 — 2029
 
 # Tech stack (vergul bilan)

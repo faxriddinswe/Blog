@@ -26,8 +26,8 @@ Owner review list. **Source** column: *owner* = text the owner gave in the brief
 | `theme.toLight` | Yorugʻ mavzuga oʻtish | Switch to light theme | machine |
 | `theme.toDark` | Qorongʻi mavzuga oʻtish | Switch to dark theme | machine |
 | `external` | yangi oynada ochiladi | opens in a new tab | machine |
-| `home.meta.title` | Faxriddin Baxtiyorov — Python Backend Engineer | Faxriddin Baxtiyorov — Python Backend Engineer | machine |
-| `home.meta.description` | Faxriddin Baxtiyorov — Toshkentdagi Python Backend Engineer. Backend tizimlar, Telegram botlar va AI agentlar. | Faxriddin Baxtiyorov — a Python Backend Engineer in Tashkent. Backend systems, Telegram bots and AI agents. | machine |
+| `home.meta.title` | Faxriddin Baxtiyorov — Software Engineer | Faxriddin Baxtiyorov — Software Engineer | machine |
+| `home.meta.description` | Faxriddin Baxtiyorov — Toshkentdagi Software Engineer. Backend tizimlar, Telegram botlar va AI agentlar. | Faxriddin Baxtiyorov — a Software Engineer in Tashkent. Backend systems, Telegram bots and AI agents. | machine |
 | `home.experience` | {n}+ yil tajriba | {n}+ years experience | brief (en), uz: brief/machine |
 | `home.resume` | Rezyumeni yuklab olish | Download Resume | brief (en), uz: brief/machine |
 | `home.more` | Men haqimda batafsil | Learn more about me | brief (en), uz: brief/machine |
@@ -38,7 +38,7 @@ Owner review list. **Source** column: *owner* = text the owner gave in the brief
 | `about.eyebrow` | Men haqimda | About me | machine |
 | `about.h1` | Salom, men Faxriddin. | Hi, I'm Faxriddin. | brief (en), uz: brief/machine |
 | `about.h1b` | Backend va AI agentlar quraman. | I build backends and AI agents. | brief (en), uz: brief/machine |
-| `about.p1` | Men Toshkentda yashovchi Python Backend Engineerman. Backend tizimlar va avtomatlashtirish vositalarini yaratishda 2 yildan ortiq tajribam bor. | I am a Python Backend Engineer based in Tashkent, Uzbekistan, with 2+ years of experience building backend systems and automation tools. | owner (uz+en) |
+| `about.p1` | Men Toshkentda yashovchi Software Engineerman. Backend tizimlar va avtomatlashtirish vositalarini yaratishda 2 yildan ortiq tajribam bor. | I am a Software Engineer based in Tashkent, Uzbekistan, with 2+ years of experience building backend systems and automation tools. | owner (uz+en) |
 | `about.p2` | Hozirda PDP Universityda Software Engineering (bakalavr) yoʻnalishida oʻqiyapman (2025–2029). | I am currently studying Software Engineering (BSc) at PDP University in Tashkent (2025–2029). | owner (uz+en) |
 | `about.p3` | Shu yillar davomida Python, FastAPI, PostgreSQL, Telegram botlar va AI agentlar kabi texnologiyalar bilan ishlaganman. | Over the years, I have worked with technologies including Python, FastAPI, PostgreSQL, Telegram bots and AI agents. | owner (uz+en) |
 | `about.p4` | Ayniqsa tizim arxitekturasi va xavfsizlikka qiziqaman, yangi narsalarni amalda qurib oʻrganishni yaxshi koʻraman. | I am especially interested in system architecture and security, and I enjoy learning by building. | owner (uz+en) |

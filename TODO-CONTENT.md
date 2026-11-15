@@ -11,9 +11,9 @@ Shu roʻyxatdagi narsalar hal boʻlmaguncha saytda placeholder turadi.
 
 ## Fayllar
 
-- [ ] **CV** — `Faxriddin_Baxtiyorov_org_CV.pdf` buzilgan, boʻsh sahifa boʻlib ochiladi.
-  - Qayta eksport qilib `public/resume.pdf` ga qoʻying.
-  - Hozir u yerda eski CV turibdi, unda "Junior" va "Self-directed study" deb yozilgan.
+- [x] **CV** — yangi CV `public/resume.pdf` ga qoʻyildi (2026-11-15).
+  - Lavozim "Software Engineer" ga PDF ichida almashtirildi (asl fayl: `content/profile/`, git'da emas).
+  - ⚠️ CV'da ish joyi nomi (Datheon) bor. Egasi buni bilib turib qoldirdi. Maxfiylik qoidasi (nomni koʻrsatmaslik) CV uchun bekor qilingan.
 - [ ] **Loyiha skrinshotlari** — hozir nomiga mos CC0 banner rasm turibdi.
   - Haqiqiy skrinshot boʻlsa → `src/assets/banners/<id>.jpg` ni almashtiring (16:10).
 - [ ] **Kurs logolari** — hozir monogram turibdi, Anthropic, Huawei va HackerRank uchun rasmiy ikonka bor.
@@ -31,5 +31,4 @@ Shu roʻyxatdagi narsalar hal boʻlmaguncha saytda placeholder turadi.
 - [ ] **Maʼruzalar tavsifi** — hozir "Tengdosh Ustoz YouTube kanalidagi maʼruza" deb yozilgan.
   - Har biri uchun 1 gaplik tavsif kerak → `src/data/lectures.json`.
 - [ ] **LinkedIn post sarlavhalari** — post matnidan men yozdim → `src/data/articles.ts`.
-- [ ] **Ish joyi nomi** — saytda hech qayerda yozilmagan.
-  - Build natijasida tekshirish uchun nomini aytsangiz, grep bilan yoʻqligini tasdiqlayman.
+- [ ] **Ish joyi nomi** — saytning sahifalarida yozilmagan, faqat `resume.pdf` ichida bor (egasi ruxsat bergan).

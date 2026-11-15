@@ -1,0 +1,32 @@
+[
+  {
+    "id": "codealpha",
+    "order": 1,
+    "company": "CodeAlpha",
+    "date": "2026-07-26",
+    "image": "../assets/offers/codealpha.jpg",
+    "role": {
+      "uz": "Backend Development Intern",
+      "en": "Backend Development Intern"
+    },
+    "description": {
+      "uz": "Backend dasturlash boʻyicha amaliyot taklifi (1–30-avgust, 2026).",
+      "en": "Backend development internship offer (1–30 August 2026)."
+    }
+  },
+  {
+    "id": "codveda",
+    "order": 2,
+    "company": "Codveda Technologies",
+    "date": "2026-01-30",
+    "image": "../assets/offers/codveda.jpg",
+    "role": {
+      "uz": "Python Development Intern",
+      "en": "Python Development Intern"
+    },
+    "description": {
+      "uz": "Python dasturlash boʻyicha amaliyot taklifi: loyihalarni ishlab chiqish, testlash va qoʻllab-quvvatlash.",
+      "en": "Python development internship offer: building, testing and maintaining software projects."
+    }
+  }
+]

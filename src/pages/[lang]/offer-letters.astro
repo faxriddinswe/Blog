@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageIntro from "@/components/PageIntro.astro";
+import Lightbox from "@/components/Lightbox.astro";
+import ZoomImage from "@/components/ZoomImage.astro";
+import { formatDate, langPaths, t, type Locale } from "@/i18n/ui";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Locale;
+
+const items = (await getCollection("offers")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base lang={lang} page="offers" title={t(lang, "offers.meta.title")} description={t(lang, "offers.meta.description")}>
+  <div class="container page">
+    <PageIntro title={t(lang, "offers.h1")} lead={t(lang, "offers.lead")} />
+    <div class="grid list section">
+      {
+        items.map(({ data }) => (
+          <article class="offer card">
+            <ZoomImage
+              src={data.image}
+              alt={`${data.company} — ${data.role[lang]}`}
+              label={t(lang, "offers.open", { name: data.company })}
+              aspect="4 / 5"
+              sizes="(min-width: 1024px) 300px, (min-width: 600px) 45vw, 92vw"
+            />
+            <div class="offer__body">
+              <h2 class="offer__title">
+                {data.company} — {data.role[lang]}
+              </h2>
+              <p class="muted offer__desc">{data.description[lang]}</p>
+              <time class="offer__date" datetime={data.date}>
+                {formatDate(lang, data.date)}
+              </time>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+  <Lightbox lang={lang} />
+</Base>
+
+<style>
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-top: 40px;
+  }
+
+  .offer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .offer__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 6px 6px;
+  }
+
+  .offer__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .offer__desc {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .offer__date {
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 599px) {
+    .list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

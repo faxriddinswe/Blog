@@ -1,0 +1,7 @@
+# Har bir sertifikat — bitta blok. image: shu papkadagi rasm fayl nomi
+
+name:
+description:
+issuer:
+date:
+image:

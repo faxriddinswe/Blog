@@ -1,0 +1,17 @@
+# Har bir loyiha — bitta blok. type: personal yoki freelance
+# screenshot: shu papkadagi rasm fayl nomi (16:10 nisbat yaxshi)
+# live: ishlab turgan sayt bo'lsa; bo'lmasa bo'sh qoldiring
+
+name:
+type: personal
+description:
+github:
+live:
+screenshot:
+
+name:
+type: freelance
+description:
+github:
+live:
+screenshot:

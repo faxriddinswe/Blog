@@ -1,0 +1,116 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import PageIntro from "@/components/PageIntro.astro";
+import Lightbox from "@/components/Lightbox.astro";
+import ZoomImage from "@/components/ZoomImage.astro";
+import { formatDate, langPaths, t, type Locale } from "@/i18n/ui";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Locale;
+
+const items = (await getCollection("certificates")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base lang={lang} page="certificates" title={t(lang, "certificates.meta.title")} description={t(lang, "certificates.meta.description")}>
+  <div class="container page">
+    <PageIntro title={t(lang, "certificates.h1")} lead={t(lang, "certificates.lead")} />
+    <div class="grid list section">
+      {
+        items.map(({ data }) => (
+          <article class="cert card">
+            <ZoomImage
+              src={data.image}
+              alt={`${data.name} — ${data.issuer}`}
+              label={t(lang, "certificates.open", { name: data.name })}
+              aspect="16 / 10"
+              sizes="(min-width: 1024px) 380px, (min-width: 768px) 45vw, 92vw"
+            />
+            <div class="cert__body">
+              <h2 class="cert__title">{data.name}</h2>
+              <p class="muted cert__desc">{data.description[lang]}</p>
+              <p class="cert__meta">
+                <span>{data.issuer}</span>
+                {data.date && (
+                  <>
+                    <span aria-hidden="true">·</span>
+                    <time datetime={data.date}>{formatDate(lang, data.date)}</time>
+                  </>
+                )}
+              </p>
+              {data.verify && (
+                <a class="verify" href={data.verify} target="_blank" rel="noopener noreferrer">
+                  {t(lang, "certificates.verify")}
+                  <Icon name="external" size={16} />
+                  <span class="sr-only">({t(lang, "external")})</span>
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+  <Lightbox lang={lang} />
+</Base>
+
+<style>
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    margin-top: 40px;
+  }
+
+  .cert {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .cert__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 6px 6px;
+  }
+
+  .cert__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .cert__desc {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .cert__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .verify {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 4px;
+    min-height: 44px;
+    margin-block: -8px -10px;
+    color: var(--accent-text);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 767px) {
+    .list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

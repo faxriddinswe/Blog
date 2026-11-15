@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  lead: string;
+}
+const { title, lead } = Astro.props;
+---
+
+<header class="intro">
+  <h1 class="intro__title">{title}</h1>
+  <p class="intro__lead muted">{lead}</p>
+</header>
+
+<style>
+  .intro__title {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+
+  .intro__lead {
+    margin-top: 8px;
+    max-width: 640px;
+  }
+
+  @media (max-width: 767px) {
+    .intro__title {
+      font-size: 28px;
+    }
+  }
+</style>

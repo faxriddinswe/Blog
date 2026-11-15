@@ -1,38 +1,53 @@
 # faxriddinswe.uz
 
-Personal portfolio + blog of **Faxriddin Baxtiyorov** — Python Engineer · AI Agent Builder · Backend Architect.
+Personal portfolio of Faxriddin Baxtiyorov, a Software Engineer. It is a static, bilingual (uz/en) Astro site with dark and light themes.
 
-Bilingual (Uzbek default, English), motion-heavy, built to hit Lighthouse 90+.
+## Requirements
 
-## Quick start
+- Node **≥ 22.23.4**, which Astro 7 needs. Node 26 LTS is recommended.
+- pnpm 12.
+
+## Commands
 
 ```bash
-corepack enable          # or: npm i -g pnpm  (one-time, provides pnpm 12)
-pnpm install
-cp .env.example .env.local
-pnpm dev                 # http://localhost:3000 → redirects to /uz
+pnpm install            # install dependencies
+pnpm dev                # dev server → http://localhost:4321
+pnpm build              # type-check (astro check) + static build → dist/
+pnpm preview            # serve dist/ → http://localhost:4321
+
+pnpm test:e2e           # Playwright e2e + axe (needs `pnpm preview` running or starts it)
+pnpm qa:shots           # screenshots: pages × widths × themes × languages → qa/screenshots/
+pnpm qa:links           # internal + external link check over dist/
+pnpm qa:lighthouse      # Lighthouse mobile on every page (needs `pnpm preview`)
+pnpm assets             # regenerate public/og.png and icons
 ```
 
-## Scripts
+Playwright uses the installed Google Chrome (`channel: "chrome"`). Set `CHROME_PATH` to use a different binary.
 
-| Command                        | What it does                                                         |
-| ------------------------------ | -------------------------------------------------------------------- |
-| `pnpm dev`                     | Dev server (Turbopack)                                               |
-| `pnpm build` / `pnpm start`    | Production build / serve                                             |
-| `pnpm lint`                    | ESLint                                                               |
-| `pnpm typecheck`               | `next typegen` + `tsc --noEmit`                                      |
-| `pnpm check:i18n`              | Verifies `uz.json` / `en.json` keys match                            |
-| `pnpm check`                   | i18n + lint + typecheck                                              |
-| `pnpm format`                  | Prettier                                                             |
-| `pnpm qa:shots [url] [outDir]` | Screenshots at 375 / 1440 / reduced motion; fails on console errors  |
-| `pnpm telegram:chat-id`        | Prints your Telegram chat id (reads the bot token from `.env.local`) |
+## Where content lives
+
+| What | File |
+|---|---|
+| Profile, socials, tech stack, journey, communities, Telegram posts, hobbies | `src/data/site.ts` |
+| Projects | `src/data/projects.json` |
+| Certificates (+ images in `src/assets/certificates/`) | `src/data/certificates.json` |
+| Offer letters (+ images in `src/assets/offers/`) | `src/data/offers.json` |
+| Courses | `src/data/courses.json` |
+| Lectures (YouTube) | `src/data/lectures.json` |
+| Medium / LinkedIn articles | `src/data/articles.ts` |
+| Interface strings (uz/en) | `src/i18n/ui.ts` |
+| Resume PDF | `public/resume.pdf` |
+| Raw uploads from the owner | `content/` |
+
+How to add things, in Uzbek: [CONTENT-GUIDE.md](CONTENT-GUIDE.md). What is still missing: [TODO-CONTENT.md](TODO-CONTENT.md).
 
 ## Docs
 
-- [Architecture](docs/ARCHITECTURE.md)
-- [Design system](docs/DESIGN-SYSTEM.md)
-- [Motion guide](docs/MOTION-GUIDE.md)
-- [Content guide](docs/CONTENT-GUIDE.md) — add projects, posts, translations
-- [Deployment](docs/DEPLOYMENT.md)
-- [Owner inputs](docs/OWNER-INPUTS.md) — what's still missing
-- Project brief: [CLAUDE.md](CLAUDE.md)
+- [ARCHITECTURE.md](ARCHITECTURE.md): stack, structure, i18n, theme and accessibility decisions.
+- [TRANSLATIONS.md](TRANSLATIONS.md): every string in both languages, with its source.
+- [QA-REPORT.md](QA-REPORT.md): latest test, accessibility and Lighthouse results.
+- [PROGRESS.md](PROGRESS.md): current state and open questions.
+
+## Deploy
+
+Vercel serves `dist/` as static output (see `vercel.json`). Pushing or merging to `main` deploys to production. Only do that after the owner approves.

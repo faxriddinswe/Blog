@@ -1,0 +1,837 @@
+---
+import { Image, Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+import { articles as allArticles } from "@/data/articles";
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import SocialButtons from "@/components/SocialButtons.astro";
+import ContactBand from "@/components/ContactBand.astro";
+import portrait from "@/assets/portrait.jpg";
+import { channel, communities, hobbies, journey, medium, site, techStack } from "@/data/site";
+import { formatDate, langPaths, localePath, t, type Locale } from "@/i18n/ui";
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Locale;
+
+const [projects, certificates] = await Promise.all([getCollection("projects"), getCollection("certificates")]);
+const latest = [...allArticles].sort((a, b) => b.date.localeCompare(a.date))[0];
+
+const facts = [
+  { value: `${site.experienceYears}+`, label: t(lang, "about.fact.years") },
+  { value: String(projects.length), label: t(lang, "about.fact.projects") },
+  { value: String(certificates.length), label: t(lang, "about.fact.certificates") },
+  { value: "UZ · EN", label: t(lang, "about.fact.languages") },
+];
+const paragraphs = (["about.p1", "about.p2", "about.p3", "about.p4", "about.p5"] as const).map((k) => t(lang, k));
+const avatarColors = ["#FF9F5A", "#4FC3F7", "#F48FB1", "#7CD992", "#B39DFF"];
+const ext = t(lang, "external");
+---
+
+<Base lang={lang} page="about" title={t(lang, "about.meta.title")} description={t(lang, "about.meta.description")}>
+  <div class="container page">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow">{t(lang, "about.eyebrow")}</p>
+        <h1 class="hero__title">
+          {t(lang, "about.h1")}
+          <span class="muted">{t(lang, "about.h1b")}</span>
+        </h1>
+        <div class="hero__body muted">
+          {paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+        <div class="hero__actions">
+          <a class="btn btn--accent" href={site.resume} target="_blank" rel="noopener noreferrer">
+            <Icon name="file" />
+            {t(lang, "home.resume")}
+        <span class="sr-only">({t(lang, "external")})</span>
+          </a>
+          <a class="btn btn--secondary" href="#contact">
+            {t(lang, "about.contactMe")}
+            <Icon name="arrow" />
+          </a>
+          <span class="divider" aria-hidden="true"></span>
+          <SocialButtons lang={lang} />
+        </div>
+      </div>
+
+      <figure class="hero__photo">
+        <Picture
+          src={portrait}
+          alt={t(lang, "home.photoAlt")}
+          widths={[360, 480, 720, 960]}
+          sizes="(min-width: 960px) 420px, (min-width: 768px) 360px, 90vw"
+          formats={["avif", "webp"]}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <figcaption class="float surface">
+          <span class="pulse" aria-hidden="true"></span>
+          <span>
+            <span class="float__k muted">{t(lang, "about.currently")}</span>
+            <span class="float__v">{site.title}</span>
+          </span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Facts -->
+    <section class="section" aria-labelledby="facts-title">
+      <h2 id="facts-title" class="sr-only">{t(lang, "about.facts")}</h2>
+      <dl class="facts">
+        {
+          facts.map((f) => (
+            <div class="fact card">
+              <dt class="fact__label muted">{f.label}</dt>
+              <dd class="fact__value">{f.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- Tech stack -->
+    <section class="section" aria-labelledby="stack-title">
+      <h2 id="stack-title" class="h2 section-title">{t(lang, "about.stack")}</h2>
+      <div class="acard stack">
+        {
+          techStack.map((row) => (
+            <div class="stack__row">
+              <h3 class="stack__label muted">{row.label[lang]}</h3>
+              <ul class="stack__chips">
+                {row.items.map((item) => (
+                  <li class="chip">{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Journey -->
+    <section class="section" aria-labelledby="journey-title">
+      <h2 id="journey-title" class="h2 section-title">{t(lang, "about.journey")}</h2>
+      <ol class="acard timeline">
+        {
+          journey.map((item) => (
+            <li class="tl">
+              <span class="tl__dot" aria-hidden="true" />
+              <div class="tl__body">
+                <h3 class="tl__title">{item.title[lang]}</h3>
+                {item.place && <p class="muted tl__place">{item.place[lang]}</p>}
+              </div>
+              <p class="tl__date">{item.date[lang]}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <!-- Where to find me -->
+    <section class="section" aria-labelledby="find-title">
+      <h2 id="find-title" class="h2 section-title">{t(lang, "about.find")}</h2>
+      <div class="two">
+        <article class="acard find">
+          <div class="find__head">
+            <span class="tg-icon" aria-hidden="true"><Icon name="telegram" size={20} /></span>
+            <div>
+              <p class="eyebrow">{t(lang, "about.channel")}</p>
+              <h3 class="find__name">{channel.name}</h3>
+            </div>
+            <span class="live"><span class="dot pulse-dot" aria-hidden="true"></span>{t(lang, "about.live")}</span>
+          </div>
+          <ul class="posts">
+            {
+              channel.posts.map((post) => (
+                <li>
+                  <a class="post" href={post.href} target="_blank" rel="noopener noreferrer">
+                    <span class="post__text">{post.text}</span>
+                    <span class="post__date muted">{formatDate(lang, post.date)}</span>
+                    <span class="sr-only">({ext})</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <a class="btn find__cta" href={channel.href} target="_blank" rel="noopener noreferrer">
+            {channel.handle}
+            <Icon name="external" />
+            <span class="sr-only">({ext})</span>
+          </a>
+        </article>
+
+        <article class="acard find">
+          <p class="eyebrow">{t(lang, "about.latestArticle")}</p>
+          {
+            latest ? (
+              <a class="article" href={latest.url} target="_blank" rel="noopener noreferrer">
+                <div class="article__cover">
+                  {latest.cover ? (
+                    <Image src={latest.cover} alt="" width={640} height={400} loading="lazy" />
+                  ) : (
+                    <span class="article__gen">
+                      <Icon name={latest.platform} size={36} />
+                    </span>
+                  )}
+                </div>
+                <h3 class="find__name">{latest.title[lang]}</h3>
+                <p class="muted small">
+                  {latest.platform === "medium" ? "Medium" : "LinkedIn"} · {formatDate(lang, latest.date)}
+                </p>
+                <span class="sr-only">({ext})</span>
+              </a>
+            ) : (
+              <div class="article">
+                <div class="article__cover article__cover--empty">
+                  <Icon name="medium" size={40} />
+                </div>
+                <p class="muted">{t(lang, "about.noArticle")}</p>
+              </div>
+            )
+          }
+          <div class="find__actions">
+            <a class="btn btn--accent" href={localePath(lang, "blog")}>
+              {t(lang, "about.allArticles")}
+              <Icon name="arrow" />
+            </a>
+            <a class="btn" href={medium} target="_blank" rel="noopener noreferrer">
+              Medium
+              <Icon name="external" />
+              <span class="sr-only">({ext})</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Communities -->
+    <section class="section" aria-labelledby="community-title">
+      <h2 id="community-title" class="h2 section-title">{t(lang, "about.communities")}</h2>
+      <div class="two">
+        {
+          communities.map((c) => (
+            <a class="acard community" href={c.href} target="_blank" rel="noopener noreferrer">
+              <p class="eyebrow">{t(lang, "about.community")}</p>
+              <ul class="avatars" aria-hidden="true">
+                {avatarColors.map((color) => (
+                  <li style={`--c:${color}`}>
+                    <Icon name="user" size={18} />
+                  </li>
+                ))}
+              </ul>
+              <ul class="tags">
+                {c.tags.map((tag) => (
+                  <li class="pill tag">
+                    <span class="dot" style={`background:${tag.color}`} aria-hidden="true" />
+                    {tag[lang]}
+                  </li>
+                ))}
+              </ul>
+              <h3 class="community__name">{c.name}</h3>
+              <p class="muted">{c.description[lang]}</p>
+              <div class="community__bar">
+                <span class="tg-round" aria-hidden="true">
+                  <Icon name="telegram" size={18} />
+                </span>
+                <span class="community__handle">{c.handle}</span>
+                <span class="community__active muted">
+                  <span class="dot" aria-hidden="true" />
+                  {t(lang, "about.activeCommunity")}
+                </span>
+                <Icon name="link" size={18} class="community__ext" />
+              </div>
+              <span class="sr-only">({ext})</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    {
+      hobbies.length > 0 && (
+        <section class="section" aria-labelledby="hobbies-title">
+          <h2 id="hobbies-title" class="h2 section-title">
+            {t(lang, "about.hobbies")}
+          </h2>
+          <ul class="hobbies">
+            {hobbies.map((h) => (
+              <li class="pill hobby surface">
+                <span class="dot" aria-hidden="true" />
+                {h[lang]}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <ContactBand lang={lang} />
+  </div>
+</Base>
+
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero__title {
+    margin-top: 12px;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.6px;
+  }
+
+  .hero__title span {
+    display: block;
+  }
+
+  .hero__body {
+    display: grid;
+    gap: 14px;
+    margin-top: 24px;
+    max-width: 640px;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .divider {
+    width: 1px;
+    height: 32px;
+    background: var(--border);
+    margin-inline: 4px;
+  }
+
+  .hero__photo {
+    position: relative;
+    margin: 0 0 28px 28px;
+  }
+
+  .hero__photo img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 20%;
+    border-radius: 28px;
+    background:
+      radial-gradient(70% 60% at 50% 35%, var(--accent-soft), transparent 70%),
+      var(--surface-2);
+    border: 1px solid var(--border);
+  }
+
+  .float {
+    position: absolute;
+    left: -28px;
+    bottom: -28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 18px 40px rgb(0 0 0 / 0.28);
+    max-width: calc(100% + 28px);
+  }
+
+  .float__k,
+  .float__v {
+    display: block;
+    line-height: 1.35;
+  }
+
+  .float__k {
+    font-size: 12px;
+  }
+
+  .float__v {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .pulse,
+  .pulse-dot {
+    position: relative;
+  }
+
+  .pulse {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .pulse::after,
+  .pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--accent);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pulse::after,
+    .pulse-dot::after {
+      animation: ping 1.8s var(--ease) infinite;
+    }
+  }
+
+  @keyframes ping {
+    to {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+
+  /* ---------- Cards shared on this page ---------- */
+  .acard {
+    padding: 28px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    transition: background-color var(--t), border-color var(--t);
+  }
+
+  .section-title {
+    margin-bottom: 20px;
+  }
+
+  .two {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .small {
+    font-size: 13px;
+  }
+
+  /* ---------- Facts ---------- */
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .fact {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .fact__value {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+  }
+
+  .fact__label {
+    margin-top: 4px;
+    font-size: 14px;
+  }
+
+  /* ---------- Tech stack ---------- */
+  .stack {
+    display: grid;
+    gap: 18px;
+  }
+
+  .stack__row {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .stack__label {
+    padding-top: 6px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .stack__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: 28px;
+  }
+
+  .tl {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    padding-left: 32px;
+  }
+
+  /* The vertical line runs between dots. */
+  .tl:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 18px;
+    bottom: -34px;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .tl__dot {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px var(--accent-soft);
+  }
+
+  .tl__title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .tl__place {
+    font-size: 14px;
+  }
+
+  .tl__date {
+    align-self: start;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ---------- Where to find me ---------- */
+  .find {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .find__head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .tg-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent-text);
+  }
+
+  .find__name {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .posts {
+    display: grid;
+    gap: 8px;
+  }
+
+  .post {
+    display: grid;
+    gap: 2px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--surface-2);
+    transition: background-color var(--t);
+  }
+
+  .post:hover {
+    background: var(--accent-soft);
+  }
+
+  .post__text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .post__date {
+    font-size: 12px;
+  }
+
+  .find__cta {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  .article {
+    display: grid;
+    gap: 12px;
+  }
+
+  .article__cover {
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+
+  .article__cover :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .article__gen {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    color: var(--accent-text);
+    background:
+      radial-gradient(90% 80% at 100% 0%, var(--accent-soft), transparent 60%),
+      linear-gradient(var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+      linear-gradient(90deg, var(--border) 1px, transparent 1px) 0 0 / 22px 22px,
+      var(--surface-2);
+  }
+
+  .article:hover .find__name {
+    color: var(--accent-text);
+  }
+
+  .article__cover--empty {
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+  }
+
+  .find__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  /* ---------- Communities ---------- */
+  .community {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .community:hover {
+    border-color: var(--accent-line);
+  }
+
+  .avatars {
+    display: flex;
+  }
+
+  .avatars li {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    margin-left: -8px;
+    border-radius: 50%;
+    border: 2px solid var(--surface);
+    background: var(--c);
+    color: #0a0e14;
+  }
+
+  .avatars li:first-child {
+    margin-left: 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .community__name {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .community__bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    margin-top: auto;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--surface-2);
+  }
+
+  .tg-round {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--telegram);
+    color: #fff;
+  }
+
+  .community__handle {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .community__active {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .community__bar :global(.community__ext) {
+    margin-left: auto;
+    color: var(--muted);
+  }
+
+  /* ---------- Hobbies ---------- */
+  .hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hobby {
+    min-height: 44px;
+    padding: 0 18px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 959px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+      gap: 40px;
+    }
+
+    .hero__title {
+      font-size: 42px;
+    }
+
+    .facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    /* Phones: photo first, then the text. */
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 48px;
+    }
+
+    .hero__photo {
+      order: -1;
+      width: min(100%, 360px);
+      margin: 0 auto 20px;
+    }
+
+    .float {
+      left: 12px;
+      bottom: -20px;
+      max-width: calc(100% - 24px);
+    }
+
+    .hero__title {
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+
+    .divider {
+      display: none;
+    }
+
+    .two {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .acard {
+      padding: 20px;
+    }
+
+    .stack__row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .stack__label {
+      padding-top: 0;
+    }
+
+    .tl {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .tl__date {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .hero__actions > .btn {
+      flex: 1 1 100%;
+    }
+
+    .fact__value {
+      font-size: 26px;
+    }
+  }
+</style>

@@ -1,0 +1,193 @@
+[
+  {
+    "id": "docly",
+    "order": 1,
+    "name": "Docly",
+    "type": "personal",
+    "glyph": "api",
+    "description": {
+      "uz": "Xususiy klinikalar uchun multi-tenant navbat SaaS: telefon OTP orqali onlayn yozilish, shifokorlar jadvali va Telegram eslatmalari.",
+      "en": "A multi-tenant appointment SaaS for private clinics: online booking with phone OTP, doctor schedules and Telegram reminders."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "Redis"
+    ],
+    "github": "https://github.com/faxriddinswe/docly",
+    "banner": "../assets/banners/docly.jpg"
+  },
+  {
+    "id": "rento",
+    "order": 2,
+    "name": "Rento",
+    "type": "personal",
+    "glyph": "web",
+    "description": {
+      "uz": "Ijaraga berilgan uy-joy va kommunal hisob-kitob tizimi: shartnomalar, hisoblagich koʻrsatkichlari rasm bilan, oylik hisob-fakturalar va PDF.",
+      "en": "A rental-property and utility billing manager: leases, photo meter readings, automatic monthly invoices and PDFs."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "Redis"
+    ],
+    "github": "https://github.com/faxriddinswe/rento",
+    "banner": "../assets/banners/rento.jpg"
+  },
+  {
+    "id": "nargiza-brend-bot",
+    "order": 3,
+    "name": "Nargiza Brend — Shop Assistant Bot",
+    "type": "freelance",
+    "glyph": "bot",
+    "description": {
+      "uz": "Oilaviy kiyim doʻkonining qogʻoz qarz daftarini almashtiruvchi Telegram bot: qarzlar hisobi, avtomatik eslatmalar va oʻzbekcha matn hamda ovozli xabarni tushunadigan AI agent.",
+      "en": "A Telegram bot that replaces a family clothing shop’s paper debt notebook: a debt ledger, automatic reminders and an AI agent that understands Uzbek text and voice messages."
+    },
+    "stack": [
+      "Python",
+      "Telegram Bot API",
+      "Gemini",
+      "SQLAlchemy",
+      "Docker"
+    ],
+    "github": "https://github.com/faxriddinswe/Nargiza-Brend-Shop-AI-agent-Bot",
+    "banner": "../assets/banners/nargiza-brend-bot.jpg"
+  },
+  {
+    "id": "qarzai",
+    "order": 4,
+    "name": "QarzAI (Depth-AI)",
+    "type": "personal",
+    "glyph": "agent",
+    "description": {
+      "uz": "Nasiyaga savdo qiluvchi bizneslar uchun qarz undirishni avtomatlashtiruvchi multi-tenant SaaS: oʻzbek va rus tillarida AI muloqot, toʻlov vaʼdalari va boʻlib toʻlashni qayta tuzish.",
+      "en": "A multi-tenant SaaS that automates debt collection for businesses selling on credit: AI outreach in Uzbek and Russian, payment-promise tracking and installment restructuring."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "Next.js"
+    ],
+    "github": "https://github.com/faxriddinswe/Depth-AI",
+    "banner": "../assets/banners/qarzai.jpg"
+  },
+  {
+    "id": "sherzod-english",
+    "order": 5,
+    "name": "Sherzod English",
+    "type": "freelance",
+    "glyph": "edu",
+    "description": {
+      "uz": "Ingliz tili ustozi uchun ochiq sayt, ustoz va oʻquvchi kabinetlari; Telegram bildirishnomalari PostgreSQL outbox worker orqali yuboriladi.",
+      "en": "A public website with teacher and student dashboards for an English teacher; Telegram notifications are sent through a PostgreSQL outbox worker."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "TypeScript"
+    ],
+    "github": "https://github.com/faxriddinswe/English_project",
+    "banner": "../assets/banners/sherzod-english.jpg"
+  },
+  {
+    "id": "yuksalish-edu",
+    "order": 6,
+    "name": "Yuksalish Edu",
+    "type": "freelance",
+    "glyph": "edu",
+    "description": {
+      "uz": "Oʻquv markazi uchun ommaviy sayt, CRM hamda oʻquvchi, ota-ona va xodim kabinetlari.",
+      "en": "A public website, CRM and student, parent and staff dashboards for a learning centre."
+    },
+    "stack": [
+      "Django REST",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "Next.js"
+    ],
+    "github": "https://github.com/faxriddinswe/Yuksalish-Edu",
+    "banner": "../assets/banners/yuksalish-edu.jpg"
+  },
+  {
+    "id": "bozor",
+    "order": 7,
+    "name": "Bozor — E-commerce",
+    "type": "personal",
+    "glyph": "shop",
+    "description": {
+      "uz": "Fullstack internet-doʻkon: JWT bilan roʻyxatdan oʻtish, mahsulotlarni qidirish va saralash, savat va buyurtmalar.",
+      "en": "A full-stack online store: JWT sign-up and login, product search and sorting, a cart and orders."
+    },
+    "stack": [
+      "FastAPI",
+      "SQLite",
+      "JWT",
+      "JavaScript"
+    ],
+    "github": "https://github.com/faxriddinswe/E-Commerce_Bozor",
+    "banner": "../assets/banners/bozor.jpg"
+  },
+  {
+    "id": "postflow",
+    "order": 8,
+    "name": "PostFlow",
+    "type": "personal",
+    "glyph": "api",
+    "description": {
+      "uz": "Postlarni Telegram kanalingizga tez joylash uchun platforma: hisob, postlar tahriri va Bot API orqali nashr.",
+      "en": "A platform for publishing posts to your Telegram channel fast: accounts, post editing and publishing through the Bot API."
+    },
+    "stack": [
+      "FastAPI",
+      "PostgreSQL",
+      "Telegram Bot API",
+      "JWT"
+    ],
+    "github": "https://github.com/faxriddinswe/PostFlow",
+    "banner": "../assets/banners/postflow.jpg"
+  },
+  {
+    "id": "namoz-bot",
+    "order": 9,
+    "name": "Namoz Userbot",
+    "type": "personal",
+    "glyph": "bot",
+    "description": {
+      "uz": "Telegram kanallarini real vaqtda kuzatib, namoz vaqtlari haqidagi postlarni kalit soʻzlar boʻyicha topadi va kerakli joyga darhol yuboradi.",
+      "en": "Watches Telegram channels in real time, finds prayer-time posts by keyword and forwards them instantly."
+    },
+    "stack": [
+      "Python",
+      "Telethon",
+      "asyncio"
+    ],
+    "github": "https://github.com/faxriddinswe/namoz_bot",
+    "banner": "../assets/banners/namoz-bot.jpg"
+  },
+  {
+    "id": "techhouse",
+    "order": 10,
+    "name": "TechHouse",
+    "type": "personal",
+    "glyph": "web",
+    "description": {
+      "uz": "Maishiy texnika sotuvchi doʻkon uchun sayt va uning backend qismi.",
+      "en": "A website for a household-appliance store, with its own backend."
+    },
+    "stack": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "github": "https://github.com/faxriddinswe/Techhouse-backend",
+    "banner": "../assets/banners/techhouse.jpg"
+  }
+]

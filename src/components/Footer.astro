@@ -1,0 +1,24 @@
+---
+interface Props {
+  bordered?: boolean;
+}
+const { bordered = true } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class:list={["footer", { "footer--bordered": bordered }]}>
+  <p class="container">© {year} faxriddinswe.uz</p>
+</footer>
+
+<style>
+  .footer {
+    padding: 24px 0 calc(24px + env(safe-area-inset-bottom));
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer--bordered {
+    border-top: 1px solid var(--border);
+  }
+</style>

@@ -1,0 +1,8 @@
+# Har bir offer letter — bitta blok. image: shu papkadagi rasm fayl nomi
+# ⚠️ Maosh / manzil / telefon / ID / imzo ko'rinsa, menga ayting — o'zim kesmayman.
+
+company:
+role:
+description:
+date:
+image:

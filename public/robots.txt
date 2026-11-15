@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://faxriddinswe.uz/sitemap-index.xml

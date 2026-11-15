@@ -1,0 +1,56 @@
+---
+import { getImage, Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  src: ImageMetadata;
+  /** Accessible name of the zoom button, e.g. "Enlarge the X certificate". */
+  label: string;
+  alt: string;
+  aspect: "16 / 10" | "4 / 5";
+  sizes: string;
+}
+const { src, label, alt, aspect, sizes } = Astro.props;
+// Full-size view for the lightbox, capped so phones don't download huge files.
+const full = await getImage({ src, width: Math.min(src.width, 1600), format: "webp" });
+---
+
+<button
+  class="zoom"
+  type="button"
+  style={`aspect-ratio:${aspect}`}
+  aria-label={label}
+  aria-haspopup="dialog"
+  data-lightbox
+  data-src={full.src}
+  data-alt={alt}
+  data-w={full.attributes.width}
+  data-h={full.attributes.height}
+>
+  <Picture src={src} alt={alt} widths={[400, 640, 960]} sizes={sizes} formats={["avif", "webp"]} loading="lazy" />
+</button>
+
+<style>
+  .zoom {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface-2);
+    cursor: zoom-in;
+  }
+
+  .zoom :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform var(--t);
+  }
+
+  .zoom:hover :global(img) {
+    transform: scale(1.03);
+  }
+</style>

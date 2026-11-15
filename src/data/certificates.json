@@ -1,0 +1,134 @@
+[
+  {
+    "id": "startup-school",
+    "order": 1,
+    "name": "Startup School",
+    "issuer": "Yoshlar Ventures · Debocha · UzCombinator",
+    "date": "2026-09-05",
+    "image": "../assets/certificates/startup-school.jpg",
+    "verify": "https://debocha.uz/certificate/CRT-2026-C49D6",
+    "description": {
+      "uz": "Gʻoyadan mahsulotgacha: startap qurish, bozorni tekshirish va investorlarga taqdimot boʻyicha kursni tamomladim.",
+      "en": "Completed a course on building a startup — from idea to product, market validation and pitching to investors."
+    }
+  },
+  {
+    "id": "huawei-algorithms",
+    "order": 2,
+    "name": "Algorithm and Program Design",
+    "issuer": "Huawei ICT Academy",
+    "date": "2026-09-13",
+    "image": "../assets/certificates/huawei-algorithms.jpg",
+    "description": {
+      "uz": "Algoritmlar va dastur loyihalash boʻyicha oʻqish va imtihondan muvaffaqiyatli oʻtdim.",
+      "en": "Completed the study programme and passed the exam on algorithms and program design."
+    }
+  },
+  {
+    "id": "claude-101",
+    "order": 3,
+    "name": "Claude 101",
+    "issuer": "Anthropic Academy",
+    "image": "../assets/certificates/claude-101.jpg",
+    "verify": "https://verify.skilljar.com/c/dfepzuoue329",
+    "description": {
+      "uz": "Claude bilan ishlash asoslari: samarali promptlar va kundalik ishda AI’dan foydalanish.",
+      "en": "The fundamentals of working with Claude: effective prompting and using AI in everyday work."
+    }
+  },
+  {
+    "id": "hackerrank-python",
+    "order": 4,
+    "name": "Python (Basic)",
+    "issuer": "HackerRank",
+    "date": "2026-02-21",
+    "image": "../assets/certificates/hackerrank-python.jpg",
+    "description": {
+      "uz": "HackerRank’ning Python boʻyicha koʻnikma sertifikatsiya testidan oʻtdim.",
+      "en": "Passed HackerRank’s Python skill certification test."
+    }
+  },
+  {
+    "id": "google-cloud-ai",
+    "order": 5,
+    "name": "Innovating with Google Cloud AI",
+    "issuer": "Simplilearn SkillUP · Google Cloud",
+    "date": "2026-05-22",
+    "image": "../assets/certificates/google-cloud-ai.jpg",
+    "description": {
+      "uz": "Google Cloud’ning AI va mashinaviy oʻqitish xizmatlari bilan tanishtiruvchi onlayn kurs.",
+      "en": "An online course introducing Google Cloud’s AI and machine-learning services."
+    }
+  },
+  {
+    "id": "data-analyst-101",
+    "order": 6,
+    "name": "Data Analyst 101",
+    "issuer": "Simplilearn SkillUP · Microsoft",
+    "date": "2026-05-22",
+    "image": "../assets/certificates/data-analyst-101.jpg",
+    "description": {
+      "uz": "Maʼlumotlarni tahlil qilish asoslari boʻyicha onlayn kurs.",
+      "en": "An online course on the fundamentals of data analysis."
+    }
+  },
+  {
+    "id": "mobilography",
+    "order": 7,
+    "name": "Mobilografiya",
+    "issuer": "Ustoz AI · Yoshlar ishlari agentligi",
+    "date": "2025-02-02",
+    "image": "../assets/certificates/mobilography.jpg",
+    "description": {
+      "uz": "“Ustoz AI” loyihasidagi mobilografiya videokursini tamomladim.",
+      "en": "Completed the mobile videography course of the “Ustoz AI” programme."
+    }
+  },
+  {
+    "id": "video-editing",
+    "order": 8,
+    "name": "Videomontaj",
+    "issuer": "Ustoz AI · Yoshlar ishlari agentligi",
+    "date": "2025-02-02",
+    "image": "../assets/certificates/video-editing.jpg",
+    "description": {
+      "uz": "“Ustoz AI” loyihasidagi videomontaj videokursini tamomladim.",
+      "en": "Completed the video editing course of the “Ustoz AI” programme."
+    }
+  },
+  {
+    "id": "english-grammar",
+    "order": 9,
+    "name": "English Grammar",
+    "issuer": "Ibrat Academy",
+    "date": "2024-02-18",
+    "image": "../assets/certificates/english-grammar.jpg",
+    "description": {
+      "uz": "Ibrat Academy’da ingliz tili grammatikasi kursini tamomladim.",
+      "en": "Completed the English grammar course at Ibrat Academy."
+    }
+  },
+  {
+    "id": "ielts",
+    "order": 10,
+    "name": "IELTS Academic",
+    "issuer": "British Council · IDP · Cambridge English",
+    "date": "2024-12-07",
+    "image": "../assets/certificates/ielts.jpg",
+    "description": {
+      "uz": "IELTS Academic test natijasi: umumiy ball 5.5, CEFR darajasi B2.",
+      "en": "IELTS Academic test report: overall band 5.5, CEFR level B2."
+    }
+  },
+  {
+    "id": "harvardx-cs50",
+    "order": 11,
+    "name": "CS50's Introduction to Computer Science",
+    "issuer": "HarvardX · edX",
+    "image": "../assets/certificates/harvardx-cs50.jpg",
+    "description": {
+      "uz": "Harvard universitetining CS50 kompyuter fanlari asoslari kursi (HarvardX, edX).",
+      "en": "Harvard University's CS50 introduction to computer science course (HarvardX on edX)."
+    }
+  }
+]

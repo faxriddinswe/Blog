@@ -1,0 +1,51 @@
+---
+import Base from "@/layouts/Base.astro";
+import { localePath, t } from "@/i18n/ui";
+
+// Static 404: one page for both languages; Uzbek first (default locale).
+const lang = "uz";
+---
+
+<Base lang={lang} page="404" title={`${t(lang, "notFound.title")} · ${t("en", "notFound.title")}`} description={t(lang, "notFound.text")}>
+  <section class="container nf">
+    <p class="nf__code">404</p>
+    <h1 class="nf__title">{t(lang, "notFound.title")}</h1>
+    <p class="muted">{t(lang, "notFound.text")}</p>
+    <p class="muted" lang="en">{t("en", "notFound.text")}</p>
+    <div class="nf__actions">
+      <a class="btn btn--accent" href={localePath("uz")}>{t("uz", "notFound.back")}</a>
+      <a class="btn" href={localePath("en")} lang="en">{t("en", "notFound.back")}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding-block: 96px;
+    text-align: center;
+  }
+
+  .nf__code {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent-text);
+  }
+
+  .nf__title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+  }
+
+  .nf__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+</style>

@@ -1,6 +1,6 @@
 # Ish holati — portfolio-v2
 
-Oxirgi yangilanish: 2026-11-15. Branch: `portfolio-v2`. Hech narsa push yoki deploy qilinmagan.
+Oxirgi yangilanish: 2026-11-15 (2-sessiya). Branch: `portfolio-v2`. Hech narsa push yoki deploy qilinmagan.
 Jonli sayt (`main`, eski Next.js versiya) avvalgidek ishlab turibdi.
 
 ## Nima qilindi ✅
@@ -35,19 +35,21 @@ Jonli sayt (`main`, eski Next.js versiya) avvalgidek ishlab turibdi.
 7. **Qiziqishlar (hobbilar):** roʻyxat boʻsh boʻlgani uchun bu boʻlim yashirilgan.
 8. **LinkedIn post sarlavhalari:** ularni men yozdim, oʻzgartirish kerakmi?
 
+## 2-sessiyada qilindi ✅
+
+- `.claude/agents/`: 7 ta subagent fayli.
+- Testlar va QA — natijalar `QA-REPORT.md` da:
+  - E2E va axe: 52/52 test oʻtdi.
+  - Skrinshotlar: 624 ta (portrait va landscape), gorizontal scroll yoki buzilgan rasm yoʻq.
+  - Lighthouse (mobil): Performance ≥ 95, Accessibility 100, Best Practices 100, SEO 100.
+  - Link check: barcha ichki havolalar ishlaydi.
+- Hujjatlar: `ARCHITECTURE.md`, `README.md`, `CONTENT-GUIDE.md`, `TODO-CONTENT.md`, `TRANSLATIONS.md`, `QA-REPORT.md`.
+- "Rezyumeni yuklab olish" tugmasi endi PDF'ni yangi tabda ochadi (egasining soʻrovi).
+
 ## Qolgan ishlar 🔜
 
-- `.claude/agents/` papkasidagi subagent fayllari.
-- Toʻliq QA:
-  - skrinshotlar: 14 ta kenglik × 2 til × 2 mavzu (`node qa/shoot.mjs`);
-  - landscape rejim;
-  - Playwright e2e testlari;
-  - axe-core;
-  - Lighthouse;
-  - link check;
-  - natijalar `QA-REPORT.md` ga yoziladi.
-- Hujjatlar: `TODO-CONTENT.md`, `TRANSLATIONS.md`, `CONTENT-GUIDE.md` (oʻzbekcha), `ARCHITECTURE.md`, `README.md`.
-- Egasi ruxsat bergandan keyin: push → Vercel Preview → `main` ga PR.
+- Yuqoridagi savollarga javob kelgach, kontentni yangilash.
+- Egasi ruxsat bergandan keyin: push → Vercel Preview → tekshiruv → `main` ga PR.
 
 ## Ishga tushirish
 

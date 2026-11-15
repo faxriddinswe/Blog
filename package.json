@@ -11,7 +11,11 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "content": "node scripts/build-content.mjs"
+    "test:e2e": "playwright test",
+    "qa:shots": "node qa/shoot.mjs",
+    "qa:links": "node qa/links.mjs",
+    "qa:lighthouse": "node qa/lighthouse.mjs",
+    "assets": "node scripts/brand-assets.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.5",
@@ -22,6 +26,7 @@
     "@astrojs/check": "0.9.12",
     "@axe-core/playwright": "4.14.0",
     "@playwright/test": "1.65.1",
+    "lighthouse": "13.6.0",
     "sharp": "0.35.5",
     "simple-icons": "16.37.0",
     "typescript": "^6.0.3"

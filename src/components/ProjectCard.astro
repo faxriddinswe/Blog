@@ -24,11 +24,12 @@ const ext = t(lang, "external");
 ---
 
 <article class="pcard card">
-  <a class="cover" href={coverHref} target="_blank" rel="noopener noreferrer" aria-label={`${coverLabel} (${ext})`}>
-    {/* Generated cover — TODO(owner): real screenshots (see TODO-CONTENT.md). */}
-    <span class="cover__glyph" aria-hidden="true"><Icon name={glyphs[project.glyph]} size={30} /></span>
-    <span class="cover__name" aria-hidden="true">{project.name}</span>
-    <span class="cover__stack" aria-hidden="true">
+  <a class="cover" href={coverHref} target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true" title={coverLabel}>
+    {/* Mouse shortcut to the same link as the buttons below; hidden from AT and Tab to avoid duplicates.
+        Generated cover — TODO(owner): real screenshots (see TODO-CONTENT.md). */}
+    <span class="cover__glyph"><Icon name={glyphs[project.glyph]} size={30} /></span>
+    <span class="cover__name">{project.name}</span>
+    <span class="cover__stack">
       {project.stack.slice(0, 3).map((s) => <span>{s}</span>)}
     </span>
   </a>

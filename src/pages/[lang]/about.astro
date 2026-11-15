@@ -41,9 +41,10 @@ const ext = t(lang, "external");
           {paragraphs.map((p) => <p>{p}</p>)}
         </div>
         <div class="hero__actions">
-          <a class="btn btn--accent" href={site.resume} download>
+          <a class="btn btn--accent" href={site.resume} target="_blank" rel="noopener noreferrer">
             <Icon name="download" />
             {t(lang, "home.resume")}
+        <span class="sr-only">({t(lang, "external")})</span>
           </a>
           <a class="btn btn--secondary" href="#contact">
             {t(lang, "about.contactMe")}

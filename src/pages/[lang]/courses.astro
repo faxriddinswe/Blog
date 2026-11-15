@@ -65,14 +65,15 @@ const ext = t(lang, "external");
     height: 56px;
     border-radius: 14px;
     background: color-mix(in srgb, var(--c) 16%, var(--surface-2));
-    color: var(--c);
+    /* Brand colours lifted toward white so monograms stay ≥ 4.5:1 on the dark tile. */
+    color: color-mix(in srgb, var(--c) 55%, white);
     font-size: 16px;
     font-weight: 800;
     letter-spacing: -0.3px;
   }
 
   :global([data-theme="light"]) .logo {
-    color: color-mix(in srgb, var(--c) 70%, #000);
+    color: color-mix(in srgb, var(--c) 42%, #000);
   }
 
   .course__text {

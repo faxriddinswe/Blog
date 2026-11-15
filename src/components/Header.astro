@@ -29,7 +29,7 @@ const current = (id: PageId) => (id === page ? "page" : undefined);
 
 <header class="header">
   <div class="container header__row">
-    <a class="brand" href={localePath(lang)} aria-label={`${site.name} — ${t(lang, "nav.home")}`}>
+    <a class="brand" href={localePath(lang)}>
       <span class="brand__mark" aria-hidden="true">{site.monogram}</span>
       <span class="brand__name">{site.name}</span>
     </a>
@@ -562,9 +562,20 @@ const current = (id: PageId) => (id === page ? "page" : undefined);
     }
   }
 
-  @media (max-width: 359px) {
+  /* Narrow phones: smaller name instead of an ellipsis; below 340px only the FB mark. */
+  @media (max-width: 379px) {
     .brand__name {
-      font-size: 15px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 339px) {
+    .header__row > .brand .brand__name {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
     }
   }
 </style>

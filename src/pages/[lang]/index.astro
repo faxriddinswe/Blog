@@ -41,9 +41,10 @@ const lang = Astro.params.lang as Locale;
     <SocialButtons lang={lang} size="lg" />
 
     <div class="cta">
-      <a class="btn btn--accent btn--lg" href={site.resume} download>
+      <a class="btn btn--accent btn--lg" href={site.resume} target="_blank" rel="noopener noreferrer">
         <Icon name="download" />
         {t(lang, "home.resume")}
+        <span class="sr-only">({t(lang, "external")})</span>
       </a>
       <a class="btn btn--secondary btn--lg" href={localePath(lang, "about")}>
         {t(lang, "home.more")}
